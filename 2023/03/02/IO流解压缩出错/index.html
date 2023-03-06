@@ -1,0 +1,546 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <meta name="author" content="KkkerAn">
+  
+  
+  
+  
+  
+    <link rel="alternate" href="/atom.xml " title="Hexo" type="application/atom+xml">
+  
+
+  
+
+  <title>“IO流解压缩出错” | Hexo</title>
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/css/style.css" >
+  <link rel="stylesheet" href="/css/partial/dark.css" >
+
+  
+  
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/partial/highlight/atom-one-light.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/a2396837/CDN@latest/css/iconfont.css">
+    
+  
+
+  
+    <script src="/js/todark.js"></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+</html>
+    
+<div class="nav index" style="height: 60px;">
+    <div class="title animated fadeInDown">
+        <div class="layui-container">
+                <div class="nav-title"><a href="/" title="Hexo">Hexo</a></div>
+            <div class="nav-list">
+                <button> <span class=""></span><span style="display: block;"></span><span class=""></span> </button>
+                <ul class="layui-nav" lay-filter="">
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/search/ ">
+                            <i class=" fas fa-search-plus " style="color: rgb(3 169 244);"></i>
+                            <span class="layui-nav-item-name">Search</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/ ">
+                            <i class=" fab fa-fort-awesome " style="color: rgb(255 107 107);"></i>
+                            <span class="layui-nav-item-name">Home</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/archives/ ">
+                            <i class=" fas fa-archive " style="color: rgb(10 189 227);"></i>
+                            <span class="layui-nav-item-name">Archives</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/tags/ ">
+                            <i class=" fas fa-hashtag " style="color: rgb(254 202 87);"></i>
+                            <span class="layui-nav-item-name">Tags</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/categories ">
+                            <i class=" far fa-folder-open " style="color: rgb(29 209 161);"></i>
+                            <span class="layui-nav-item-name">Categories</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/about/ ">
+                            <i class=" fab fa-grav " style="color: rgb(154 106 247);"></i>
+                            <span class="layui-nav-item-name">About</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/guestbook/ ">
+                            <i class=" fab fa-telegram " style="color: hsl(205deg 100% 50%);"></i>
+                            <span class="layui-nav-item-name">Guestbook</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/link/ ">
+                            <i class=" fab fa-weixin " style="color: hsl(152deg 73% 45%);"></i>
+                            <span class="layui-nav-item-name">Friends</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/shuoshuo/ ">
+                            <i class=" fas fa-coffee " style="color:#31c7c1;"></i>
+                            <span class="layui-nav-item-name">说说</span>
+                        </a>
+                    </li>
+                    
+                    
+                        <li class="layui-nav-item" id="btn-toggle-dark">🌙</li>
+                    
+                    <span class="layui-nav-bar" style="left: 342px; top: 78px; width: 0px; opacity: 0;"></span>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<header class="header">
+        
+            <div class="logo">
+                    <a href="/"><img src="https://cdn.jsdelivr.net/gh/a2396837/CDN@latest/images/2020/07/27/baokemeng.webp" onerror=this.onerror=null,this.src="/img/loading.gif"></a>
+            </div>
+         
+    </div>
+     
+    
+            <div class="social">
+                
+                        <a class="social-icon" href="https://github.com/a2396837" target="_blank" title="Github">
+                            <i class="iconfont icon-GitHub" aria-hidden="true"></i>
+                          </a>
+                 
+                        <a class="social-icon" href="mailto:894049579@qq.com" target="_blank" title="Email">
+                            <i class="iconfont icon-email" aria-hidden="true"></i>
+                          </a>
+                 
+                        <a class="social-icon" href="https://steamcommunity.com/id/a2396837" target="_blank" title="Steam">
+                            <i class="iconfont icon-steam" aria-hidden="true"></i>
+                          </a>
+                 
+                        <a class="social-icon" href="https://space.bilibili.com/8823569" target="_blank" title="Bilibili">
+                            <i class="iconfont icon-bilibili" aria-hidden="true"></i>
+                          </a>
+                 
+                        <a class="social-icon" href="https://music.163.com/#/user/home?id=262078590" target="_blank" title="Netmusic">
+                            <i class="iconfont icon-wangyiyunyinle1" aria-hidden="true"></i>
+                          </a>
+                 
+                        <a class="social-icon" href="/atom.xml" target="_blank" title="rss">
+                            <i class="iconfont icon-rss" aria-hidden="true"></i>
+                          </a>
+                 
+            </div>
+     
+</header>
+
+    
+<article id="post">
+  <div class="post-title">“IO流解压缩出错”</div>
+  
+<div class="post-meta">
+    
+    
+      <div class="post-meta-item date">
+        <span title="Created 2023.03.02"><i class="far fa-calendar-alt"></i> 2023.03.02</span>
+      </div>
+      <div class="post-meta-item updated">
+        <span title="Updated 2023.03.06"><i class="far fa-calendar-check"></i> 2023.03.06</span>
+      </div>
+     
+     
+    
+     <div class="post-meta-item wordcount">
+        
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">1.3k words</span>
+           
+        
+          <i class="far fa-clock"></i> <span class="post-count">6 min</span>
+                               
+      </div>
+     
+</div>
+
+
+  
+  <div class="content">
+        <div><h1 id="2023-x2F-03-x2F-02"><a href="#2023-x2F-03-x2F-02" class="headerlink" title="2023&#x2F;03&#x2F;02"></a>2023&#x2F;03&#x2F;02</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">File</span> <span class="variable">f</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d2-code\\aaa.zip&quot;</span>);</span><br><span class="line">        <span class="comment">//创建解压目的地的路径</span></span><br><span class="line">        <span class="type">File</span> <span class="variable">dest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d2-code\\&quot;</span>);</span><br><span class="line">        <span class="comment">//创建解压缩流对象</span></span><br><span class="line">        <span class="type">ZipInputStream</span> <span class="variable">zip</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(f));</span><br><span class="line">        <span class="comment">//获取zip中的文件夹\文件 每个都是zipEntry对象</span></span><br><span class="line">        ZipEntry entry;</span><br><span class="line">        <span class="keyword">while</span>((entry= zip.getNextEntry())!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">//当entry不为空的时候进入循环  entry表示压缩包的每一个文件</span></span><br><span class="line">            System.out.println(entry);</span><br><span class="line">            <span class="comment">//对每一个entry进行判断</span></span><br><span class="line">            <span class="keyword">if</span>(entry.isDirectory())&#123;</span><br><span class="line">                <span class="comment">//如果是文件夹则在目的地创建文件夹</span></span><br><span class="line">                <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(dest, entry.toString());</span><br><span class="line">                file.mkdirs();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//如果是文件则直接拷贝</span></span><br><span class="line">                <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="keyword">new</span> <span class="title class_">File</span>(dest, entry.toString()));</span><br><span class="line">                <span class="type">int</span> len;</span><br><span class="line">                <span class="keyword">while</span>((len=zip.read())!=-<span class="number">1</span>)&#123;</span><br><span class="line">                    fos.write(len);</span><br><span class="line">                &#125;</span><br><span class="line">                fos.close();</span><br><span class="line">                zip.closeEntry();<span class="comment">//表示该文件已经操作结束</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//循环结束关闭</span></span><br><span class="line">        zip.close();</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<p><img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230302215208856.png" alt="image-20230302215208856"></p>
+<h2 id="aaa-zip结构"><a href="#aaa-zip结构" class="headerlink" title="aaa.zip结构"></a>aaa.zip结构</h2><p><img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230302215228027.png" alt="image-20230302215228027"></p>
+<p>分析原因为</p>
+<p>aaa.zip下的aaa和bbb文件夹未被读取到Entry对象中</p>
+<h1 id="2023-x2F-03-x2F-03"><a href="#2023-x2F-03-x2F-03" class="headerlink" title="2023&#x2F;03&#x2F;03"></a>2023&#x2F;03&#x2F;03</h1><h2 id="aaa-zip结构-1"><a href="#aaa-zip结构-1" class="headerlink" title="aaa.zip结构"></a>aaa.zip结构</h2><h3 id="一级路径"><a href="#一级路径" class="headerlink" title="一级路径"></a>一级路径</h3><p>​				aaa</p>
+<h4 id="二级路径"><a href="#二级路径" class="headerlink" title="二级路径"></a>二级路径</h4><p>​				aaa\aaa		</p>
+<p>​				aaa\bbb</p>
+<p>​				aaa\csb.txt</p>
+<h5 id="三级路径"><a href="#三级路径" class="headerlink" title="三级路径"></a>三级路径</h5><p>​				aaa\aaa\csb.txt</p>
+<h2 id="想要控制台出现的结果"><a href="#想要控制台出现的结果" class="headerlink" title="想要控制台出现的结果"></a>想要控制台出现的结果</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">aaa/</span><br><span class="line">aaa/aaa</span><br><span class="line">aaa/aaa/csb.txt</span><br><span class="line">aaa/bbb</span><br><span class="line">aaa/csb.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="现在程序出现的结果"><a href="#现在程序出现的结果" class="headerlink" title="现在程序出现的结果"></a>现在程序出现的结果</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">aaa/aaa/</span><br><span class="line">aaa/aaa/csb.txt</span><br><span class="line">aaa/bbb/</span><br><span class="line">aaa/csb.txt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>少了一个aaa&#x2F;的zipEntry对象</p>
+<h2 id="现象-case1"><a href="#现象-case1" class="headerlink" title="现象  case1"></a>现象  case1</h2><p>用debug调试程序 将断点设置在循环控制条件 (entry&#x3D;zip.getNextEntry()) !&#x3D; null  然后单步调试会出现报错</p>
+<img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230303144753331.png" alt="image-20230303144753331" style="zoom:50%;" />
+
+
+
+<p>报错</p>
+<img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230303144849131.png" alt="image-20230303144849131" style="zoom:50%;" />
+
+
+
+<h2 id="现象-case2"><a href="#现象-case2" class="headerlink" title="现象 case2"></a>现象 case2</h2><p>不用debug调试 直接进行全速运行</p>
+<p>会输出缺少aaa&#x2F;的结果 但是不会报错 同时文件也能被解压成功</p>
+<img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230303145013825.png" alt="image-20230303145013825" style="zoom:80%;" />
+
+<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><p>因为多线程的原因 导致程序因为单步调试和全速运行进行的结果不一样</p>
+<p>但是还是无法解释为什么全速运行的时候entry对象不会获得到File(“d2-code\aaa”)</p>
+<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><h2 id="ZipInputStream-getNextEntry"><a href="#ZipInputStream-getNextEntry" class="headerlink" title="ZipInputStream.getNextEntry();"></a>ZipInputStream.getNextEntry();</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public ZipEntry getNextEntry() throws IOException &#123;</span><br><span class="line">        ensureOpen();</span><br><span class="line">        if (entry != null) &#123;</span><br><span class="line">            closeEntry();</span><br><span class="line">        &#125;</span><br><span class="line">        crc.reset();</span><br><span class="line">        inf.reset();</span><br><span class="line">        if ((entry = readLOC()) == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        if (entry.method == STORED) &#123;</span><br><span class="line">            remaining = entry.size;</span><br><span class="line">        &#125;</span><br><span class="line">        entryEOF = false;</span><br><span class="line">        return entry;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">### ensureOpen()</span><br><span class="line"></span><br><span class="line">```</span><br><span class="line">private void ensureOpen() throws IOException &#123;</span><br><span class="line">        if (closed) &#123;</span><br><span class="line">            throw new IOException(&quot;Stream closed&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">//判断如果流被关闭 则直接传递IOexcepetion异常 (&quot;Stream closed&quot;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">### if (entry != null) &#123;</span><br><span class="line">            closeEntry();//跳转到closeEntry()方法</span><br><span class="line">        &#125;</span><br><span class="line"> /*如果entry不为空则进入closeEntry方法中</span><br><span class="line"> entry为空的条件:</span><br><span class="line"> 		该路径下已经没有文件或者文件夹</span><br><span class="line"> */       </span><br><span class="line"> </span><br><span class="line">  public void closeEntry() throws IOException &#123;</span><br><span class="line">        ensureOpen();//先跳转到ensureOpen()方法中</span><br><span class="line">        while (read(tmpbuf, 0, tmpbuf.length) != -1) ;</span><br><span class="line">        /*压缩流调用自己所包装的基础流方法 即InputStream流中的read方法</span><br><span class="line">        参数一 tempuf   一个512字节的字节数组</span><br><span class="line">        参数二 0        读取数据从数组的0索引开始</span><br><span class="line">        参数三 tepbuf.length  一次读取512个字节</span><br><span class="line">        */</span><br><span class="line">        entryEOF = true;</span><br><span class="line">        //entryEOF表示一个标志  当已经读取完一个entry对象时则entryEOF设置为true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  private void ensureOpen() throws IOException &#123;</span><br><span class="line">        if (closed) &#123;</span><br><span class="line">            throw new IOException(&quot;Stream closed&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">   /*ensureOpen()方法的目的是再次确认流是否被关闭 如果被关闭了则传递IOException异常*/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">### crc.reset();  //crc.reset() 把crc的值设置为0 </span><br><span class="line">inf.reset();  </span><br><span class="line"></span><br><span class="line">//inf.reset()</span><br><span class="line"> public void reset() &#123;</span><br><span class="line">        synchronized (zsRef) &#123;</span><br><span class="line">            ensureOpen();</span><br><span class="line">            reset(zsRef.address());</span><br><span class="line">            buf = defaultBuf;</span><br><span class="line">            finished = false;</span><br><span class="line">            needDict = false;</span><br><span class="line">            off = len = 0;</span><br><span class="line">            bytesRead = bytesWritten = 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;	</span><br><span class="line"></span><br><span class="line">/*暂未理解*/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">### if ((entry = readLOC()) == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">/* 当entry调用readLoc()方法返回值为null的时候 则return null  即entry对象获得失败则返回null*/</span><br><span class="line"></span><br><span class="line">private ZipEntry readLOC() throws IOException &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            readFully(tmpbuf, 0, LOCHDR);</span><br><span class="line">        &#125; catch (EOFException e) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        if (get32(tmpbuf, 0) != LOCSIG) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        // get flag first, we need check EFS.</span><br><span class="line">        flag = get16(tmpbuf, LOCFLG);</span><br><span class="line">        // get the entry name and create the ZipEntry first</span><br><span class="line">        int len = get16(tmpbuf, LOCNAM);</span><br><span class="line">        int blen = b.length;</span><br><span class="line">        if (len &gt; blen) &#123;</span><br><span class="line">            do &#123;</span><br><span class="line">                blen = blen * 2;</span><br><span class="line">            &#125; while (len &gt; blen);</span><br><span class="line">            b = new byte[blen];</span><br><span class="line">        &#125;</span><br><span class="line">        readFully(b, 0, len);</span><br><span class="line">        // Force to use UTF-8 if the EFS bit is ON, even the cs is NOT UTF-8</span><br><span class="line">        ZipEntry e = createZipEntry(((flag &amp; EFS) != 0)</span><br><span class="line">                                    ? zc.toStringUTF8(b, len)</span><br><span class="line">                                    : zc.toString(b, len));</span><br><span class="line">        // now get the remaining fields for the entry</span><br><span class="line">        if ((flag &amp; 1) == 1) &#123;</span><br><span class="line">            throw new ZipException(&quot;encrypted ZIP entry not supported&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        e.method = get16(tmpbuf, LOCHOW);</span><br><span class="line">        e.xdostime = get32(tmpbuf, LOCTIM);</span><br><span class="line">        if ((flag &amp; 8) == 8) &#123;</span><br><span class="line">            /* &quot;Data Descriptor&quot; present */</span><br><span class="line">            if (e.method != DEFLATED) &#123;</span><br><span class="line">                throw new ZipException(</span><br><span class="line">                        &quot;only DEFLATED entries can have EXT descriptor&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            e.crc = get32(tmpbuf, LOCCRC);</span><br><span class="line">            e.csize = get32(tmpbuf, LOCSIZ);</span><br><span class="line">            e.size = get32(tmpbuf, LOCLEN);</span><br><span class="line">        &#125;</span><br><span class="line">        len = get16(tmpbuf, LOCEXT);</span><br><span class="line">        if (len &gt; 0) &#123;</span><br><span class="line">            byte[] extra = new byte[len];</span><br><span class="line">            readFully(extra, 0, len);</span><br><span class="line">            e.setExtra0(extra,</span><br><span class="line">                        e.csize == ZIP64_MAGICVAL || e.size == ZIP64_MAGICVAL);</span><br><span class="line">        &#125;</span><br><span class="line">        return e;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">### if (entry.method == STORED) &#123;   //zipEntry类中的成员变量 method=-1</span><br><span class="line">									//zipEntry类中的静态变量 STORED=0;</span><br><span class="line">									/*int method = -1;</span><br><span class="line">									  public static final int STORED = 0;</span><br><span class="line">									*/</span><br><span class="line">								</span><br><span class="line">            remaining = entry.size; //zipEntry类中的成员变量size=-1</span><br><span class="line">            						//ZipInputStream中的成员变量remaining</span><br><span class="line">            						/*long size = -1;</span><br><span class="line">            						*/</span><br><span class="line">        &#125;</span><br><span class="line">  //调用时如果method==-1 则不会进入语句</span><br><span class="line">  //如果method==0 则会进入语句</span><br><span class="line"> //将remaining设置为entry.size </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">### entryEOF = false;</span><br><span class="line">	return entry;</span><br><span class="line">	</span><br><span class="line">	//将entryEOF设置为false 以便下一次读取一整个entry对象</span><br><span class="line">	//return entry  返回entry结果 为ZipInputStream调用方法的返回值</span><br></pre></td></tr></table></figure>
+
+<h2 id="判断-1"><a href="#判断-1" class="headerlink" title="判断"></a>判断</h2><p>在getNextEntry方法调用的时候跳过了解压包下第一级路径下的文件夹  但是能进入文件夹获得里面的子文件夹或者子文件</p>
+<h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">File src = new File(&quot;d2-code\\aaa.zip&quot;);</span><br><span class="line">      ZipInputStream zip = new ZipInputStream(new FileInputStream(src));</span><br><span class="line">      ZipEntry entry;</span><br><span class="line">      entry = zip.getNextEntry();</span><br><span class="line">      System.out.println(entry);</span><br></pre></td></tr></table></figure>
+
+<p>获得aaa.zip路径然后尝试用zipInputStream来读取文件，通过zip调用getNextEntry()方法来获得解压包下第一个文件\文件夹 赋值给ZipEntry对象entry，最后将entry从控制台输出</p>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230303151228442.png" alt="image-20230303151228442" style="zoom:100%;" />
+
+
+
+</div>
+        
+          <div class="post-copyright">
+                  <div class="copyright-item">
+                      <span> Author: KkkerAn</span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> Link: <a href="http://example.com/2023/03/02/IO%E6%B5%81%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%87%BA%E9%94%99/">http://example.com/2023/03/02/IO%E6%B5%81%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%87%BA%E9%94%99/</a></span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> License: 本博客所有文章除特别声明外，均采用许可协议 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 转载请注明出处！</span>
+                  </div>
+          </div>
+        
+  </div>
+
+  <div class="share-reward">
+    <div class="share">
+        
+<div class="social-share" data-sites="facebook,twitter,wechat,weibo,qq"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script>
+
+
+      </div>
+        <div class="reward">
+          
+  <div style="padding: 10px 0; margin-left: 20px; width: 90%; text-align: center;">
+    <div class="reward-content">
+        <ul id="donateBox" class="list pos-a">
+          
+           <li id="PayPal"><a href="https://paypal.me" target="_blank" title="PayPal">PayPal</a></li>
+            
+          
+            <li id="AliPay" title="Alipay"><img data-img="/img/alipay.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+               
+                 
+            <li id="WeChat" title="Wechatpay"><img date-img="/img/wechat.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+                      
+          </ul>
+        <div id="QRBox" class="pos-f left-100">
+          <div id="MainBox"></div>
+        </div>
+    </div>
+  </div>
+  
+        </div>
+    </div>
+    
+    <div class="post_tags">
+      
+    </div>
+    <div class="post-nav">
+      
+        <div class="post-nav-prev post-nav-item">
+            <a href="/2023/03/06/%E5%AE%9E%E7%8E%B0%E5%B8%A6%E6%9D%83%E9%87%8D%E7%9A%84%E7%AE%97%E6%B3%95%E9%94%99%E8%A7%A3%E4%B8%8E%E6%94%B9%E6%AD%A3/" >实现带权重的算法错解与改正<i class="fa fa-chevron-left"></i></a>
+        </div>
+      
+      
+    </div>
+      
+
+
+
+  <div id="valine"></div>
+  <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+  <script>
+        new Valine({
+          el: '#valine',
+          appId: "",
+          appKey: "",
+          avatar: "mm",
+          lang: "",
+          meta: 'nick,mail,link'.split(','),
+          requiredFields: 'nick,mail'.split(','),
+          placeholder: "评论记得带上邮箱,你的留言我会马上收到邮箱提醒哒",
+          pageSize:'10',
+          recordIP: 'false',
+          serverURLs: "",
+          emojiCDN: "",
+          enableQQ: "true",
+        });
+  </script>
+  
+
+</article>
+
+    
+<a id="gotop" href="javascript:" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    
+
+
+
+
+
+
+    
+<div id="bottom-outer">
+    <div id="bottom-inner">
+        © 2020 <i class="fa fa-heart" id="heart"></i> KkkerAn 
+        <br>
+        Powered by 
+        <a target="_blank" rel="noopener" href="http://hexo.io">hexo</a> | Theme is <a target="_blank" rel="noopener" href="https://github.com/a2396837/hexo-theme-blank/">blank</a>
+        
+          <div class="icp-info">
+            
+          <a href="" target="_blank"> </a>
+        </div>
+        
+    </div>  
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/layui-src@2.5.5/dist/layui.min.js"></script>
+
+
+
+  
+    <script src="/js/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+  
+
+ 
+
+
+
+  <script>
+    window.lazyLoadOptions = {
+      elements_selector: 'img',
+      threshold: 0
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script>   
+  
+
+
+  <script>
+    var images = $('img').not('.nav-logo img').not('.card img').not($('a>img')).not('.reward-content img')
+    images.each(function (i, o) {
+      var lazyloadSrc = $(o).attr('data-src') ? $(o).attr('data-src') : $(o).attr('src')
+      $(o).wrap(`<a href="${lazyloadSrc}" data-fancybox="group" data-caption="${$(o).attr('alt')}" class="fancybox"></a>`)
+    })
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script>
+  <script>
+        $().fancybox({
+      selector: '[data-fancybox]',
+      loop: true,
+      transitionEffect: 'slide',
+      protect: true,
+      buttons: ['slideShow', 'fullScreen', 'thumbs', 'close']
+    })
+  </script>   
+  
+
+
+
+
+
+
+  <script>
+    jQuery(document).ready(function () {
+      var QRBox = $('#QRBox');
+      var MainBox = $('#MainBox');
+      var AliPayQR = '/img/alipay.jpg';
+      var WeChanQR = '/img/wechat.jpg';
+
+      function showQR(QR) {
+        if (QR) {
+          MainBox.css('background-image', 'url(' + QR + ')');
+        }
+        $('#donateBox').addClass('blur');
+        QRBox.fadeIn(300, function (argument) {
+          MainBox.addClass('showQR');
+        });
+      }
+
+      $('#donateBox>li').click(function (event) {
+        var thisID = $(this).attr('id');
+        if (thisID === 'AliPay') {
+          showQR(AliPayQR);
+        } else if (thisID === 'WeChat') {
+          showQR(WeChanQR);
+        }
+      });
+
+      MainBox.click(function (event) {
+        MainBox.removeClass('showQR').addClass('hideQR');
+        setTimeout(function (a) {
+          QRBox.fadeOut(300, function (argument) {
+            MainBox.removeClass('hideQR');
+          });
+          $('#DonateText,#donateBox,#github').removeClass('blur');
+        }, 600);
+
+      });
+    });
+  </script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script>
+  
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js"></script>
+<script>
+!function (e, t, a) {
+  var initCopyCode = function(){
+    var copyHtml = '';
+    copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+    copyHtml += '  <i class="fa fa-clipboard"></i><span>复制</span>';
+    copyHtml += '</button>';
+    $(".highlight .code pre").before(copyHtml);
+    new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+  }
+  initCopyCode();
+}(window, document);
+</script>  
+  
+
+<script>
+  var btntop = $('#gotop');
+  btntop.on('click', function (e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: 0 }, '300');
+  });
+
+  var $table = $('.content table').not($('figure.highlight > table'))
+$table.each(function () {
+  $(this).wrap('<div class="table-wrap"></div>')
+})
+</script>
+
+
+
+</html>
