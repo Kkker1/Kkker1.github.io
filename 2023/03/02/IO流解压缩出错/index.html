@@ -17,12 +17,12 @@
   
   
   
-    <link rel="alternate" href="/atom.xml " title="orange bonbon with KkkerAn&#39;s Blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml " title="KkkerAn&#39;s Blog" type="application/atom+xml">
   
 
   
 
-  <title>IO流解压缩出错(未解决) | orange bonbon with KkkerAn&#39;s Blog</title>
+  <title>IO流解压缩出错(未解决) | KkkerAn&#39;s Blog</title>
 
   
 
@@ -56,7 +56,7 @@
 <div class="nav index" style="height: 60px;">
     <div class="title animated fadeInDown">
         <div class="layui-container">
-                <div class="nav-title"><a href="/" title="orange bonbon with KkkerAn&#39;s Blog">orange bonbon with KkkerAn&#39;s Blog</a></div>
+                <div class="nav-title"><a href="/" title="KkkerAn&#39;s Blog">KkkerAn&#39;s Blog</a></div>
             <div class="nav-list">
                 <button> <span class=""></span><span style="display: block;"></span><span class=""></span> </button>
                 <ul class="layui-nav" lay-filter="">
@@ -178,7 +178,7 @@
         <span title="发表于 2023.03.02"><i class="far fa-calendar-alt"></i> 2023.03.02</span>
       </div>
       <div class="post-meta-item updated">
-        <span title="更新于 2023.03.06"><i class="far fa-calendar-check"></i> 2023.03.06</span>
+        <span title="更新于 2023.03.08"><i class="far fa-calendar-check"></i> 2023.03.08</span>
       </div>
      
      
@@ -198,8 +198,8 @@
         <div><h1 id="2023-x2F-03-x2F-02"><a href="#2023-x2F-03-x2F-02" class="headerlink" title="2023&#x2F;03&#x2F;02"></a>2023&#x2F;03&#x2F;02</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">File</span> <span class="variable">f</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d2-code\\aaa.zip&quot;</span>);</span><br><span class="line">        <span class="comment">//创建解压目的地的路径</span></span><br><span class="line">        <span class="type">File</span> <span class="variable">dest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d2-code\\&quot;</span>);</span><br><span class="line">        <span class="comment">//创建解压缩流对象</span></span><br><span class="line">        <span class="type">ZipInputStream</span> <span class="variable">zip</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(f));</span><br><span class="line">        <span class="comment">//获取zip中的文件夹\文件 每个都是zipEntry对象</span></span><br><span class="line">        ZipEntry entry;</span><br><span class="line">        <span class="keyword">while</span>((entry= zip.getNextEntry())!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">//当entry不为空的时候进入循环  entry表示压缩包的每一个文件</span></span><br><span class="line">            System.out.println(entry);</span><br><span class="line">            <span class="comment">//对每一个entry进行判断</span></span><br><span class="line">            <span class="keyword">if</span>(entry.isDirectory())&#123;</span><br><span class="line">                <span class="comment">//如果是文件夹则在目的地创建文件夹</span></span><br><span class="line">                <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(dest, entry.toString());</span><br><span class="line">                file.mkdirs();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//如果是文件则直接拷贝</span></span><br><span class="line">                <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="keyword">new</span> <span class="title class_">File</span>(dest, entry.toString()));</span><br><span class="line">                <span class="type">int</span> len;</span><br><span class="line">                <span class="keyword">while</span>((len=zip.read())!=-<span class="number">1</span>)&#123;</span><br><span class="line">                    fos.write(len);</span><br><span class="line">                &#125;</span><br><span class="line">                fos.close();</span><br><span class="line">                zip.closeEntry();<span class="comment">//表示该文件已经操作结束</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//循环结束关闭</span></span><br><span class="line">        zip.close();</span><br></pre></td></tr></table></figure>
 
 <p>运行结果</p>
-<p><img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230302215208856.png" alt="image-20230302215208856"></p>
-<h2 id="aaa-zip结构"><a href="#aaa-zip结构" class="headerlink" title="aaa.zip结构"></a>aaa.zip结构</h2><p><img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230302215228027.png" alt="image-20230302215228027"></p>
+<p><img src= "/img/loading.gif" data-src="/.io//image-20230302215208856.png" alt="image-20230302215208856"></p>
+<h2 id="aaa-zip结构"><a href="#aaa-zip结构" class="headerlink" title="aaa.zip结构"></a>aaa.zip结构</h2><p><img src= "/img/loading.gif" data-src="/.io//image-20230302215228027.png" alt="image-20230302215228027"></p>
 <p>分析原因为</p>
 <p>aaa.zip下的aaa和bbb文件夹未被读取到Entry对象中</p>
 <h1 id="2023-x2F-03-x2F-03"><a href="#2023-x2F-03-x2F-03" class="headerlink" title="2023&#x2F;03&#x2F;03"></a>2023&#x2F;03&#x2F;03</h1><h2 id="aaa-zip结构-1"><a href="#aaa-zip结构-1" class="headerlink" title="aaa.zip结构"></a>aaa.zip结构</h2><h3 id="一级路径"><a href="#一级路径" class="headerlink" title="一级路径"></a>一级路径</h3><p>​				aaa</p>
@@ -213,18 +213,18 @@
 
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>少了一个aaa&#x2F;的zipEntry对象</p>
 <h2 id="现象-case1"><a href="#现象-case1" class="headerlink" title="现象  case1"></a>现象  case1</h2><p>用debug调试程序 将断点设置在循环控制条件 (entry&#x3D;zip.getNextEntry()) !&#x3D; null  然后单步调试会出现报错</p>
-<img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230303144753331.png" alt="image-20230303144753331" style="zoom:50%;" />
+<img src= "/img/loading.gif" data-src="/.io//image-20230303144753331.png" alt="image-20230303144753331" style="zoom:50%;">
 
 
 
 <p>报错</p>
-<img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230303144849131.png" alt="image-20230303144849131" style="zoom:50%;" />
+<img src= "/img/loading.gif" data-src="/.io//KKKerAn_Blog\blog\source\_posts\IO流解压缩出错\image-20230303144849131.png" alt="image-20230303144849131" style="zoom:50%;">
 
 
 
 <h2 id="现象-case2"><a href="#现象-case2" class="headerlink" title="现象 case2"></a>现象 case2</h2><p>不用debug调试 直接进行全速运行</p>
 <p>会输出缺少aaa&#x2F;的结果 但是不会报错 同时文件也能被解压成功</p>
-<img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230303145013825.png" alt="image-20230303145013825" style="zoom:80%;" />
+<img src= "/img/loading.gif" data-src="/.io//image-20230303145013825.png" alt="image-20230303145013825" style="zoom:80%;">
 
 <h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><p>程序因为单步调试和全速运行进行的结果不一样</p>
 <p>无法解释为什么全速运行的时候entry对象不会获得到File(“d2-code\aaa”)</p>
@@ -248,7 +248,7 @@
 <h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">File</span> <span class="variable">src</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d2-code\\aaa.zip&quot;</span>);</span><br><span class="line">      <span class="type">ZipInputStream</span> <span class="variable">zip</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(src));</span><br><span class="line">      ZipEntry entry;</span><br><span class="line">      entry = zip.getNextEntry();</span><br><span class="line">      System.out.println(entry);</span><br></pre></td></tr></table></figure>
 
 <p>获得aaa.zip路径然后尝试用zipInputStream来读取文件，通过zip调用getNextEntry()方法来获得解压包下第一个文件\文件夹 赋值给ZipEntry对象entry，最后将entry从控制台输出</p>
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><img src= "/img/loading.gif" data-src="C:\Users\AegZZZ\AppData\Roaming\Typora\typora-user-images\image-20230303151228442.png" alt="image-20230303151228442" style="zoom:100%;" />
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><img src= "/img/loading.gif" data-src="/.io//image-20230303151228442.png" alt="image-20230303151228442" style="zoom:100%;">
 
 
 
