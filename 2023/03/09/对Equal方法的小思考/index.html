@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+    <link rel="icon" href="/img/bonbon.jpg">
+  
+  
+      <meta name="author" content="KkkerAn">
+  
+  
+  
+  
+  
+    <link rel="alternate" href="/atom.xml " title="KkkerAn&#39;s Blog" type="application/atom+xml">
+  
+
+  
+
+  <title>对Equal方法的小思考 | KkkerAn&#39;s Blog</title>
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/css/style.css" >
+  <link rel="stylesheet" href="/css/partial/dark.css" >
+
+  
+  
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/partial/highlight/atom-one-light.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/a2396837/CDN@latest/css/iconfont.css">
+    
+  
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+</html>
+    
+<div class="nav index" style="height: 60px;">
+    <div class="title animated fadeInDown">
+        <div class="layui-container">
+                <div class="nav-title"><a href="/" title="KkkerAn&#39;s Blog">KkkerAn&#39;s Blog</a></div>
+            <div class="nav-list">
+                <button> <span class=""></span><span style="display: block;"></span><span class=""></span> </button>
+                <ul class="layui-nav" lay-filter="">
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/search/ ">
+                            <i class=" fas fa-search-plus " style="color: rgb(3 169 244);"></i>
+                            <span class="layui-nav-item-name">搜索</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/ ">
+                            <i class=" fab fa-fort-awesome " style="color: rgb(255 107 107);"></i>
+                            <span class="layui-nav-item-name">首页</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/archives/ ">
+                            <i class=" fas fa-archive " style="color: rgb(10 189 227);"></i>
+                            <span class="layui-nav-item-name">归档</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/tags/ ">
+                            <i class=" fas fa-hashtag " style="color: rgb(254 202 87);"></i>
+                            <span class="layui-nav-item-name">标签</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/categories ">
+                            <i class=" far fa-folder-open " style="color: rgb(29 209 161);"></i>
+                            <span class="layui-nav-item-name">分类</span>
+                        </a>
+                    </li>
+                    
+                        
+                        
+                        
+                        
+                    <li class="layui-nav-item">
+                        <a href="/about/ ">
+                            <i class=" fab fa-grav " style="color: rgb(154 106 247);"></i>
+                            <span class="layui-nav-item-name">关于</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <span class="layui-nav-bar" style="left: 342px; top: 78px; width: 0px; opacity: 0;"></span>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<header class="header">
+        
+            <div class="logo">
+                    <a href="/"><img src="/img/logo.png" onerror=this.onerror=null,this.src="/img/loading.gif"></a>
+            </div>
+         
+    </div>
+     
+
+            <div class="motto">
+                <span>慢也好,步子小也好,是在往前走就好.</span>
+            </div>
+    
+    
+            <div class="social">
+                
+                        <a class="social-icon" href="https://github.com/Kkker1" target="_blank" title="Github">
+                            <i class="iconfont icon-GitHub" aria-hidden="true"></i>
+                          </a>
+                 
+                        <a class="social-icon" href="mailto:389081641@qq.com" target="_blank" title="Email">
+                            <i class="iconfont icon-email" aria-hidden="true"></i>
+                          </a>
+                 
+                        <a class="social-icon" href="/atom.xml" target="_blank" title="rss">
+                            <i class="iconfont icon-rss" aria-hidden="true"></i>
+                          </a>
+                 
+            </div>
+     
+</header>
+
+    
+<article id="post">
+  <div class="post-title">对Equal方法的小思考</div>
+  
+<div class="post-meta">
+    
+    
+      <div class="post-meta-item date">
+        <span title="发表于 2023.03.09"><i class="far fa-calendar-alt"></i> 2023.03.09</span>
+      </div>
+      <div class="post-meta-item updated">
+        <span title="更新于 2023.03.09"><i class="far fa-calendar-check"></i> 2023.03.09</span>
+      </div>
+     
+     
+    
+     <div class="post-meta-item wordcount">
+        
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">1.4k 字</span>
+           
+                             
+      </div>
+     
+</div>
+
+
+  
+  <div class="content">
+        <div><h2 id="对safeEqual判断的新思考"><a href="#对safeEqual判断的新思考" class="headerlink" title="对safeEqual判断的新思考"></a>对safeEqual判断的新思考</h2><h4 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">safeEqual</span><span class="params">(String a,String b)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.length()!=b.length())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> equal=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        equal |= a.charAt(i) ^ b.charAt(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> equal==<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这几行代码很少，一段段很好看懂</p>
+<p>一开始判断字符串长度,如果字符串长度不相同的话直接返回false;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a.length()!=b.length())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义了一个equal变量  先赋值为0;</p>
+<p>到下面循环的时候字符串长度已经相同了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> equal=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        equal |= a.charAt(i) ^ b.charAt(i);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>对a字符串循环,取出每一个字符来然后与b中的每一个字符做异或操作，如果有不相同的结果就会为1,再把1与equal变量做或操作。</p>
+<p>只要异或有一次为1则后面equal的值都会为1</p>
+<p>最后返回的值是 比较equal是否为0  如果equal为0则返回true,如果为1则返回false</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> equal==<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="第一次思考"><a href="#第一次思考" class="headerlink" title="第一次思考"></a>第一次思考</h4><p>如果改正一下中间循环的操作是否更简单呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">safeEqual</span><span class="params">(String a,String b)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.length()!=b.length())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> equal=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        equal = a.charAt(i) ^ b.charAt(i);</span><br><span class="line">        <span class="keyword">if</span>(equal!=<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>1.先判断字符串是否长度相同，如果不同直接返回false</p>
+<p>2.再循环获得每一个字符 只要有一个字符不相同的时候就返回false</p>
+<p>3.如果循环结束都没有返回false 那就是字符串相同所以返回true</p>
+<h5 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h5><p>但是这个方法的名字是safeEqual,如果是下面的循环直接中断和每一次遍历完字符串有什么区别呢？</p>
+<p>经过提示，我去JDK里面也找到一个有相同思路的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isEqual</span><span class="params">(<span class="type">byte</span>[] digesta, <span class="type">byte</span>[] digestb)</span> &#123;</span><br><span class="line">    <span class="comment">/* All bytes in digesta are examined to determine equality.</span></span><br><span class="line"><span class="comment">     * The calculation time depends only on the length of digesta</span></span><br><span class="line"><span class="comment">     * It does not depend on the length of digestb or the contents</span></span><br><span class="line"><span class="comment">     * of digesta and digestb.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">if</span> (digesta == digestb) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (digesta == <span class="literal">null</span> || digestb == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">lenA</span> <span class="operator">=</span> digesta.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">lenB</span> <span class="operator">=</span> digestb.length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lenB == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> lenA == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    result |= lenA - lenB;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// time-constant comparison</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; lenA; i++) &#123;</span><br><span class="line">        <span class="comment">// If i &gt;= lenB, indexB is 0; otherwise, i.</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">indexB</span> <span class="operator">=</span> ((i - lenB) &gt;&gt;&gt; <span class="number">31</span>) * i;</span><br><span class="line">        result |= digesta[i] ^ digestb[indexB];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h5><p>在JDK里面这个方法中有一个注释 不太一样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// time-constant comparison</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; lenA; i++) &#123;</span><br><span class="line">        <span class="comment">// If i &gt;= lenB, indexB is 0; otherwise, i.</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">indexB</span> <span class="operator">=</span> ((i - lenB) &gt;&gt;&gt; <span class="number">31</span>) * i;</span><br><span class="line">        result |= digesta[i] ^ digestb[indexB];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result == <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>time-constant comparison</p>
+<p>经过找资料之后发现这个一个黑客技术：计时攻击</p>
+<p>开始理解这个遍历完字符串的原因</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设A字符串为aaaaaaaaaa b字符串为bbbbbbbbbb</span></span><br><span class="line">那么如果用改过之后的方法,当遍历到第一个字符的时候就已经返回了,这样返回数值的速度很快, 如果利用这一个运行时间 就可能可以猜出第一个字母就不是a</span><br><span class="line"></span><br><span class="line">同理 如果<span class="string">&quot;bxxxxxxxxxxx&quot;</span>的时间运行时间较长于其他的字符,那么就可以猜测第一个字符就是b开头的</span><br><span class="line"></span><br><span class="line">找到可能的第一个字符，再用第一个字符固定的字符串如<span class="string">&quot;baaaaaaaaaa&quot;</span> 和b字符串做比较  不断遍历就很大可能可以获得到b字符串所有的数据</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这种方法有可能用来撞库获得用户密码数据，所以safeEqual的关键点于每一次比较之后都是遍历完字符串，对返回时间都大概是相近的，所以对计时攻击有抵抗作用</p>
+<h4 id="第二次思考"><a href="#第二次思考" class="headerlink" title="第二次思考"></a>第二次思考</h4><h5 id="关键点-1"><a href="#关键点-1" class="headerlink" title="关键点"></a>关键点</h5><p>没有对数据做校验，可能会传来空字符串</p>
+<p>safeEqual还有代码的不完全，对接受的数据字符串a和字符串b没有做非空判断，所以代码是不安全的</p>
+<p>直接对a和b的长度进行判断可能程序会出异常</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private boolean safeEqual(String a,String b)&#123;</span><br><span class="line">    if(a.length()!=b.length())&#123;</span><br><span class="line">        return false;</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而在jdk中的代码对a和b是否为空做了判断</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isEqual</span><span class="params">(<span class="type">byte</span>[] digesta, <span class="type">byte</span>[] digestb)</span> &#123;</span><br><span class="line">    <span class="comment">/* All bytes in digesta are examined to determine equality.</span></span><br><span class="line"><span class="comment">     * The calculation time depends only on the length of digesta</span></span><br><span class="line"><span class="comment">     * It does not depend on the length of digestb or the contents</span></span><br><span class="line"><span class="comment">     * of digesta and digestb.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">if</span> (digesta == digestb) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (digesta == <span class="literal">null</span> || digestb == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对传来的数据digesta和digestb做了非空判断，如果其中有一个为空就直接返回false</p>
+<h4 id="第三次思考"><a href="#第三次思考" class="headerlink" title="第三次思考"></a>第三次思考</h4><h5 id="关键点-2"><a href="#关键点-2" class="headerlink" title="关键点"></a>关键点</h5><p>safeEqual和IsEqual方法都是为了可能因为避免结束时间不同而导致的数据泄露，那能不能不用遍历完来改进代码呢？如果每次都是遍历完的话字符串太长会浪费资源</p>
+<p>所以我觉得可以调用sleep来解决这个问题</p>
+<h5 id="改进之后"><a href="#改进之后" class="headerlink" title="改进之后"></a>改进之后</h5><p>1.先对字符串做非空判断</p>
+<p>2.对字符串长度做判断</p>
+<p>3.使进程睡眠一个随机时间</p>
+<p>4.对字符串遍历 当发现有一个不同的时候就返回false</p>
+<p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">safeEqual</span><span class="params">(String a,String b)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a==<span class="literal">null</span>||b==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(a.length()!=b.length())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">    <span class="type">Random</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">    <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> r.nextInt(<span class="number">1000</span>)+<span class="number">100</span>;</span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">          t.sleep(l);</span><br><span class="line">     &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">          e.printStackTrace();</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="type">int</span> equal=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        equal = a.charAt(i) ^ b.charAt(i);</span><br><span class="line">        <span class="keyword">if</span>(equal!=<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="新的问题"><a href="#新的问题" class="headerlink" title="新的问题"></a>新的问题</h5><p>1.因中断引起的资源损失会不会导致得不偿失？</p>
+<p>2.大数据统计的时间ms值是否一样能造成Time Attack的效果？</p>
+</div>
+        
+          <div class="post-copyright">
+                  <div class="copyright-item">
+                      <span> 作者: KkkerAn</span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> 链接: <a href="https://username.github.io/2023/03/09/%E5%AF%B9Equal%E6%96%B9%E6%B3%95%E7%9A%84%E5%B0%8F%E6%80%9D%E8%80%83/">https://username.github.io/2023/03/09/%E5%AF%B9Equal%E6%96%B9%E6%B3%95%E7%9A%84%E5%B0%8F%E6%80%9D%E8%80%83/</a></span>
+                  </div>
+                  <div class="copyright-item">
+                      <span> 声明: 本博客所有文章除特别声明外，均采用许可协议 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 转载请注明出处！</span>
+                  </div>
+          </div>
+        
+  </div>
+
+  <div class="share-reward">
+    <div class="share">
+        
+<div class="social-share" data-sites="facebook,twitter,wechat,weibo,qq"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script>
+
+
+      </div>
+        <div class="reward">
+          
+  <div style="padding: 10px 0; margin-left: 20px; width: 90%; text-align: center;">
+    <div class="reward-content">
+        <ul id="donateBox" class="list pos-a">
+          
+           <li id="PayPal"><a href="https://paypal.me" target="_blank" title="贝宝">贝宝</a></li>
+            
+          
+            <li id="AliPay" title="支付宝"><img data-img="/img/alipay.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+               
+                 
+            <li id="WeChat" title="微信"><img date-img="/img/wechat.jpg" onerror=this.onerror=null,this.src="/img/loading.gif"></img></li>
+                      
+          </ul>
+        <div id="QRBox" class="pos-f left-100">
+          <div id="MainBox"></div>
+        </div>
+    </div>
+  </div>
+  
+        </div>
+    </div>
+    
+    <div class="post_tags">
+      
+    </div>
+    <div class="post-nav">
+      
+      
+        <div class="post-nav-next post-nav-item">
+            <a href="/2023/03/06/%E5%AE%9E%E7%8E%B0%E5%B8%A6%E6%9D%83%E9%87%8D%E7%9A%84%E7%AE%97%E6%B3%95%E9%94%99%E8%A7%A3%E4%B8%8E%E6%94%B9%E6%AD%A3/" >实现带权重的算法错解与改正<i class="fa fa-chevron-right"></i></a>
+        </div>
+      
+    </div>
+      
+
+
+
+  <div id="valine"></div>
+  <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+  <script>
+        new Valine({
+          el: '#valine',
+          appId: "",
+          appKey: "",
+          avatar: "mm",
+          lang: "",
+          meta: 'nick,mail,link'.split(','),
+          requiredFields: 'nick,mail'.split(','),
+          placeholder: "评论记得带上邮箱,你的留言我会马上收到邮箱提醒哒",
+          pageSize:'10',
+          recordIP: 'false',
+          serverURLs: "",
+          emojiCDN: "",
+          enableQQ: "true",
+        });
+  </script>
+  
+
+</article>
+
+    
+<a id="gotop" href="javascript:" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    
+
+
+
+
+
+
+    
+<div id="bottom-outer">
+    <div id="bottom-inner">
+        © 2020 <i class="fa fa-heart" id="heart"></i> KkkerAn 
+        <br>
+        Powered by 
+        <a target="_blank" rel="noopener" href="http://hexo.io">hexo</a> | Theme is <a target="_blank" rel="noopener" href="https://github.com/a2396837/hexo-theme-blank/">blank</a>
+        
+          <div class="icp-info">
+            
+          <a href="" target="_blank"> </a>
+        </div>
+        
+    </div>  
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/layui-src@2.5.5/dist/layui.min.js"></script>
+
+
+
+  
+    <script src="/js/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+  
+
+ 
+
+
+
+  <script>
+    window.lazyLoadOptions = {
+      elements_selector: 'img',
+      threshold: 0
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script>   
+  
+
+
+  <script>
+    var images = $('img').not('.nav-logo img').not('.card img').not($('a>img')).not('.reward-content img')
+    images.each(function (i, o) {
+      var lazyloadSrc = $(o).attr('data-src') ? $(o).attr('data-src') : $(o).attr('src')
+      $(o).wrap(`<a href="${lazyloadSrc}" data-fancybox="group" data-caption="${$(o).attr('alt')}" class="fancybox"></a>`)
+    })
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script>
+  <script>
+        $().fancybox({
+      selector: '[data-fancybox]',
+      loop: true,
+      transitionEffect: 'slide',
+      protect: true,
+      buttons: ['slideShow', 'fullScreen', 'thumbs', 'close']
+    })
+  </script>   
+  
+
+
+
+
+
+
+  <script>
+    jQuery(document).ready(function () {
+      var QRBox = $('#QRBox');
+      var MainBox = $('#MainBox');
+      var AliPayQR = '/img/alipay.jpg';
+      var WeChanQR = '/img/wechat.jpg';
+
+      function showQR(QR) {
+        if (QR) {
+          MainBox.css('background-image', 'url(' + QR + ')');
+        }
+        $('#donateBox').addClass('blur');
+        QRBox.fadeIn(300, function (argument) {
+          MainBox.addClass('showQR');
+        });
+      }
+
+      $('#donateBox>li').click(function (event) {
+        var thisID = $(this).attr('id');
+        if (thisID === 'AliPay') {
+          showQR(AliPayQR);
+        } else if (thisID === 'WeChat') {
+          showQR(WeChanQR);
+        }
+      });
+
+      MainBox.click(function (event) {
+        MainBox.removeClass('showQR').addClass('hideQR');
+        setTimeout(function (a) {
+          QRBox.fadeOut(300, function (argument) {
+            MainBox.removeClass('hideQR');
+          });
+          $('#DonateText,#donateBox,#github').removeClass('blur');
+        }, 600);
+
+      });
+    });
+  </script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script>
+  
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js"></script>
+<script>
+!function (e, t, a) {
+  var initCopyCode = function(){
+    var copyHtml = '';
+    copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+    copyHtml += '  <i class="fa fa-clipboard"></i><span>复制</span>';
+    copyHtml += '</button>';
+    $(".highlight .code pre").before(copyHtml);
+    new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+  }
+  initCopyCode();
+}(window, document);
+</script>  
+  
+
+<script>
+  var btntop = $('#gotop');
+  btntop.on('click', function (e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: 0 }, '300');
+  });
+
+  var $table = $('.content table').not($('figure.highlight > table'))
+$table.each(function () {
+  $(this).wrap('<div class="table-wrap"></div>')
+})
+</script>
+
+
+
+</html>
