@@ -1,0 +1,496 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="final修饰符有学习过吗？它有什么使用场景       12345Final修饰符表示是最终的Final修饰符可以用于修饰变量、方法、类1)Final修饰变量的时候:这个变量叫常量，一旦被赋值就不能改变2)Final修饰方法的时候:这个方法不能被子类重写3)Final修饰类的时候:这个类是最终类，不能被继承                      jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础面试题">
+<meta property="og:url" content="https://username.github.io/2023/07/12/Java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="KkkerAn&#39;s Blog">
+<meta property="og:description" content="final修饰符有学习过吗？它有什么使用场景       12345Final修饰符表示是最终的Final修饰符可以用于修饰变量、方法、类1)Final修饰变量的时候:这个变量叫常量，一旦被赋值就不能改变2)Final修饰方法的时候:这个方法不能被子类重写3)Final修饰类的时候:这个类是最终类，不能被继承                      jvm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://username.github.io/Java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/image-20230721203141902.png">
+<meta property="article:published_time" content="2023-07-12T01:50:43.000Z">
+<meta property="article:modified_time" content="2023-08-03T15:49:19.506Z">
+<meta property="article:author" content="KkkerAn">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="面试题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://username.github.io/Java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/image-20230721203141902.png"><title>Java基础面试题 | KkkerAn's Blog</title><link ref="canonical" href="https://username.github.io/2023/07/12/Java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">This is Kkker1An's Blog</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Java基础面试题</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-12</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.7k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">9分</span></span></div></header><div class="post-body">
+        <h1 id="final修饰符有学习过吗？它有什么使用场景"   >
+          <a href="#final修饰符有学习过吗？它有什么使用场景" class="heading-link"><i class="fas fa-link"></i></a><a href="#final修饰符有学习过吗？它有什么使用场景" class="headerlink" title="final修饰符有学习过吗？它有什么使用场景"></a>final修饰符有学习过吗？它有什么使用场景</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Final修饰符表示是最终的</span><br><span class="line">Final修饰符可以用于修饰变量、方法、类</span><br><span class="line"><span class="number">1</span>)Final修饰变量的时候:这个变量叫常量，一旦被赋值就不能改变</span><br><span class="line"><span class="number">2</span>)Final修饰方法的时候:这个方法不能被子类重写</span><br><span class="line"><span class="number">3</span>)Final修饰类的时候:这个类是最终类，不能被继承</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="jvm、jdk、jre的区别"   >
+          <a href="#jvm、jdk、jre的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#jvm、jdk、jre的区别" class="headerlink" title="jvm、jdk、jre的区别"></a>jvm、jdk、jre的区别</h1>
+      <p>jvm是java虚拟机，里面含有java运行的一切要求</p>
+<p>jdk是java提供的api库</p>
+<p>jre是最小开发环境</p>
+<p>jvm、jdk、jre的关系是jvm包含jdk包含jre</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JVM:JVM为java虚拟机</span><br><span class="line">JRE:JRE为Java运行环境，JRE包括标准类库和JVM</span><br><span class="line">JDK:JDK为Java开发环境，JDK包括了JRE和开发工具</span><br><span class="line">    </span><br><span class="line">总结:JDK包含JRE，JRE包含JVM，如果只需要运行java程序只要装JRE即可</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/Java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/image-20230721203141902.png" alt="image-20230721203141902"></p>
+
+        <h1 id="java的八大基本类型"   >
+          <a href="#java的八大基本类型" class="heading-link"><i class="fas fa-link"></i></a><a href="#java的八大基本类型" class="headerlink" title="java的八大基本类型"></a>java的八大基本类型</h1>
+      <p>我答:</p>
+<p>Char、short、int、Long、Float、Double、String、Boolean</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">整型:<span class="type">byte</span>、<span class="type">short</span>、<span class="type">int</span>、<span class="type">long</span></span><br><span class="line">字符型：<span class="type">char</span></span><br><span class="line">浮点型：Float、Double</span><br><span class="line">布尔型：Boolean</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="多态如何实现的"   >
+          <a href="#多态如何实现的" class="heading-link"><i class="fas fa-link"></i></a><a href="#多态如何实现的" class="headerlink" title="多态如何实现的"></a>多态如何实现的</h1>
+      
+        <h1 id="进程和线程的区别"   >
+          <a href="#进程和线程的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h1>
+      
+        <h1 id="同步和异步的区别"   >
+          <a href="#同步和异步的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#同步和异步的区别" class="headerlink" title="同步和异步的区别"></a>同步和异步的区别</h1>
+      
+        <h1 id="如何理解序列化"   >
+          <a href="#如何理解序列化" class="heading-link"><i class="fas fa-link"></i></a><a href="#如何理解序列化" class="headerlink" title="如何理解序列化"></a>如何理解序列化</h1>
+      
+        <h1 id="HashMap-和-TreeMap-讲讲？"   >
+          <a href="#HashMap-和-TreeMap-讲讲？" class="heading-link"><i class="fas fa-link"></i></a><a href="#HashMap-和-TreeMap-讲讲？" class="headerlink" title="HashMap 和 TreeMap 讲讲？"></a>HashMap 和 TreeMap 讲讲？</h1>
+      
+        <h1 id="讲讲-Java-提供了哪些锁？它们有什么区别？"   >
+          <a href="#讲讲-Java-提供了哪些锁？它们有什么区别？" class="heading-link"><i class="fas fa-link"></i></a><a href="#讲讲-Java-提供了哪些锁？它们有什么区别？" class="headerlink" title="讲讲 Java 提供了哪些锁？它们有什么区别？"></a>讲讲 Java 提供了哪些锁？它们有什么区别？</h1>
+      
+        <h1 id="有了解过集合吗？看过底层源码吗？"   >
+          <a href="#有了解过集合吗？看过底层源码吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#有了解过集合吗？看过底层源码吗？" class="headerlink" title="有了解过集合吗？看过底层源码吗？"></a>有了解过集合吗？看过底层源码吗？</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">有了解过集合，看过底层源码</span><br><span class="line">集合就是有两个顶级接口Collection单列集合和Map双列集合</span><br><span class="line">Collection接口的子接口有List、Set</span><br><span class="line">List接口的实现类有ArrayList、LinkedList、Vector</span><br><span class="line">Set接口的实现类有HashSet、TreeSet、LinkedHashSet</span><br><span class="line">而Map集合的实现类有HashMap、LinkedHashMap、HashTable、TreeMap、ConcurrentHashMap</span><br><span class="line">您看我具体要从哪方面讲讲呢?</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="ArrayList底层是怎么进行创建和扩容的呢？"   >
+          <a href="#ArrayList底层是怎么进行创建和扩容的呢？" class="heading-link"><i class="fas fa-link"></i></a><a href="#ArrayList底层是怎么进行创建和扩容的呢？" class="headerlink" title="ArrayList底层是怎么进行创建和扩容的呢？"></a>ArrayList底层是怎么进行创建和扩容的呢？</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayList底层是创建了一个Object数组来存放数据的，默认的空参构造时创建一个数组长度为<span class="number">10</span>的Obejct数组，也可以在构建方法传入指定长度，构建一个指定长度的Object数组。</span><br><span class="line">ArrayList在添加数据的时候会判断这个数组是不是满了，一旦满了就进行扩容，ArrayList的扩容是原来容量的<span class="number">1.5</span>倍</span><br><span class="line">具体操作是拿出老容量加上老容量右移一位再赋值给新数组，然后把老数组的元素copy到新数组中，最后添加新加入的数据</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="集合是怎么处理哈希碰撞的？"   >
+          <a href="#集合是怎么处理哈希碰撞的？" class="heading-link"><i class="fas fa-link"></i></a><a href="#集合是怎么处理哈希碰撞的？" class="headerlink" title="集合是怎么处理哈希碰撞的？"></a>集合是怎么处理哈希碰撞的？</h1>
+      <p>我答：</p>
+<p>集合获取这个索引I是把集合长度n-1再和由key经过hashcode方法得到的哈希值做一个与运算<br>由key算出的hash值具体是 拿出key经过hashcode获得一个哈希值，将这个哈希值和这个哈希值无符号右移16位做一个异或运算 使得高位数据也能参与hash中 最后得到的值传回去</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当发生哈希碰撞的时候有以下几种解决哈希碰撞的方法：链式寻址法、再hash算法、公共溢出法、线性探测法</span><br><span class="line">而HashMap在处理哈希碰撞的时候就是利用链式寻址法和红黑树，<span class="number">1.7</span>是将新数据插入到链表头部，而<span class="number">1.8</span>会将数据插入到链表尾部，并且插入新数据的时候会进行判断链表长度是否超过<span class="number">8</span>且数组长度超过<span class="number">64</span>，如果超过了则会转成红黑树结构，红黑树是为了优化因为链表过长导致搜索时间复杂度增加的一个问题</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="有了解过锁吗-Lock和Sychorized那些"   >
+          <a href="#有了解过锁吗-Lock和Sychorized那些" class="heading-link"><i class="fas fa-link"></i></a><a href="#有了解过锁吗-Lock和Sychorized那些" class="headerlink" title="有了解过锁吗?Lock和Sychorized那些"></a>有了解过锁吗?Lock和Sychorized那些</h1>
+      
+        <h1 id="final修饰方法会怎么样？final修饰类会怎么样"   >
+          <a href="#final修饰方法会怎么样？final修饰类会怎么样" class="heading-link"><i class="fas fa-link"></i></a><a href="#final修饰方法会怎么样？final修饰类会怎么样" class="headerlink" title="final修饰方法会怎么样？final修饰类会怎么样?"></a>final修饰方法会怎么样？final修饰类会怎么样?</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span>修饰方法会让方法无法被重写</span><br><span class="line"><span class="keyword">final</span>修饰类会使这个类成为最终类,无法被继承</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="Integer和int能直接进行比较吗？"   >
+          <a href="#Integer和int能直接进行比较吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#Integer和int能直接进行比较吗？" class="headerlink" title="Integer和int能直接进行比较吗？"></a>Integer和int能直接进行比较吗？</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer类型和Int值能直接比较，因为在Integer会进行自动拆箱和装箱</span><br><span class="line">在Integer和<span class="type">int</span>进行比较的时候Integer会自动拆箱成<span class="type">int</span>类型</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="Integer底层有一个缓冲数组，在这个缓冲数组边界能直接进行比较吗？"   >
+          <a href="#Integer底层有一个缓冲数组，在这个缓冲数组边界能直接进行比较吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#Integer底层有一个缓冲数组，在这个缓冲数组边界能直接进行比较吗？" class="headerlink" title="Integer底层有一个缓冲数组，在这个缓冲数组边界能直接进行比较吗？"></a>Integer底层有一个缓冲数组，在这个缓冲数组边界能直接进行比较吗？</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer底层有一个<span class="type">int</span>的缓冲数组，缓冲数组的范围是负<span class="number">128</span>到正<span class="number">127</span>，在这个范围里会直接找到缓冲区的地址</span><br><span class="line">在缓冲数据的边界也能进行直接比较的</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="和equals方法的区别"   >
+          <a href="#和equals方法的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#和equals方法的区别" class="headerlink" title="&#x3D;&#x3D;和equals方法的区别"></a>&#x3D;&#x3D;和equals方法的区别</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">==在比较基本数据类型的时候比较的是具体的值,而在比较引用数据类型的时候比较两边的地址值</span><br><span class="line">equals方法比较的是两边的属性值</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="有了解过Volatile关键字吗？"   >
+          <a href="#有了解过Volatile关键字吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#有了解过Volatile关键字吗？" class="headerlink" title="有了解过Volatile关键字吗？"></a>有了解过Volatile关键字吗？</h1>
+      
+        <h1 id="说说SpringMVC的执行流程"   >
+          <a href="#说说SpringMVC的执行流程" class="heading-link"><i class="fas fa-link"></i></a><a href="#说说SpringMVC的执行流程" class="headerlink" title="说说SpringMVC的执行流程"></a>说说SpringMVC的执行流程</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP请求会发送到DispatcherServlet(前端控制器)中然后DisPatcherServlet会通过url找到HandlerMapping(处理器映射器)获得映射，HandlerMapping会将这个hander处理器和拦截器一起发送回DisPatcherServlet中，DisPatcherServlet会通过映射查到HandleAdapter(处理器适配器),HandleAdapater会找到具体的Handle,然后将Handle传回来的ModelandView传回给DisPatcherServlet，DisPachthersevlet去找View <span class="title function_">Reslover</span><span class="params">(视图解析器)</span>,View Reslover会将解析出来的View返回给DisPachterServlet，然后DisPachter再渲染反映给前端</span><br><span class="line">而现在一般是面向接口编程，我们不用返回View而是Handle通过ResponBody注解再通过(HttpMessageConverter)消息转化器返回一个Json格式的数据就可以了</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="ArrayList-线程安全吗？Vector-呢？那并发性能高的-ArrayList-是什么？"   >
+          <a href="#ArrayList-线程安全吗？Vector-呢？那并发性能高的-ArrayList-是什么？" class="heading-link"><i class="fas fa-link"></i></a><a href="#ArrayList-线程安全吗？Vector-呢？那并发性能高的-ArrayList-是什么？" class="headerlink" title="ArrayList 线程安全吗？Vector 呢？那并发性能高的 ArrayList 是什么？"></a>ArrayList 线程安全吗？Vector 呢？那并发性能高的 ArrayList 是什么？</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ArrayList线程不安全，而Vector是线程安全的，</span><br><span class="line">ArrayList底层是Object数组，默认初始化的数组长度为<span class="number">10</span></span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="线程池有用过吗？有哪些参数？"   >
+          <a href="#线程池有用过吗？有哪些参数？" class="heading-link"><i class="fas fa-link"></i></a><a href="#线程池有用过吗？有哪些参数？" class="headerlink" title="线程池有用过吗？有哪些参数？"></a>线程池有用过吗？有哪些参数？</h1>
+      
+        <h1 id="线程池如何配置？有什么策略策略？"   >
+          <a href="#线程池如何配置？有什么策略策略？" class="heading-link"><i class="fas fa-link"></i></a><a href="#线程池如何配置？有什么策略策略？" class="headerlink" title="线程池如何配置？有什么策略策略？"></a>线程池如何配置？有什么策略策略？</h1>
+      
+        <h1 id="讲讲-ThreadPoolExecutor-的七个参数？怎么配置？"   >
+          <a href="#讲讲-ThreadPoolExecutor-的七个参数？怎么配置？" class="heading-link"><i class="fas fa-link"></i></a><a href="#讲讲-ThreadPoolExecutor-的七个参数？怎么配置？" class="headerlink" title="讲讲 ThreadPoolExecutor 的七个参数？怎么配置？"></a>讲讲 ThreadPoolExecutor 的七个参数？怎么配置？</h1>
+      
+        <h1 id="能说一下ThreadPoolExecutor核心线程数、最大线程数、工作队列之间的数量关系吗？"   >
+          <a href="#能说一下ThreadPoolExecutor核心线程数、最大线程数、工作队列之间的数量关系吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#能说一下ThreadPoolExecutor核心线程数、最大线程数、工作队列之间的数量关系吗？" class="headerlink" title="能说一下ThreadPoolExecutor核心线程数、最大线程数、工作队列之间的数量关系吗？"></a>能说一下ThreadPoolExecutor核心线程数、最大线程数、工作队列之间的数量关系吗？</h1>
+      
+        <h1 id="普通For、增强For和ForEach的区别"   >
+          <a href="#普通For、增强For和ForEach的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#普通For、增强For和ForEach的区别" class="headerlink" title="普通For、增强For和ForEach的区别"></a>普通For、增强For和ForEach的区别</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">普通For是通过索引I来获得元素，而增强For是通过迭代器来获得元素</span><br><span class="line">ForEach就是增强For</span><br></pre></td></tr></table></div></figure>
+
+
+
+<hr>
+
+        <h1 id="未整理区"   >
+          <a href="#未整理区" class="heading-link"><i class="fas fa-link"></i></a><a href="#未整理区" class="headerlink" title="未整理区"></a>未整理区</h1>
+      
+        <h2 id="与equals的区别，String类里面的equals方法实现看过吗，大概的实现流程"   >
+          <a href="#与equals的区别，String类里面的equals方法实现看过吗，大概的实现流程" class="heading-link"><i class="fas fa-link"></i></a><a href="#与equals的区别，String类里面的equals方法实现看过吗，大概的实现流程" class="headerlink" title="&#x3D;&#x3D;与equals的区别，String类里面的equals方法实现看过吗，大概的实现流程"></a>&#x3D;&#x3D;与equals的区别，String类里面的equals方法实现看过吗，大概的实现流程</h2>
+      
+        <h2 id="Redis有哪些常见数据类型，string，hash，还有zset的内部实现用的什么数据结构，zset数据结构有哪些应用场景-排行榜，实时排名，去重统计"   >
+          <a href="#Redis有哪些常见数据类型，string，hash，还有zset的内部实现用的什么数据结构，zset数据结构有哪些应用场景-排行榜，实时排名，去重统计" class="heading-link"><i class="fas fa-link"></i></a><a href="#Redis有哪些常见数据类型，string，hash，还有zset的内部实现用的什么数据结构，zset数据结构有哪些应用场景-排行榜，实时排名，去重统计" class="headerlink" title="Redis有哪些常见数据类型，string，hash，还有zset的内部实现用的什么数据结构，zset数据结构有哪些应用场景(排行榜，实时排名，去重统计)"></a>Redis有哪些常见数据类型，string，hash，还有zset的内部实现用的什么数据结构，zset数据结构有哪些应用场景(排行榜，实时排名，去重统计)</h2>
+      
+        <h2 id="你的项目中用到了分布式锁，使用分布式锁的时候需要注意哪些问题，分布式锁的使用场景（答的商品秒杀）；为什么要用分布式锁，不用synchronized锁住代码块来保证线程安全。"   >
+          <a href="#你的项目中用到了分布式锁，使用分布式锁的时候需要注意哪些问题，分布式锁的使用场景（答的商品秒杀）；为什么要用分布式锁，不用synchronized锁住代码块来保证线程安全。" class="heading-link"><i class="fas fa-link"></i></a><a href="#你的项目中用到了分布式锁，使用分布式锁的时候需要注意哪些问题，分布式锁的使用场景（答的商品秒杀）；为什么要用分布式锁，不用synchronized锁住代码块来保证线程安全。" class="headerlink" title="你的项目中用到了分布式锁，使用分布式锁的时候需要注意哪些问题，分布式锁的使用场景（答的商品秒杀）；为什么要用分布式锁，不用synchronized锁住代码块来保证线程安全。"></a>你的项目中用到了分布式锁，使用分布式锁的时候需要注意哪些问题，分布式锁的使用场景（答的商品秒杀）；为什么要用分布式锁，不用synchronized锁住代码块来保证线程安全。</h2>
+      
+        <h2 id="什么是回表？"   >
+          <a href="#什么是回表？" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是回表？" class="headerlink" title="什么是回表？"></a>什么是回表？</h2>
+      
+        <h2 id="MySQL存储引擎Innodb的数据结构，可以用hashmap吗，索引用有序数组查询效率会怎么样，有什么问题"   >
+          <a href="#MySQL存储引擎Innodb的数据结构，可以用hashmap吗，索引用有序数组查询效率会怎么样，有什么问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#MySQL存储引擎Innodb的数据结构，可以用hashmap吗，索引用有序数组查询效率会怎么样，有什么问题" class="headerlink" title="MySQL存储引擎Innodb的数据结构，可以用hashmap吗，索引用有序数组查询效率会怎么样，有什么问题"></a>MySQL存储引擎Innodb的数据结构，可以用hashmap吗，索引用有序数组查询效率会怎么样，有什么问题</h2>
+      
+        <h2 id="编程题：输入一个整数，转为二进制，并求出1个个数。"   >
+          <a href="#编程题：输入一个整数，转为二进制，并求出1个个数。" class="heading-link"><i class="fas fa-link"></i></a><a href="#编程题：输入一个整数，转为二进制，并求出1个个数。" class="headerlink" title="编程题：输入一个整数，转为二进制，并求出1个个数。"></a>编程题：输入一个整数，转为二进制，并求出1个个数。</h2>
+      </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://username.github.io">KkkerAn</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://username.github.io/2023/07/12/Java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/">https://username.github.io/2023/07/12/Java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://username.github.io/tags/java/">java</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://username.github.io/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/07/13/RabbitMQ%E4%BD%BF%E7%94%A8%E3%80%90%E8%BF%9B%E9%98%B6%E7%AF%87%E3%80%91/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">RabbitMQ使用【进阶篇】</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/07/12/MySql%E9%9D%A2%E8%AF%95%E9%A2%98/"><span class="paginator-prev__text">MySql面试题</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#final%E4%BF%AE%E9%A5%B0%E7%AC%A6%E6%9C%89%E5%AD%A6%E4%B9%A0%E8%BF%87%E5%90%97%EF%BC%9F%E5%AE%83%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">
+          final修饰符有学习过吗？它有什么使用场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jvm%E3%80%81jdk%E3%80%81jre%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">
+          jvm、jdk、jre的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E7%9A%84%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">
+          java的八大基本类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E6%80%81%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84"><span class="toc-number">4.</span> <span class="toc-text">
+          多态如何实现的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">5.</span> <span class="toc-text">
+          进程和线程的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">6.</span> <span class="toc-text">
+          同步和异步的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">7.</span> <span class="toc-text">
+          如何理解序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HashMap-%E5%92%8C-TreeMap-%E8%AE%B2%E8%AE%B2%EF%BC%9F"><span class="toc-number">8.</span> <span class="toc-text">
+          HashMap 和 TreeMap 讲讲？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%B2%E8%AE%B2-Java-%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9B%E9%94%81%EF%BC%9F%E5%AE%83%E4%BB%AC%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">
+          讲讲 Java 提供了哪些锁？它们有什么区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87%E9%9B%86%E5%90%88%E5%90%97%EF%BC%9F%E7%9C%8B%E8%BF%87%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81%E5%90%97%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">
+          有了解过集合吗？看过底层源码吗？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ArrayList%E5%BA%95%E5%B1%82%E6%98%AF%E6%80%8E%E4%B9%88%E8%BF%9B%E8%A1%8C%E5%88%9B%E5%BB%BA%E5%92%8C%E6%89%A9%E5%AE%B9%E7%9A%84%E5%91%A2%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">
+          ArrayList底层是怎么进行创建和扩容的呢？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%98%AF%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%E5%93%88%E5%B8%8C%E7%A2%B0%E6%92%9E%E7%9A%84%EF%BC%9F"><span class="toc-number">12.</span> <span class="toc-text">
+          集合是怎么处理哈希碰撞的？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87%E9%94%81%E5%90%97-Lock%E5%92%8CSychorized%E9%82%A3%E4%BA%9B"><span class="toc-number">13.</span> <span class="toc-text">
+          有了解过锁吗?Lock和Sychorized那些</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#final%E4%BF%AE%E9%A5%B0%E6%96%B9%E6%B3%95%E4%BC%9A%E6%80%8E%E4%B9%88%E6%A0%B7%EF%BC%9Ffinal%E4%BF%AE%E9%A5%B0%E7%B1%BB%E4%BC%9A%E6%80%8E%E4%B9%88%E6%A0%B7"><span class="toc-number">14.</span> <span class="toc-text">
+          final修饰方法会怎么样？final修饰类会怎么样?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Integer%E5%92%8Cint%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83%E5%90%97%EF%BC%9F"><span class="toc-number">15.</span> <span class="toc-text">
+          Integer和int能直接进行比较吗？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Integer%E5%BA%95%E5%B1%82%E6%9C%89%E4%B8%80%E4%B8%AA%E7%BC%93%E5%86%B2%E6%95%B0%E7%BB%84%EF%BC%8C%E5%9C%A8%E8%BF%99%E4%B8%AA%E7%BC%93%E5%86%B2%E6%95%B0%E7%BB%84%E8%BE%B9%E7%95%8C%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83%E5%90%97%EF%BC%9F"><span class="toc-number">16.</span> <span class="toc-text">
+          Integer底层有一个缓冲数组，在这个缓冲数组边界能直接进行比较吗？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%92%8Cequals%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">17.</span> <span class="toc-text">
+          &#x3D;&#x3D;和equals方法的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87Volatile%E5%85%B3%E9%94%AE%E5%AD%97%E5%90%97%EF%BC%9F"><span class="toc-number">18.</span> <span class="toc-text">
+          有了解过Volatile关键字吗？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%B4%E8%AF%B4SpringMVC%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">19.</span> <span class="toc-text">
+          说说SpringMVC的执行流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ArrayList-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%90%97%EF%BC%9FVector-%E5%91%A2%EF%BC%9F%E9%82%A3%E5%B9%B6%E5%8F%91%E6%80%A7%E8%83%BD%E9%AB%98%E7%9A%84-ArrayList-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">20.</span> <span class="toc-text">
+          ArrayList 线程安全吗？Vector 呢？那并发性能高的 ArrayList 是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%89%E7%94%A8%E8%BF%87%E5%90%97%EF%BC%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8F%82%E6%95%B0%EF%BC%9F"><span class="toc-number">21.</span> <span class="toc-text">
+          线程池有用过吗？有哪些参数？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E7%AD%96%E7%95%A5%E7%AD%96%E7%95%A5%EF%BC%9F"><span class="toc-number">22.</span> <span class="toc-text">
+          线程池如何配置？有什么策略策略？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%B2%E8%AE%B2-ThreadPoolExecutor-%E7%9A%84%E4%B8%83%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%9F%E6%80%8E%E4%B9%88%E9%85%8D%E7%BD%AE%EF%BC%9F"><span class="toc-number">23.</span> <span class="toc-text">
+          讲讲 ThreadPoolExecutor 的七个参数？怎么配置？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%BD%E8%AF%B4%E4%B8%80%E4%B8%8BThreadPoolExecutor%E6%A0%B8%E5%BF%83%E7%BA%BF%E7%A8%8B%E6%95%B0%E3%80%81%E6%9C%80%E5%A4%A7%E7%BA%BF%E7%A8%8B%E6%95%B0%E3%80%81%E5%B7%A5%E4%BD%9C%E9%98%9F%E5%88%97%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E9%87%8F%E5%85%B3%E7%B3%BB%E5%90%97%EF%BC%9F"><span class="toc-number">24.</span> <span class="toc-text">
+          能说一下ThreadPoolExecutor核心线程数、最大线程数、工作队列之间的数量关系吗？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%99%AE%E9%80%9AFor%E3%80%81%E5%A2%9E%E5%BC%BAFor%E5%92%8CForEach%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">25.</span> <span class="toc-text">
+          普通For、增强For和ForEach的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AA%E6%95%B4%E7%90%86%E5%8C%BA"><span class="toc-number">26.</span> <span class="toc-text">
+          未整理区</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8Eequals%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8CString%E7%B1%BB%E9%87%8C%E9%9D%A2%E7%9A%84equals%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%9C%8B%E8%BF%87%E5%90%97%EF%BC%8C%E5%A4%A7%E6%A6%82%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="toc-number">26.1.</span> <span class="toc-text">
+          &#x3D;&#x3D;与equals的区别，String类里面的equals方法实现看过吗，大概的实现流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%8Cstring%EF%BC%8Chash%EF%BC%8C%E8%BF%98%E6%9C%89zset%E7%9A%84%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0%E7%94%A8%E7%9A%84%E4%BB%80%E4%B9%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%8Czset%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-%E6%8E%92%E8%A1%8C%E6%A6%9C%EF%BC%8C%E5%AE%9E%E6%97%B6%E6%8E%92%E5%90%8D%EF%BC%8C%E5%8E%BB%E9%87%8D%E7%BB%9F%E8%AE%A1"><span class="toc-number">26.2.</span> <span class="toc-text">
+          Redis有哪些常见数据类型，string，hash，还有zset的内部实现用的什么数据结构，zset数据结构有哪些应用场景(排行榜，实时排名，去重统计)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%94%A8%E5%88%B0%E4%BA%86%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%97%B6%E5%80%99%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%8C%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%88%E7%AD%94%E7%9A%84%E5%95%86%E5%93%81%E7%A7%92%E6%9D%80%EF%BC%89%EF%BC%9B%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%8C%E4%B8%8D%E7%94%A8synchronized%E9%94%81%E4%BD%8F%E4%BB%A3%E7%A0%81%E5%9D%97%E6%9D%A5%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E3%80%82"><span class="toc-number">26.3.</span> <span class="toc-text">
+          你的项目中用到了分布式锁，使用分布式锁的时候需要注意哪些问题，分布式锁的使用场景（答的商品秒杀）；为什么要用分布式锁，不用synchronized锁住代码块来保证线程安全。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%9E%E8%A1%A8%EF%BC%9F"><span class="toc-number">26.4.</span> <span class="toc-text">
+          什么是回表？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8EInnodb%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%94%A8hashmap%E5%90%97%EF%BC%8C%E7%B4%A2%E5%BC%95%E7%94%A8%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E6%9F%A5%E8%AF%A2%E6%95%88%E7%8E%87%E4%BC%9A%E6%80%8E%E4%B9%88%E6%A0%B7%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-number">26.5.</span> <span class="toc-text">
+          MySQL存储引擎Innodb的数据结构，可以用hashmap吗，索引用有序数组查询效率会怎么样，有什么问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98%EF%BC%9A%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E6%95%B4%E6%95%B0%EF%BC%8C%E8%BD%AC%E4%B8%BA%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%8C%E5%B9%B6%E6%B1%82%E5%87%BA1%E4%B8%AA%E4%B8%AA%E6%95%B0%E3%80%82"><span class="toc-number">26.6.</span> <span class="toc-text">
+          编程题：输入一个整数，转为二进制，并求出1个个数。</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">27</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.xml"></script></body></html>

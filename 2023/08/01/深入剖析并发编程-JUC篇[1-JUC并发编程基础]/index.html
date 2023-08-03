@@ -1,0 +1,507 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="JUC并发编程基础   第一篇是JUC并发编程基础 第二篇是JMM、Volatile关键字、synchronize锁详解                       冯诺依曼体系结构       首先，我们要了解并发过程中为什么会导致数据会出错 冯·诺依曼机（von Neumann machine），又称冯·诺依曼计算机，根据冯·诺依曼提出的存储程序概念设计的计算机。主要特征是：指令与数据都以二进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入剖析并发编程-JUC篇[1-JUC并发编程基础]">
+<meta property="og:url" content="https://username.github.io/2023/08/01/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87[1-JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80]/index.html">
+<meta property="og:site_name" content="KkkerAn&#39;s Blog">
+<meta property="og:description" content="JUC并发编程基础   第一篇是JUC并发编程基础 第二篇是JMM、Volatile关键字、synchronize锁详解                       冯诺依曼体系结构       首先，我们要了解并发过程中为什么会导致数据会出错 冯·诺依曼机（von Neumann machine），又称冯·诺依曼计算机，根据冯·诺依曼提出的存储程序概念设计的计算机。主要特征是：指令与数据都以二进">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801161725875.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801163419744.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801165444126.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171236659.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801172256181.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171827789.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171947078.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801173716877.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801173940439.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801174606159.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801175207579.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801175913669.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801180536132.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801181326286.png">
+<meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801181924213.png">
+<meta property="article:published_time" content="2023-07-31T17:11:50.000Z">
+<meta property="article:modified_time" content="2023-08-03T15:51:55.775Z">
+<meta property="article:author" content="KkkerAn">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801161725875.png"><title>深入剖析并发编程-JUC篇[1-JUC并发编程基础] | KkkerAn's Blog</title><link ref="canonical" href="https://username.github.io/2023/08/01/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87[1-JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80]/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">This is Kkker1An's Blog</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">深入剖析并发编程-JUC篇[1-JUC并发编程基础]</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-01</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.3k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">12分</span></span></div></header><div class="post-body"><p><strong>JUC并发编程基础</strong></p>
+<hr>
+<ul>
+<li>第一篇是JUC并发编程基础</li>
+<li>第二篇是JMM、Volatile关键字、synchronize锁详解</li>
+</ul>
+<hr>
+
+        <h1 id="冯诺依曼体系结构"   >
+          <a href="#冯诺依曼体系结构" class="heading-link"><i class="fas fa-link"></i></a><a href="#冯诺依曼体系结构" class="headerlink" title="冯诺依曼体系结构"></a>冯诺依曼体系结构</h1>
+      <p>首先，我们要了解并发过程中为什么会导致数据会出错</p>
+<p>冯·诺依曼机（von Neumann machine），又称冯·诺依曼计算机，根据<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%86%AF%C2%B7%E8%AF%BA%E4%BE%9D%E6%9B%BC/388909?fromModule=lemma_inlink" >冯·诺依曼</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>提出的<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%98%E5%82%A8%E7%A8%8B%E5%BA%8F/8800242?fromModule=lemma_inlink" >存储程序</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A6%82%E5%BF%B5%E8%AE%BE%E8%AE%A1/1200478?fromModule=lemma_inlink" >概念设计</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>的<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA/140338?fromModule=lemma_inlink" >计算机</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。主要特征是：指令与<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E9%83%BD/20348401?fromModule=lemma_inlink" >数据都</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>以<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%8C%E8%BF%9B%E5%88%B6/361457?fromModule=lemma_inlink" >二进制</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>形式储存在<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%98%E5%82%A8%E5%99%A8/1583185?fromModule=lemma_inlink" >存储器</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>里；指令根据其储存的<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C/332454?fromModule=lemma_inlink" >顺序执行</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.termonline.cn/word/54892/1#s1" >[1]</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%86%AF%C2%B7%E8%AF%BA%E4%BC%8A%E6%9B%BC%E7%BB%93%E6%9E%84/6688306?fromModule=lemma_inlink" >冯·诺伊曼结构</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>（von Neumann architecture），也称冯·诺伊曼模型（Von Neumann model）或普林斯顿结构（Princeton architecture），是一种将程序指令存储器和数据存储器合并在一起的计算机设计<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A6%82%E5%BF%B5%E7%BB%93%E6%9E%84/22325298?fromModule=lemma_inlink" >概念结构</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。依据冯·诺伊曼<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/7481502?fromModule=lemma_inlink" >结构设计</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>出的计算机称做冯.诺依曼计算机，又称存储程序计算机。</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801161725875.png" alt="冯诺依曼计算机结构图"></p>
+
+        <h1 id="CPU模型"   >
+          <a href="#CPU模型" class="heading-link"><i class="fas fa-link"></i></a><a href="#CPU模型" class="headerlink" title="CPU模型"></a>CPU模型</h1>
+      <p>我们已知线程是CPU任务调度和执行的基本单位，而线程之间通信出现问题导致了数据的不一致性</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801163419744.png" alt="CPU内存模型"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">因为数据在高速缓存中，而线程之间的环境是隔离的</span><br><span class="line">每次只会获取自己线程的Cache，那么数据的不可见性最终导致数据的错误</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="缓存行"   >
+          <a href="#缓存行" class="heading-link"><i class="fas fa-link"></i></a><a href="#缓存行" class="headerlink" title="缓存行"></a>缓存行</h1>
+      <p>首先我们要引入一个缓存行的概念，数据在缓存中是怎么存放的</p>
+<p>缓存行是数据中存放的单元，在现在主流CPU Cache中缓存行都是64位的，例如一个数据是int类型那么是32位 一个缓存行就能存放两个数据</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801165444126.png" alt="缓存行"></p>
+<p>因此当线程想要获取数据A的时候会将A所在的缓存行刷入自己的Cache中，而当要获取数据B的时候直接从自己的缓存中读取即可，但这就引起了另外的一个问题：伪共享问题</p>
+
+        <h1 id="伪共享"   >
+          <a href="#伪共享" class="heading-link"><i class="fas fa-link"></i></a><a href="#伪共享" class="headerlink" title="伪共享"></a>伪共享</h1>
+      <p>因此有一个伪共享问题的存在，例如两个Int数据存放在缓存行C1中，而线程T1想要读取数据A，而线程T2想要读取数据B，他们都会从内存将C1刷入自己的Cache中</p>
+<p>而当线程T1更新数据A，而线程T2的数据A没有更新，且会因为缓存一致性协议(MESI协议)，将其置为失效状态(I)</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171236659.png" alt="image-20230801171236659"></p>
+<p><em>而解决伪共享的解决方案有：</em></p>
+<p>1.将变量对齐，使其填满一个缓存行</p>
+<p>2.将不同线程操作的对象处于不同缓存行中</p>
+
+        <h1 id="缓存一致性协议"   >
+          <a href="#缓存一致性协议" class="heading-link"><i class="fas fa-link"></i></a><a href="#缓存一致性协议" class="headerlink" title="缓存一致性协议"></a>缓存一致性协议</h1>
+      <p>因为缓存的不一致导致数据出错，那么就有了缓存一致性的需求、</p>
+<p>来达到缓存的一致性有两个方式</p>
+
+        <h2 id="给总线加锁"   >
+          <a href="#给总线加锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#给总线加锁" class="headerlink" title="给总线加锁"></a>给总线加锁</h2>
+      <p>当线程要获取数据的时候发起Lock将与主内存的总线加锁，这样其他线程要获取数据的时候就会被阻塞</p>
+<p>这样当线程执行完毕之后写回给内存之后会UnLock解锁，唤醒其他线程</p>
+<p>弊端：这样导致了线程的串行化，会造成性能影响。和我们多线程的意愿违背</p>
+
+        <h2 id="缓存一致性协议-MESI协议"   >
+          <a href="#缓存一致性协议-MESI协议" class="heading-link"><i class="fas fa-link"></i></a><a href="#缓存一致性协议-MESI协议" class="headerlink" title="缓存一致性协议(MESI协议)"></a>缓存一致性协议(MESI协议)</h2>
+      <p>缓存一致性协议有很多，而我们这里只谈MESI协议</p>
+<p><strong>MESI协议</strong></p>
+<p>M:	修改(Modified) ， 意思是这个数据只在本线程独有，并且这个数据与主存的数据不一致，是修改过后的数据</p>
+<p>E：  独享(Exclusive)， 意思是这个数据只有本线程独有，并且和主存的数据一致</p>
+<p>S：  分享(Shared)，    意思是这个数据被多个线程持有，并且和主存的数据一致</p>
+<p>I：   失效(invalid)，     意思是这个数据已经被其他线程修改而导致失效了，需要重新从主存中获取数据</p>
+<p>Cache Line在高速缓存Cache中的状态就变成 高两位为信号位(用来存放MESI状态)，后面为数据位</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801172256181.png" alt="缓存行在Cache中"></p>
+
+        <h2 id="消息"   >
+          <a href="#消息" class="heading-link"><i class="fas fa-link"></i></a><a href="#消息" class="headerlink" title="消息"></a>消息</h2>
+      <p>MESI状态变换要通过消息来进行变换，而每次CPU在进行数据操作的时候都会有一个嗅探机制来处理信号并且在一定条件下响应信号</p>
+<ul>
+<li><p>Read 信号：表示要读取某个缓存行，会附带目标的物理地址</p>
+</li>
+<li><p>Read Response信号：反馈Read信号，内容就是Read信号的目标缓存行。Read Response信号可以由内存发出，也可以由其他CPU核心发出</p>
+</li>
+<li><p>Invalidate信号： 表示数据要被更新，告诉共享的CPU核数据已经失效了</p>
+</li>
+<li><p>Invalidate Acknowledge信号：表示知道数据已经失效，准备清空缓存数据</p>
+</li>
+<li><p>Read Invalidate信号：为Read+Invalidate，既要读取数据又要更新数据，让其他缓存行数据失效</p>
+</li>
+<li><p>Writeback信号：数据回写信号，在某一定条件下数据从Cache写回内存中</p>
+</li>
+</ul>
+
+        <h2 id="图解MESI的各种变幻状态"   >
+          <a href="#图解MESI的各种变幻状态" class="heading-link"><i class="fas fa-link"></i></a><a href="#图解MESI的各种变幻状态" class="headerlink" title="图解MESI的各种变幻状态"></a>图解MESI的各种变幻状态</h2>
+      <p>我们假设有两个线程来获取数据</p>
+
+        <h3 id="①线程A获取数据"   >
+          <a href="#①线程A获取数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#①线程A获取数据" class="headerlink" title="①线程A获取数据"></a>①线程A获取数据</h3>
+      <p>发起一个Read信号，想要读取内存中的数据放入到线程中Cache里</p>
+<p>此时返回一个Read Response信号，此时Read Response信号来自内存，线程A中的缓存行状态为E态(独享)</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171827789.png" alt="仅线程A获取数据"></p>
+
+        <h3 id="②线程B获取数据"   >
+          <a href="#②线程B获取数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#②线程B获取数据" class="headerlink" title="②线程B获取数据"></a>②线程B获取数据</h3>
+      <p>线程B也发起Read信号，返回一个Read Response信号,可能来自线程A中，将线程A中的缓存行状态改成S态(独享)</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171947078.png" alt="线程B也获取同一个数据"></p>
+
+        <h3 id="③线程A更新数据"   >
+          <a href="#③线程A更新数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#③线程A更新数据" class="headerlink" title="③线程A更新数据"></a>③线程A更新数据</h3>
+      <p>发出Invalidate信号，将线程B中的数据更新成I态，此时线程A的缓存行状态为M态</p>
+<p>线程B会返回一个Invalidate Acknowledge信号，表示自己已经知道数据失效了将要清空缓存</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801173716877.png" alt="线程A更新数据"></p>
+
+        <h3 id="④数据写回内存"   >
+          <a href="#④数据写回内存" class="heading-link"><i class="fas fa-link"></i></a><a href="#④数据写回内存" class="headerlink" title="④数据写回内存"></a>④数据写回内存</h3>
+      <p>发起WriteBack信号，写回数据，并将现场A缓存中数据置为E态</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801173940439.png" alt="数据写回内存"></p>
+
+        <h1 id="CPU空闲-–-引入Store-Buffer"   >
+          <a href="#CPU空闲-–-引入Store-Buffer" class="heading-link"><i class="fas fa-link"></i></a><a href="#CPU空闲-–-引入Store-Buffer" class="headerlink" title="CPU空闲 –&gt; 引入Store Buffer"></a>CPU空闲 –&gt; 引入Store Buffer</h1>
+      <p>当线程A发起写操作并且发起Invalidate信号必须要等其他线程返回Invalidate Acknowledge信号 那么就会有一个等待时间，而我们要的是CPU忙，让CPU空闲不是我们想要的</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801174606159.png" alt="CPU空闲"></p>
+<p>所以引入了StoreBuffer，将修改之后的操作直接存入StoreBuffer中，而StoreBuffer以某种条件刷入到Cache中再去执行操作，这样就不会导致线程空闲。</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801175207579.png" alt="引入StroeBuffer之后"></p>
+<p>当线程有执行操作之后直接写入到StoreBuffer中，而StoreBuffer是一个先进先出的队列，这样能保证数据刷出的有序性</p>
+<p>而线程要读取数据的时候发现StoreBuffer中有的时候可以直接从StroeBuffer中获取数据</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801175913669.png" alt="处理模型"></p>
+<p><em>引出的问题</em>：StoreBuffer会引起缓存的不一致性，当数据还没刷出到Cache中的时候就导致了数据的错误</p>
+<p><strong>解决方案</strong></p>
+<p>添加屏障(CPU屏障)：写屏障或者全屏障，当写操作之前，将StoreBuffer的数据刷入到Cache中</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801180536132.png" alt="添加屏障，将StoreBuffer数据写到Cache中"></p>
+
+        <h1 id="引入Invalidate-Queues"   >
+          <a href="#引入Invalidate-Queues" class="heading-link"><i class="fas fa-link"></i></a><a href="#引入Invalidate-Queues" class="headerlink" title="引入Invalidate Queues"></a>引入Invalidate Queues</h1>
+      <p>当StoreBuffer打满要刷新到Cache中或者因为其他原因要写到Cache中，多个Invalidate信号要等待Invalidate AcknowLedge信号而Invalidate AcknowLedge信号很慢，这段时间会空闲，所以引入了一个失效队列，当失效信号发出就发到失效队列中，这样就异步解决了这个问题</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801181326286.png" alt="引入Invalidate Queues"></p>
+<p><em>引出的问题</em>：Invalidate会引起缓存的不一致性，当信号还没执行，就要读取数据了而此时数据没更新会导致数据的错误</p>
+<p><strong>解决方案</strong></p>
+<p>添加屏障(CPU屏障)：读屏障或者全屏障，当读操作之前，将InvalidateQueue中作用到Cache中</p>
+<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801181924213.png" alt="添加屏障"></p>
+
+        <h1 id="乱序问题"   >
+          <a href="#乱序问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#乱序问题" class="headerlink" title="乱序问题"></a>乱序问题</h1>
+      <p>因为指令在虚拟机执行可能会进行一个重排，导致一个不可见性，所以有可能出现乱序问题</p>
+<ul>
+<li><p>Load Load：有问题，线程A读取数据的时候第一次读取和第二次读取可能不一样(其他线程进行改动)</p>
+</li>
+<li><p>Load Store：没问题，线程A读取数据然后从写入数据到StoreBuffer中</p>
+</li>
+<li><p>Store Load：有问题，线程A写操作写入StoreBuffer而没有刷到主存中，线程B再读数据就会读到脏数据</p>
+</li>
+<li><p>Store Store：：没问题，线程A写入StoreBuffer中，因为StoreBuffer是先进先出的队列，只要保证Happens-before原则，那么执行的顺序就是有序的</p>
+</li>
+</ul>
+<p>解决方案:利用屏障，将数据刷出在Cache中</p>
+
+        <h1 id="总结："   >
+          <a href="#总结：" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1>
+      <p>以上是从硬件层面来讲JUC为什么并发会导致数据错误，我们真正要进入Java的世界中去探讨JUC并发编程的问题了</p>
+<hr>
+
+        <h1 id="后记"   >
+          <a href="#后记" class="heading-link"><i class="fas fa-link"></i></a><a href="#后记" class="headerlink" title="后记"></a>后记</h1>
+      <p>我学JUC这块我很幸运我能在大概几百个点击的时候在B站看到J3Code老哥对JUC并发编程的视频，我没有选择尚硅谷、马士兵、黑马的视频，可能是在学JUC这块看到了一些差评的原因，而黑马是因为视频有点旧了，实际上我学的还是JDK8的，到现在为止视频应该是可以学习的。但是因为有些评论说是因为PPT讲师造就PPT程序员，是吧。所以看差评这块影响心态被拿捏的死死的</p>
+<hr>
+<p>总之，我还是非常感谢J3Code老哥可以免费分享出他深入JUC这块的成果，下面是他的CSDN地址</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>作者</th>
+<th>CSDN主页地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>J3code</td>
+<td><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40399646" >https://blog.csdn.net/qq_40399646</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></td>
+</tr>
+</tbody></table></div>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://username.github.io">KkkerAn</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://username.github.io/2023/08/01/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87[1-JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80]/">https://username.github.io/2023/08/01/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87[1-JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80]/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://username.github.io/tags/java/">java</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/08/03/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87%5B2-JMM%E3%80%81Volatile%E3%80%81Synchronized%5D/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">深入剖析并发编程-JUC篇[2-JMM、Volatile、Synchronized]</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/07/30/MallChat%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/"><span class="paginator-prev__text">MallChat项目分析</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%AF%E8%AF%BA%E4%BE%9D%E6%9B%BC%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">
+          冯诺依曼体系结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CPU%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">
+          CPU模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E8%A1%8C"><span class="toc-number">3.</span> <span class="toc-text">
+          缓存行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%AA%E5%85%B1%E4%BA%AB"><span class="toc-number">4.</span> <span class="toc-text">
+          伪共享</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.</span> <span class="toc-text">
+          缓存一致性协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E6%80%BB%E7%BA%BF%E5%8A%A0%E9%94%81"><span class="toc-number">5.1.</span> <span class="toc-text">
+          给总线加锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE-MESI%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.2.</span> <span class="toc-text">
+          缓存一致性协议(MESI协议)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF"><span class="toc-number">5.3.</span> <span class="toc-text">
+          消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3MESI%E7%9A%84%E5%90%84%E7%A7%8D%E5%8F%98%E5%B9%BB%E7%8A%B6%E6%80%81"><span class="toc-number">5.4.</span> <span class="toc-text">
+          图解MESI的各种变幻状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0%E7%BA%BF%E7%A8%8BA%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">5.4.1.</span> <span class="toc-text">
+          ①线程A获取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1%E7%BA%BF%E7%A8%8BB%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">5.4.2.</span> <span class="toc-text">
+          ②线程B获取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A2%E7%BA%BF%E7%A8%8BA%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE"><span class="toc-number">5.4.3.</span> <span class="toc-text">
+          ③线程A更新数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A3%E6%95%B0%E6%8D%AE%E5%86%99%E5%9B%9E%E5%86%85%E5%AD%98"><span class="toc-number">5.4.4.</span> <span class="toc-text">
+          ④数据写回内存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CPU%E7%A9%BA%E9%97%B2-%E2%80%93-%E5%BC%95%E5%85%A5Store-Buffer"><span class="toc-number">6.</span> <span class="toc-text">
+          CPU空闲 –&gt; 引入Store Buffer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E5%85%A5Invalidate-Queues"><span class="toc-number">7.</span> <span class="toc-text">
+          引入Invalidate Queues</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%B1%E5%BA%8F%E9%97%AE%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">
+          乱序问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">
+          总结：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">10.</span> <span class="toc-text">
+          后记</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">27</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.xml"></script></body></html>
