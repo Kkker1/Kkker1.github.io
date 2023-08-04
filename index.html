@@ -20,7 +20,7 @@ var CONFIG = {
   fancybox: false,
   zoomImage: {"gapAside":"20px"},
   galleryWaterfall: undefined,
-  lazyload: false,
+  lazyload: true,
   pjax: undefined,
   externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
   shortcuts: undefined,
@@ -28,7 +28,7 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">This is Kkker1An's Blog</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/08/03/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87%5B2-JMM%E3%80%81Volatile%E3%80%81Synchronized%5D/">深入剖析并发编程-JUC篇[2-JMM、Volatile、Synchronized]</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-03</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">17.2k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">171分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p> <strong>JMM、Volatile关键字、Synchronized锁详解</strong></p>
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/08/04/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87%5B3%5D/">深入剖析并发编程-JUC篇[3]</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-04</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">0</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">1分</span></span></div></header><div class="post-body"><div class="post-excerpt"></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/08/03/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87%5B2-JMM%E3%80%81Volatile%E3%80%81Synchronized%5D/">深入剖析并发编程-JUC篇[2-JMM、Volatile、Synchronized]</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-03</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">17.2k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">171分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p> <strong>JMM、Volatile关键字、Synchronized锁详解</strong></p>
 <hr>
 <ul>
 <li>第一篇是JUC并发编程基础</li>
@@ -75,7 +75,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <p><em>JMM</em>工作流程</p>
 </li>
 </ul>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801192534473.png" alt="JMM工作流程"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801192534473.png"  alt="JMM工作流程">
+      </p>
 <p>要注意的是，在JMM模型中没有Invalidate Queues，所以没有Load Load问题，只有Store Load的问题，</p>
 <p>接下来我们重点介绍Volatile关键字和Synchronized锁</p>
 
@@ -92,26 +95,38 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           <a href="#场景一：没有添加volatile关键字" class="heading-link"><i class="fas fa-link"></i></a><a href="#场景一：没有添加volatile关键字" class="headerlink" title="场景一：没有添加volatile关键字"></a>场景一：没有添加volatile关键字</h3>
       <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">	<span class="comment">//定义一个变量a，不给a赋值，初始化之后a应该是0</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> a;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//重写Run方法 当a不为0X1111的时候进入循环</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>(a!=<span class="number">0x1111</span>)&#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//创建线程然后执行run方法</span></span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">TestThread</span>().start();</span><br><span class="line">        <span class="comment">//线程睡一秒</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将a赋值为0X1111</span></span><br><span class="line">        a=<span class="number">0x1111</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
 
-<p>运行结果是该线程没有结束<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801211011188.png" alt="场景一结果"></p>
+<p>运行结果是该线程没有结束
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801211011188.png"  alt="场景一结果">
+      </p>
 
         <h3 id="场景二：添加了Volatile关键字"   >
           <a href="#场景二：添加了Volatile关键字" class="heading-link"><i class="fas fa-link"></i></a><a href="#场景二：添加了Volatile关键字" class="headerlink" title="场景二：添加了Volatile关键字"></a>场景二：添加了Volatile关键字</h3>
       <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestThread</span> <span class="keyword">extends</span>  <span class="title class_">Thread</span>&#123;</span><br><span class="line">	<span class="comment">//给a添加Volatile使其可见</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="type">int</span> a;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>(a!=<span class="number">0x1111</span>)&#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">TestThread</span>().start();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        a=<span class="number">0x1111</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
 <p>运行结果是线程已经结束</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801211221395.png" alt="场景二结果"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801211221395.png"  alt="场景二结果">
+      </p>
 
         <h3 id="场景三：没加Volatile但是禁止JIT优化"   >
           <a href="#场景三：没加Volatile但是禁止JIT优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#场景三：没加Volatile但是禁止JIT优化" class="headerlink" title="场景三：没加Volatile但是禁止JIT优化"></a>场景三：没加Volatile但是禁止JIT优化</h3>
       <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">添加VM参数：-Djava.compiler=NONE  <span class="comment">//禁止JIT优化</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="type">int</span> a;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>(a!=<span class="number">0x1111</span>)&#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">TestThread</span>().start();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        a=<span class="number">0x1111</span>;</span><br><span class="line">    &#125;   </span><br></pre></td></tr></table></div></figure>
 
-<p>运行结果是线程已经结束<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801213142690.png" alt="场景三结果"></p>
+<p>运行结果是线程已经结束
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801213142690.png"  alt="场景三结果">
+      </p>
 
         <h3 id="场景四-没加Volatile但是加了Unsafe-loadFence"   >
           <a href="#场景四-没加Volatile但是加了Unsafe-loadFence" class="heading-link"><i class="fas fa-link"></i></a><a href="#场景四-没加Volatile但是加了Unsafe-loadFence" class="headerlink" title="场景四:没加Volatile但是加了Unsafe.loadFence();"></a>场景四:没加Volatile但是加了Unsafe.loadFence();</h3>
       <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestThread</span> <span class="keyword">extends</span>  <span class="title class_">Thread</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span>  <span class="type">int</span> a;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>(a!=<span class="number">0x1111</span>)&#123;</span><br><span class="line">            UnsafeUtils.getUnsafe().loadFence();</span><br><span class="line">            <span class="comment">//利用UnsafeUtils.getUnsafe()获得Unsafe实例</span></span><br><span class="line">            <span class="comment">//调用loadFence()方法 也就是添加了编译器屏障</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    //读屏障	</span></span><br><span class="line"><span class="comment">    public native void loadFence();</span></span><br><span class="line"><span class="comment">	//写屏障</span></span><br><span class="line"><span class="comment">    public native void storeFence();</span></span><br><span class="line"><span class="comment">	//全屏障</span></span><br><span class="line"><span class="comment">    public native void fullFence();</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">TestThread</span>().start();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        a=<span class="number">0x1111</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
 
-<p>运行结果是线程已经结束<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801213734565.png" alt="image-20230801213734565"></p>
+<p>运行结果是线程已经结束
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801213734565.png"  alt="image-20230801213734565">
+      </p>
 
         <h2 id="分析"   >
           <a href="#分析" class="heading-link"><i class="fas fa-link"></i></a><a href="#分析" class="headerlink" title="分析"></a>分析</h2>
@@ -147,7 +162,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <td>获得指定线程中实例对象个数和所占字节数<br/>#!!</td>
 </tr>
 </tbody></table></div>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801214538319.png" alt="image-20230801214538319"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801214538319.png"  alt="image-20230801214538319">
+      </p>
 <p>我们可以清楚看出TestThread线程Thread-0正在运行</p>
 
         <h3 id="②打印汇编语言"   >
@@ -166,7 +184,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           <a href="#③打印字节码指令" class="heading-link"><i class="fas fa-link"></i></a><a href="#③打印字节码指令" class="headerlink" title="③打印字节码指令"></a>③打印字节码指令</h3>
       <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">利用javaP -c 来输出字节码指令</span><br></pre></td></tr></table></div></figure>
 
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801235858520.png" alt="image-20230801235858520"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801235858520.png"  alt="image-20230801235858520">
+      </p>
 <p>可以知道调用的getstatic方法是主要关注的</p>
 <p>我们打开HotSprot的源码查找getstatic方法</p>
 <p>不过不会C++，只能看英文和上下文一点一点理解</p>
@@ -189,7 +210,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <h2 id="Object对象以及锁的级别"   >
           <a href="#Object对象以及锁的级别" class="heading-link"><i class="fas fa-link"></i></a><a href="#Object对象以及锁的级别" class="headerlink" title="Object对象以及锁的级别"></a>Object对象以及锁的级别</h2>
       <p>Object对象在存储的时候有<strong>对象头信息</strong>、<strong>数据</strong>、对齐填充信息</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802160057306.png" alt="Object对象"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802160057306.png"  alt="Object对象">
+      </p>
 <p>而对象头信息 我们可以从源码中获取得知对象头信息是怎么组成的，我们这里主要关注64位的</p>
 <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  32 bits:</span></span><br><span class="line"><span class="comment">//  --------</span></span><br><span class="line"><span class="comment">//             hash:25 ------------&gt;| age:4    biased_lock:1 lock:2 (normal object)</span></span><br><span class="line"><span class="comment">//             JavaThread*:23 epoch:2 age:4    biased_lock:1 lock:2 (biased object)</span></span><br><span class="line"><span class="comment">//             size:32 ------------------------------------------&gt;| (CMS free block)</span></span><br><span class="line"><span class="comment">//             PromotedObject*:29 ----------&gt;| promo_bits:3 -----&gt;| (CMS promoted object)</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  64 bits:</span></span><br><span class="line"><span class="comment">//  --------</span></span><br><span class="line"><span class="comment">//  unused:25 hash:31 --&gt;| unused:1   age:4    biased_lock:1 lock:2 (normal object)</span></span><br><span class="line"><span class="comment">//  JavaThread*:54 epoch:2 unused:1   age:4    biased_lock:1 lock:2 (biased object)</span></span><br><span class="line"><span class="comment">//  PromotedObject*:61 ---------------------&gt;| promo_bits:3 -----&gt;| (CMS promoted object)</span></span><br><span class="line"><span class="comment">//  size:64 -----------------------------------------------------&gt;| (CMS free block)</span></span><br></pre></td></tr></table></div></figure>
 
@@ -206,7 +230,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <li><p>1位是否为偏向锁</p>
 </li>
 <li><p>2位锁状态</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802162051207.png" alt="对象头"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802162051207.png"  alt="对象头">
+      </p>
 </li>
 </ul>
 <p>接下来就是synchronized锁的级别</p>
@@ -277,7 +304,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           <a href="#①basicObjectLock-记录了锁和持有锁的对象" class="heading-link"><i class="fas fa-link"></i></a><a href="#①basicObjectLock-记录了锁和持有锁的对象" class="headerlink" title="①basicObjectLock:记录了锁和持有锁的对象"></a>①basicObjectLock:记录了锁和持有锁的对象</h3>
       <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BasicObjectLock</span> VALUE_OBJ_CLASS_SPEC &#123;</span><br><span class="line">  <span class="keyword">friend</span> <span class="keyword">class</span> <span class="title class_">VMStructs</span>;</span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  BasicLock _lock;                                    <span class="comment">// the lock, must be double word aligned</span></span><br><span class="line">  oop       _obj;                                     <span class="comment">// object holds the lock;</span></span><br></pre></td></tr></table></div></figure>
 
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802193545800.png" alt="BasicObjectLock"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802193545800.png"  alt="BasicObjectLock">
+      </p>
 
         <h3 id="②Atomic-cmpxchg-ptr-exchange-value-dest-compare-value"   >
           <a href="#②Atomic-cmpxchg-ptr-exchange-value-dest-compare-value" class="heading-link"><i class="fas fa-link"></i></a><a href="#②Atomic-cmpxchg-ptr-exchange-value-dest-compare-value" class="headerlink" title="②Atomic::cmpxchg_ptr(exchange_value,  dest, compare_value)"></a>②Atomic::cmpxchg_ptr(exchange_value,  dest, compare_value)</h3>
@@ -286,15 +316,24 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h3 id="③匿名偏向锁"   >
           <a href="#③匿名偏向锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#③匿名偏向锁" class="headerlink" title="③匿名偏向锁"></a>③匿名偏向锁</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802211243380.png" alt="匿名偏向锁"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802211243380.png"  alt="匿名偏向锁">
+      </p>
 
         <h3 id="④轻量级锁"   >
           <a href="#④轻量级锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#④轻量级锁" class="headerlink" title="④轻量级锁"></a>④轻量级锁</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802211843053.png" alt="轻量级锁"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802211843053.png"  alt="轻量级锁">
+      </p>
 
         <h3 id="⑤偏向锁加锁流程图"   >
           <a href="#⑤偏向锁加锁流程图" class="heading-link"><i class="fas fa-link"></i></a><a href="#⑤偏向锁加锁流程图" class="headerlink" title="⑤偏向锁加锁流程图"></a>⑤偏向锁加锁流程图</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802203659004.png" alt="偏向锁加锁流程"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230802203659004.png"  alt="偏向锁加锁流程">
+      </p>
 
         <h2 id="锁膨胀-InterpreterRuntime-monitorenter"   >
           <a href="#锁膨胀-InterpreterRuntime-monitorenter" class="heading-link"><i class="fas fa-link"></i></a><a href="#锁膨胀-InterpreterRuntime-monitorenter" class="headerlink" title="锁膨胀(InterpreterRuntime::monitorenter)"></a>锁膨胀(InterpreterRuntime::monitorenter)</h2>
@@ -326,21 +365,39 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h3 id="①轻量级锁重入"   >
           <a href="#①轻量级锁重入" class="heading-link"><i class="fas fa-link"></i></a><a href="#①轻量级锁重入" class="headerlink" title="①轻量级锁重入"></a>①轻量级锁重入</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803012321008.png" alt="轻量级锁重入"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803012321008.png"  alt="轻量级锁重入">
+      </p>
 
         <h3 id="②线程安全点"   >
           <a href="#②线程安全点" class="heading-link"><i class="fas fa-link"></i></a><a href="#②线程安全点" class="headerlink" title="②线程安全点"></a>②线程安全点</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803014810909.png" alt="线程安全点"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803014810909.png"  alt="线程安全点">
+      </p>
 
         <h3 id="③轻量级锁膨胀流程图"   >
           <a href="#③轻量级锁膨胀流程图" class="heading-link"><i class="fas fa-link"></i></a><a href="#③轻量级锁膨胀流程图" class="headerlink" title="③轻量级锁膨胀流程图"></a>③轻量级锁膨胀流程图</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803015339537.png" alt="轻量级锁膨胀流程图"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803015339537.png"  alt="轻量级锁膨胀流程图">
+      </p>
 
         <h3 id="④撤销偏向锁流程图"   >
           <a href="#④撤销偏向锁流程图" class="heading-link"><i class="fas fa-link"></i></a><a href="#④撤销偏向锁流程图" class="headerlink" title="④撤销偏向锁流程图"></a>④撤销偏向锁流程图</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803022234477.png" alt="撤销偏向锁(1)"></p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803022147767.png" alt="撤销偏向锁(2)"></p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803023201645.png" alt="撤销偏向锁(3)"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803022234477.png"  alt="撤销偏向锁(1)">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803022147767.png"  alt="撤销偏向锁(2)">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803023201645.png"  alt="撤销偏向锁(3)">
+      </p>
 
         <h2 id="重量级锁-ObjectSynchronizer-inflate"   >
           <a href="#重量级锁-ObjectSynchronizer-inflate" class="heading-link"><i class="fas fa-link"></i></a><a href="#重量级锁-ObjectSynchronizer-inflate" class="headerlink" title="重量级锁(ObjectSynchronizer::inflate)"></a>重量级锁(ObjectSynchronizer::inflate)</h2>
@@ -351,7 +408,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h3 id="重量级锁加锁流程图-膨胀"   >
           <a href="#重量级锁加锁流程图-膨胀" class="heading-link"><i class="fas fa-link"></i></a><a href="#重量级锁加锁流程图-膨胀" class="headerlink" title="重量级锁加锁流程图(膨胀)"></a>重量级锁加锁流程图(膨胀)</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803172249972.png" alt="重量级锁加锁流程图(膨胀)"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803172249972.png"  alt="重量级锁加锁流程图(膨胀)">
+      </p>
 <p><em><strong>膨胀过程本质上就是获取一个监视器</strong>，返回监视器，而具体加锁在监视器中的Entry方法中</em></p>
 <p><em>过程就是判断是否有可用的Monitor，如果没有创建一个公共可用的Monitor数组(1024个)，然后将指向的监视器放到当前线程下可用的监视器中，然后公共可用的Monitor减少一个，具体代码如下</em></p>
 
@@ -390,11 +450,17 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h4 id="阻塞队列图解"   >
           <a href="#阻塞队列图解" class="heading-link"><i class="fas fa-link"></i></a><a href="#阻塞队列图解" class="headerlink" title="阻塞队列图解"></a>阻塞队列图解</h4>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803184039161.png" alt="阻塞队列图解"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803184039161.png"  alt="阻塞队列图解">
+      </p>
 
         <h3 id="重量级锁竞争流程图"   >
           <a href="#重量级锁竞争流程图" class="heading-link"><i class="fas fa-link"></i></a><a href="#重量级锁竞争流程图" class="headerlink" title="重量级锁竞争流程图"></a>重量级锁竞争流程图</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803182841184.png" alt="重量级锁竞争流程图"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803182841184.png"  alt="重量级锁竞争流程图">
+      </p>
 
         <h2 id="锁释放"   >
           <a href="#锁释放" class="heading-link"><i class="fas fa-link"></i></a><a href="#锁释放" class="headerlink" title="锁释放"></a>锁释放</h2>
@@ -428,7 +494,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h3 id="锁释放流程图"   >
           <a href="#锁释放流程图" class="heading-link"><i class="fas fa-link"></i></a><a href="#锁释放流程图" class="headerlink" title="锁释放流程图"></a>锁释放流程图</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803194242527.png" alt="锁释放流程图"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230803194242527.png"  alt="锁释放流程图">
+      </p>
 
         <h2 id="锁的降级"   >
           <a href="#锁的降级" class="heading-link"><i class="fas fa-link"></i></a><a href="#锁的降级" class="headerlink" title="锁的降级"></a>锁的降级</h2>
@@ -450,12 +519,18 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
       <p>首先，我们要了解并发过程中为什么会导致数据会出错</p>
 <p>冯·诺依曼机（von Neumann machine），又称冯·诺依曼计算机，根据<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%86%AF%C2%B7%E8%AF%BA%E4%BE%9D%E6%9B%BC/388909?fromModule=lemma_inlink" >冯·诺依曼</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>提出的<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%98%E5%82%A8%E7%A8%8B%E5%BA%8F/8800242?fromModule=lemma_inlink" >存储程序</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A6%82%E5%BF%B5%E8%AE%BE%E8%AE%A1/1200478?fromModule=lemma_inlink" >概念设计</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>的<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA/140338?fromModule=lemma_inlink" >计算机</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。主要特征是：指令与<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E9%83%BD/20348401?fromModule=lemma_inlink" >数据都</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>以<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%8C%E8%BF%9B%E5%88%B6/361457?fromModule=lemma_inlink" >二进制</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>形式储存在<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%98%E5%82%A8%E5%99%A8/1583185?fromModule=lemma_inlink" >存储器</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>里；指令根据其储存的<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C/332454?fromModule=lemma_inlink" >顺序执行</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.termonline.cn/word/54892/1#s1" >[1]</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
 <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%86%AF%C2%B7%E8%AF%BA%E4%BC%8A%E6%9B%BC%E7%BB%93%E6%9E%84/6688306?fromModule=lemma_inlink" >冯·诺伊曼结构</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>（von Neumann architecture），也称冯·诺伊曼模型（Von Neumann model）或普林斯顿结构（Princeton architecture），是一种将程序指令存储器和数据存储器合并在一起的计算机设计<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A6%82%E5%BF%B5%E7%BB%93%E6%9E%84/22325298?fromModule=lemma_inlink" >概念结构</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。依据冯·诺伊曼<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/7481502?fromModule=lemma_inlink" >结构设计</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>出的计算机称做冯.诺依曼计算机，又称存储程序计算机。</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801161725875.png" alt="冯诺依曼计算机结构图"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801161725875.png"  alt="冯诺依曼计算机结构图">
+      </p>
 
         <h1 id="CPU模型"   >
           <a href="#CPU模型" class="heading-link"><i class="fas fa-link"></i></a><a href="#CPU模型" class="headerlink" title="CPU模型"></a>CPU模型</h1>
       <p>我们已知线程是CPU任务调度和执行的基本单位，而线程之间通信出现问题导致了数据的不一致性</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801163419744.png" alt="CPU内存模型"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801163419744.png"  alt="CPU内存模型">
+      </p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">因为数据在高速缓存中，而线程之间的环境是隔离的</span><br><span class="line">每次只会获取自己线程的Cache，那么数据的不可见性最终导致数据的错误</span><br></pre></td></tr></table></div></figure>
 
 
@@ -463,14 +538,20 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           <a href="#缓存行" class="heading-link"><i class="fas fa-link"></i></a><a href="#缓存行" class="headerlink" title="缓存行"></a>缓存行</h1>
       <p>首先我们要引入一个缓存行的概念，数据在缓存中是怎么存放的</p>
 <p>缓存行是数据中存放的单元，在现在主流CPU Cache中缓存行都是64位的，例如一个数据是int类型那么是32位 一个缓存行就能存放两个数据</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801165444126.png" alt="缓存行"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801165444126.png"  alt="缓存行">
+      </p>
 <p>因此当线程想要获取数据A的时候会将A所在的缓存行刷入自己的Cache中，而当要获取数据B的时候直接从自己的缓存中读取即可，但这就引起了另外的一个问题：伪共享问题</p>
 
         <h1 id="伪共享"   >
           <a href="#伪共享" class="heading-link"><i class="fas fa-link"></i></a><a href="#伪共享" class="headerlink" title="伪共享"></a>伪共享</h1>
       <p>因此有一个伪共享问题的存在，例如两个Int数据存放在缓存行C1中，而线程T1想要读取数据A，而线程T2想要读取数据B，他们都会从内存将C1刷入自己的Cache中</p>
 <p>而当线程T1更新数据A，而线程T2的数据A没有更新，且会因为缓存一致性协议(MESI协议)，将其置为失效状态(I)</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171236659.png" alt="image-20230801171236659"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171236659.png"  alt="image-20230801171236659">
+      </p>
 <p><em>而解决伪共享的解决方案有：</em></p>
 <p>1.将变量对齐，使其填满一个缓存行</p>
 <p>2.将不同线程操作的对象处于不同缓存行中</p>
@@ -495,7 +576,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <p>S：  分享(Shared)，    意思是这个数据被多个线程持有，并且和主存的数据一致</p>
 <p>I：   失效(invalid)，     意思是这个数据已经被其他线程修改而导致失效了，需要重新从主存中获取数据</p>
 <p>Cache Line在高速缓存Cache中的状态就变成 高两位为信号位(用来存放MESI状态)，后面为数据位</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801172256181.png" alt="缓存行在Cache中"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801172256181.png"  alt="缓存行在Cache中">
+      </p>
 
         <h2 id="消息"   >
           <a href="#消息" class="heading-link"><i class="fas fa-link"></i></a><a href="#消息" class="headerlink" title="消息"></a>消息</h2>
@@ -523,46 +607,76 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           <a href="#①线程A获取数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#①线程A获取数据" class="headerlink" title="①线程A获取数据"></a>①线程A获取数据</h3>
       <p>发起一个Read信号，想要读取内存中的数据放入到线程中Cache里</p>
 <p>此时返回一个Read Response信号，此时Read Response信号来自内存，线程A中的缓存行状态为E态(独享)</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171827789.png" alt="仅线程A获取数据"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171827789.png"  alt="仅线程A获取数据">
+      </p>
 
         <h3 id="②线程B获取数据"   >
           <a href="#②线程B获取数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#②线程B获取数据" class="headerlink" title="②线程B获取数据"></a>②线程B获取数据</h3>
       <p>线程B也发起Read信号，返回一个Read Response信号,可能来自线程A中，将线程A中的缓存行状态改成S态(独享)</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171947078.png" alt="线程B也获取同一个数据"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801171947078.png"  alt="线程B也获取同一个数据">
+      </p>
 
         <h3 id="③线程A更新数据"   >
           <a href="#③线程A更新数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#③线程A更新数据" class="headerlink" title="③线程A更新数据"></a>③线程A更新数据</h3>
       <p>发出Invalidate信号，将线程B中的数据更新成I态，此时线程A的缓存行状态为M态</p>
 <p>线程B会返回一个Invalidate Acknowledge信号，表示自己已经知道数据失效了将要清空缓存</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801173716877.png" alt="线程A更新数据"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801173716877.png"  alt="线程A更新数据">
+      </p>
 
         <h3 id="④数据写回内存"   >
           <a href="#④数据写回内存" class="heading-link"><i class="fas fa-link"></i></a><a href="#④数据写回内存" class="headerlink" title="④数据写回内存"></a>④数据写回内存</h3>
       <p>发起WriteBack信号，写回数据，并将现场A缓存中数据置为E态</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801173940439.png" alt="数据写回内存"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801173940439.png"  alt="数据写回内存">
+      </p>
 
         <h1 id="CPU空闲-–-引入Store-Buffer"   >
           <a href="#CPU空闲-–-引入Store-Buffer" class="heading-link"><i class="fas fa-link"></i></a><a href="#CPU空闲-–-引入Store-Buffer" class="headerlink" title="CPU空闲 –&gt; 引入Store Buffer"></a>CPU空闲 –&gt; 引入Store Buffer</h1>
       <p>当线程A发起写操作并且发起Invalidate信号必须要等其他线程返回Invalidate Acknowledge信号 那么就会有一个等待时间，而我们要的是CPU忙，让CPU空闲不是我们想要的</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801174606159.png" alt="CPU空闲"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801174606159.png"  alt="CPU空闲">
+      </p>
 <p>所以引入了StoreBuffer，将修改之后的操作直接存入StoreBuffer中，而StoreBuffer以某种条件刷入到Cache中再去执行操作，这样就不会导致线程空闲。</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801175207579.png" alt="引入StroeBuffer之后"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801175207579.png"  alt="引入StroeBuffer之后">
+      </p>
 <p>当线程有执行操作之后直接写入到StoreBuffer中，而StoreBuffer是一个先进先出的队列，这样能保证数据刷出的有序性</p>
 <p>而线程要读取数据的时候发现StoreBuffer中有的时候可以直接从StroeBuffer中获取数据</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801175913669.png" alt="处理模型"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801175913669.png"  alt="处理模型">
+      </p>
 <p><em>引出的问题</em>：StoreBuffer会引起缓存的不一致性，当数据还没刷出到Cache中的时候就导致了数据的错误</p>
 <p><strong>解决方案</strong></p>
 <p>添加屏障(CPU屏障)：写屏障或者全屏障，当写操作之前，将StoreBuffer的数据刷入到Cache中</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801180536132.png" alt="添加屏障，将StoreBuffer数据写到Cache中"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801180536132.png"  alt="添加屏障，将StoreBuffer数据写到Cache中">
+      </p>
 
         <h1 id="引入Invalidate-Queues"   >
           <a href="#引入Invalidate-Queues" class="heading-link"><i class="fas fa-link"></i></a><a href="#引入Invalidate-Queues" class="headerlink" title="引入Invalidate Queues"></a>引入Invalidate Queues</h1>
       <p>当StoreBuffer打满要刷新到Cache中或者因为其他原因要写到Cache中，多个Invalidate信号要等待Invalidate AcknowLedge信号而Invalidate AcknowLedge信号很慢，这段时间会空闲，所以引入了一个失效队列，当失效信号发出就发到失效队列中，这样就异步解决了这个问题</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801181326286.png" alt="引入Invalidate Queues"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801181326286.png"  alt="引入Invalidate Queues">
+      </p>
 <p><em>引出的问题</em>：Invalidate会引起缓存的不一致性，当信号还没执行，就要读取数据了而此时数据没更新会导致数据的错误</p>
 <p><strong>解决方案</strong></p>
 <p>添加屏障(CPU屏障)：读屏障或者全屏障，当读操作之前，将InvalidateQueue中作用到Cache中</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801181924213.png" alt="添加屏障"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801181924213.png"  alt="添加屏障">
+      </p>
 
         <h1 id="乱序问题"   >
           <a href="#乱序问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#乱序问题" class="headerlink" title="乱序问题"></a>乱序问题</h1>
@@ -610,13 +724,19 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
       
         <h3 id="后端"   >
           <a href="#后端" class="heading-link"><i class="fas fa-link"></i></a><a href="#后端" class="headerlink" title="后端:"></a>后端:</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730100207953.png" alt="image-20230730100207953"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730100207953.png"  alt="image-20230730100207953">
+      </p>
 <p>|INFO|2023-07-30 09:50:38.781|main||uid&#x3D;|Tomcat initialized with port(s): 8080 (http)|</p>
 <p>找到内置的tomcat服务器端口号是8080</p>
 
         <h3 id="前端"   >
           <a href="#前端" class="heading-link"><i class="fas fa-link"></i></a><a href="#前端" class="headerlink" title="前端:"></a>前端:</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730103826557.png" alt="image-20230730103826557"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730103826557.png"  alt="image-20230730103826557">
+      </p>
 
         <h2 id="尝试进入Swagger"   >
           <a href="#尝试进入Swagger" class="heading-link"><i class="fas fa-link"></i></a><a href="#尝试进入Swagger" class="headerlink" title="尝试进入Swagger"></a>尝试进入Swagger</h2>
@@ -624,14 +744,20 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
 <p>因为找到了Swagger2依赖 所以项目中用了Swagger</p>
 <p>尝试进入Swagger-ui页面</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730100713827.png" alt="image-20230730100713827"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730100713827.png"  alt="image-20230730100713827">
+      </p>
 <p>找到Swagger配置类</p>
 <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SwaggerConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean(value = &quot;defaultApi2&quot;)</span></span><br><span class="line">    Docket <span class="title function_">docket</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Docket</span>(DocumentationType.SWAGGER_2)</span><br><span class="line">                <span class="comment">//配置网站的基本信息</span></span><br><span class="line">                .apiInfo(<span class="keyword">new</span> <span class="title class_">ApiInfoBuilder</span>()</span><br><span class="line">                        <span class="comment">//网站标题</span></span><br><span class="line">                        .title(<span class="string">&quot;mallchat接口文档&quot;</span>)</span><br><span class="line">                        <span class="comment">//标题后面的版本号</span></span><br><span class="line">                        .version(<span class="string">&quot;v1.0&quot;</span>)</span><br><span class="line">                        .description(<span class="string">&quot;mallchat接口文档&quot;</span>)</span><br><span class="line">                        <span class="comment">//联系人信息</span></span><br><span class="line">                        .contact(<span class="keyword">new</span> <span class="title class_">Contact</span>(<span class="string">&quot;阿斌&quot;</span>, <span class="string">&quot;http://www.mallchat.cn&quot;</span>, <span class="string">&quot;972627721@qq.com&quot;</span>))</span><br><span class="line">                        .build())</span><br><span class="line">                .select()</span><br><span class="line">                <span class="comment">//指定接口的位置</span></span><br><span class="line">                .apis(RequestHandlerSelectors</span><br><span class="line">                        .withClassAnnotation(RestController.class)</span><br><span class="line">                )</span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
 
 <p>通过mallchat文档中得知</p>
 <p>SwaggerUI经过Knife4j优化之后URL变更了</p>
 <p>从localhost:8080&#x2F;doc.html进入SwaggerUI中</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730103929645.png" alt="image-20230730103929645"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730103929645.png"  alt="image-20230730103929645">
+      </p>
 <p>获得了接口列表</p>
 
         <h2 id="端口号分析"   >
@@ -645,7 +771,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h2 id="进入前端界面尝试前后端联调"   >
           <a href="#进入前端界面尝试前后端联调" class="heading-link"><i class="fas fa-link"></i></a><a href="#进入前端界面尝试前后端联调" class="headerlink" title="进入前端界面尝试前后端联调"></a>进入前端界面尝试前后端联调</h2>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730161607692.png" alt="image-20230730161607692"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730161607692.png"  alt="image-20230730161607692">
+      </p>
 
         <h2 id="申请测试号，来进行获取微信信息"   >
           <a href="#申请测试号，来进行获取微信信息" class="heading-link"><i class="fas fa-link"></i></a><a href="#申请测试号，来进行获取微信信息" class="headerlink" title="申请测试号，来进行获取微信信息"></a>申请测试号，来进行获取微信信息</h2>
@@ -654,8 +783,14 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <h2 id="通过测试号获取到登录信息之后进入前端页面进行测试"   >
           <a href="#通过测试号获取到登录信息之后进入前端页面进行测试" class="heading-link"><i class="fas fa-link"></i></a><a href="#通过测试号获取到登录信息之后进入前端页面进行测试" class="headerlink" title="通过测试号获取到登录信息之后进入前端页面进行测试"></a>通过测试号获取到登录信息之后进入前端页面进行测试</h2>
       <p>清除浏览器Session然后重新刷新页面抓到初始化请求</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730225147538.png" alt="image-20230730225147538"></p>
-<p><img src="/MallChat%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/image-20230731101441566.png" alt="image-20230731101441566"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230730225147538.png"  alt="image-20230730225147538">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/MallChat%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/image-20230731101441566.png"  alt="image-20230731101441566">
+      </p>
 <div class="table-container"><table>
 <thead>
 <tr>
@@ -693,7 +828,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <p>然后点击登录按钮</p>
 <p>通过微信扫码登录到聊天室中</p>
 <p>我们来看新增的两个请求</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230731100759932.png" alt="image-20230731100759932"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230731100759932.png"  alt="image-20230731100759932">
+      </p>
 <div class="table-container"><table>
 <thead>
 <tr>
@@ -719,7 +857,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <h2 id="用户模块"   >
           <a href="#用户模块" class="heading-link"><i class="fas fa-link"></i></a><a href="#用户模块" class="headerlink" title="用户模块"></a>用户模块</h2>
       <p>从Swaager-ui发起测试请求，响应结果是未登录</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230731102513714.png" alt="image-20230731102513714"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230731102513714.png"  alt="image-20230731102513714">
+      </p>
 <p>可知URI被拦截器拦截</p>
 <p>找到Token拦截器</p>
 <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="comment">//获取用户登录token</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> getToken(request);</span><br><span class="line">    <span class="type">Long</span> <span class="variable">validUid</span> <span class="operator">=</span> loginService.getValidUid(token);</span><br><span class="line">    <span class="keyword">if</span> (Objects.nonNull(validUid)) &#123;<span class="comment">//有登录态</span></span><br><span class="line">        request.setAttribute(ATTRIBUTE_UID, validUid);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">isPublicURI</span> <span class="operator">=</span> isPublicURI(request.getRequestURI());</span><br><span class="line">        <span class="keyword">if</span> (!isPublicURI) &#123;<span class="comment">//又没有登录态，又不是公开路径，直接401</span></span><br><span class="line">            HttpErrorEnum.ACCESS_DENIED.sendHttpError(response);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    MDC.put(MDCKey.UID, String.valueOf(validUid));</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
@@ -1124,32 +1265,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
       
         <h1 id="AutoWired和Resource的区别"   >
           <a href="#AutoWired和Resource的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#AutoWired和Resource的区别" class="headerlink" title="AutoWired和Resource的区别?"></a>AutoWired和Resource的区别?</h1>
-      </div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/07/20/SpringMVC%E9%9D%A2%E8%AF%95%E9%A2%98/">SpringMVC面试题</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-20</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">565</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">3分</span></span></div></header><div class="post-body"><div class="post-excerpt">
-        <h1 id="什么是SpringMVC"   >
-          <a href="#什么是SpringMVC" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是SpringMVC" class="headerlink" title="什么是SpringMVC"></a>什么是SpringMVC</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SpringMVC是Spring框架下的一个模块，用于处理web请求，基于MVC的web框架,而MVC是一种设计模式</span><br><span class="line">    M -model模型 </span><br><span class="line">   	V -View 视图</span><br><span class="line">    C -controller控制器</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="能说说SpringMVC的工作流程吗？"   >
-          <a href="#能说说SpringMVC的工作流程吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#能说说SpringMVC的工作流程吗？" class="headerlink" title="能说说SpringMVC的工作流程吗？"></a>能说说SpringMVC的工作流程吗？</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>用户发送HTTP请求到前端控制器DispatcherServlet</span><br><span class="line"><span class="number">2.</span>DispatcherServlet调用handlerMapping(处理器映射器)找到映射器</span><br><span class="line"><span class="number">3.</span>handlerMapping通过url路径生成对应的处理器和拦截器，一起返回给DispatcherServlet</span><br><span class="line"><span class="number">4.</span>DispatcherServlet调用handlerAdapter(处理器适配器)</span><br><span class="line"><span class="number">5.</span>handlerApadter调用handler(处理器)[也就是我们写的Controller]</span><br><span class="line"><span class="number">6.</span>handler处理返回结果封装成ModelandView</span><br><span class="line"><span class="number">7.</span>handlerApadter将返回结果ModelandView返回给DispatcherServlet</span><br><span class="line"><span class="number">8.</span>DispatcherServlet将ModelandView发送给ViewReslover(视图解析器)</span><br><span class="line"><span class="number">9.</span>ViewReslover解析之后返回具体的View</span><br><span class="line"><span class="number">10.</span>DisPatcherServlet将View渲染</span><br><span class="line"><span class="number">11.</span>DisPatcherServlet相应用户</span><br><span class="line">    </span><br><span class="line">而面向接口编程有不同的工作流程</span><br><span class="line"><span class="number">1.</span>用户发送HTTP请求到前端控制器DispatcherServlet</span><br><span class="line"><span class="number">2.</span>DispatcherServlet调用handlerMapping(处理器映射器)找到映射器</span><br><span class="line"><span class="number">3.</span>handlerMapping通过url路径生成对应的处理器和拦截器，一起返回给DispatcherServlet</span><br><span class="line"><span class="number">4.</span>DispatcherServlet调用handlerAdapter(处理器适配器)</span><br><span class="line"><span class="number">5.</span>handlerApadter调用handler(处理器)[也就是我们写的Controller]</span><br><span class="line"><span class="number">6.</span>方法上添加ReSponseBody</span><br><span class="line"><span class="number">7.</span>通过HttpMessageConverter来返回结果转为Json格式并响应</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="SpringMVC的主要组件有哪些"   >
-          <a href="#SpringMVC的主要组件有哪些" class="heading-link"><i class="fas fa-link"></i></a><a href="#SpringMVC的主要组件有哪些" class="headerlink" title="SpringMVC的主要组件有哪些"></a>SpringMVC的主要组件有哪些</h1>
-      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">主要有五个组件:DisPatcherServlet、handlerMapping、handlerAdapter、handler、ViewReslover</span><br><span class="line"></span><br><span class="line">1.DisPatcherServlet:前端控制器    整个流程的控制中心，调用其他组件来处理网络请求</span><br><span class="line">2.handlerMapping   :处理器映射器  负责根据网络请求不同找到对应的处理器映射</span><br><span class="line">3.hander           :处理器       对具体的请求进行处理，通常是我们写的Controller</span><br><span class="line">4.handerAdapter    :处理器适配器  通过特定的规则去执行handler</span><br><span class="line">5.ViewReslover     :视图解析器    用于解析处理结果生成View</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="SpringMVC有哪些常用注解？"   >
-          <a href="#SpringMVC有哪些常用注解？" class="heading-link"><i class="fas fa-link"></i></a><a href="#SpringMVC有哪些常用注解？" class="headerlink" title="SpringMVC有哪些常用注解？"></a>SpringMVC有哪些常用注解？</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span> :用于处理请求url的注解，可用于类和方法上，用于类上则所有方法都需要有这个父地址</span><br><span class="line"><span class="meta">@RequestBody</span>    :实现接收网络请求中的JSON数据</span><br><span class="line"><span class="meta">@ResponseBody</span>   :用于返回Json格式的数据</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="Spring、SpringMVC、SpringBoot的区别"   >
-          <a href="#Spring、SpringMVC、SpringBoot的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#Spring、SpringMVC、SpringBoot的区别" class="headerlink" title="Spring、SpringMVC、SpringBoot的区别"></a>Spring、SpringMVC、SpringBoot的区别</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Spring是一个开发框架，核心的IOC和AOP</span><br><span class="line">SpringMVC是Spring的一个模块，用于处理网络请求的模块</span><br><span class="line">SpringBoot是基于Spring的一个脚手架，为开发Spring生态其他框架铺平道路</span><br></pre></td></tr></table></div></figure>
-
-</div></div></article></section><nav class="paginator"><div class="paginator-inner"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right"></i></a></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">27</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+      </div></div></article></section><nav class="paginator"><div class="paginator-inner"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right"></i></a></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">28</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
   var isXML = true;
   var search_path = 'search.xml';
 

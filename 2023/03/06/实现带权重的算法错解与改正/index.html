@@ -39,7 +39,7 @@ var CONFIG = {
   fancybox: false,
   zoomImage: {"gapAside":"20px"},
   galleryWaterfall: undefined,
-  lazyload: false,
+  lazyload: true,
   pjax: undefined,
   externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
   shortcuts: undefined,
@@ -47,7 +47,7 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">This is Kkker1An's Blog</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">实现带权重的算法错解与改正</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-03-06</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">3.5k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">27分</span></span></div></header><div class="post-body">
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">实现带权重的算法错解与改正</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-03-06</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">3.5k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">27分</span></span></div></header><div class="post-body">
         <h1 id="学习带权重的算法"   >
           <a href="#学习带权重的算法" class="heading-link"><i class="fas fa-link"></i></a><a href="#学习带权重的算法" class="headerlink" title="学习带权重的算法"></a>学习带权重的算法</h1>
       <p>在学习IO流中用权重的算法生成点名器  要求是每次点名之后被点到的人之后的概率为之前概率的一半</p>
@@ -93,13 +93,25 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h3 id="数据"   >
           <a href="#数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据" class="headerlink" title="数据"></a>数据</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163737037.png"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163737037.png" >
+      </p>
 <p>【names.txt】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163737037.png"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163737037.png" >
+      </p>
 <p>【Count.txt】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163842882.png" alt="image-20230306163842882"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163842882.png"  alt="image-20230306163842882">
+      </p>
 <p>【hasName.txt】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306164322967.png"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306164322967.png" >
+      </p>
 
         <h2 id="实现"   >
           <a href="#实现" class="heading-link"><i class="fas fa-link"></i></a><a href="#实现" class="headerlink" title="实现"></a>实现</h2>
@@ -138,7 +150,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           <a href="#数据存储" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h3>
       <p>数据以 姓名-性别-年龄-年龄-权重 的形式存储</p>
 <p>【names.txt】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306164416510.png"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306164416510.png" >
+      </p>
 
         <h3 id="代码实现"   >
           <a href="#代码实现" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3>
@@ -155,9 +170,15 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
 <p>阶段运行结果</p>
 <p>【控制台输出】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306183501981.png" alt="image-20230306183501981"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306183501981.png"  alt="image-20230306183501981">
+      </p>
 <p>【names.txt中的位置】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306183537411.png" alt="image-20230306183537411"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306183537411.png"  alt="image-20230306183537411">
+      </p>
 <p>输出数据然后将对应的信息中权重改成原来的一半，再写回list集合中</p>
 <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个StringBuilder 将信息输出出去，然后将修改之后的权重拼接回去</span></span><br><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">sb.append(s.split(<span class="string">&quot;-&quot;</span>)[<span class="number">0</span>]);</span><br><span class="line">System.out.println(sb.toString());</span><br><span class="line"></span><br><span class="line"><span class="comment">//将权重减半</span></span><br><span class="line"><span class="type">double</span> <span class="variable">newWeight</span> <span class="operator">=</span> Double.parseDouble(s.split(<span class="string">&quot;-&quot;</span>)[<span class="number">3</span>]) / <span class="number">2</span>;</span><br><span class="line"><span class="comment">//拼接数据</span></span><br><span class="line">sb.append(<span class="string">&quot;-&quot;</span>+s.split(<span class="string">&quot;-&quot;</span>)[<span class="number">1</span>]+<span class="string">&quot;-&quot;</span>+s.split(<span class="string">&quot;-&quot;</span>)[<span class="number">2</span>]+<span class="string">&quot;-&quot;</span>+newWeight);</span><br><span class="line"><span class="type">String</span> <span class="variable">newInf</span> <span class="operator">=</span> sb.toString();</span><br><span class="line"><span class="comment">//修改在list集合中的数据</span></span><br><span class="line">list.set(index,newInf);</span><br></pre></td></tr></table></div></figure>
 
@@ -168,14 +189,32 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <h3 id="运行结果"   >
           <a href="#运行结果" class="heading-link"><i class="fas fa-link"></i></a><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3>
       <p>第一次</p>
-<p>【控制台】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185140998.png" alt="image-20230306185140998"></p>
-<p>【names.txt】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185200682.png" alt="image-20230306185200682"></p>
+<p>【控制台】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185140998.png"  alt="image-20230306185140998">
+      </p>
+<p>【names.txt】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185200682.png"  alt="image-20230306185200682">
+      </p>
 <p>第二次</p>
-<p>【控制台】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185329272.png" alt="image-20230306185329272"></p>
-<p>【names.txt】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185243449.png" alt="image-20230306185243449"></p>
+<p>【控制台】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185329272.png"  alt="image-20230306185329272">
+      </p>
+<p>【names.txt】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185243449.png"  alt="image-20230306185243449">
+      </p>
 <p>第三次</p>
-<p>【控制台】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185310974.png" alt="image-20230306185310974"></p>
-<p>【names.txt】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185419248.png" alt="image-20230306185419248"></p>
+<p>【控制台】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185310974.png"  alt="image-20230306185310974">
+      </p>
+<p>【names.txt】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185419248.png"  alt="image-20230306185419248">
+      </p>
 </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://username.github.io">KkkerAn</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://username.github.io/2023/03/06/%E5%AE%9E%E7%8E%B0%E5%B8%A6%E6%9D%83%E9%87%8D%E7%9A%84%E7%AE%97%E6%B3%95%E9%94%99%E8%A7%A3%E4%B8%8E%E6%94%B9%E6%AD%A3/">https://username.github.io/2023/03/06/%E5%AE%9E%E7%8E%B0%E5%B8%A6%E6%9D%83%E9%87%8D%E7%9A%84%E7%AE%97%E6%B3%95%E9%94%99%E8%A7%A3%E4%B8%8E%E6%94%B9%E6%AD%A3/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://username.github.io/tags/java/">java</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/03/09/%E6%8E%A2%E7%A9%B6safeEqual%E6%96%B9%E6%B3%95/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">探究safeEqual方法</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/03/02/IO%E6%B5%81%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%87%BA%E9%94%99/"><span class="paginator-prev__text">IO流解压缩出错(未解决)</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E5%B8%A6%E6%9D%83%E9%87%8D%E7%9A%84%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">
           学习带权重的算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text">
           思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87%E7%9A%84%E5%B7%A5%E4%BD%9C%E4%BB%A5%E5%8F%8A%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.1.</span> <span class="toc-text">
@@ -187,7 +226,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           修改之后</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="toc-number">1.4.1.</span> <span class="toc-text">
           数据存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">
           代码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.3.</span> <span class="toc-text">
-          运行结果</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">27</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+          运行结果</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">28</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
   var isXML = true;
   var search_path = 'search.xml';
 

@@ -20,7 +20,7 @@ var CONFIG = {
   fancybox: false,
   zoomImage: {"gapAside":"20px"},
   galleryWaterfall: undefined,
-  lazyload: false,
+  lazyload: true,
   pjax: undefined,
   externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
   shortcuts: undefined,
@@ -28,7 +28,117 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">This is Kkker1An's Blog</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/04/25/canal%E5%AE%9E%E7%8E%B0%E7%BC%93%E5%AD%98%E5%90%8C%E6%AD%A5/">canal实现缓存同步</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-04-25</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.2k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span></div></header><div class="post-body"><div class="post-excerpt">
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/04/27/JVM%E8%B0%83%E4%BC%98%E5%AE%9E%E4%BE%8B/">JVM调优实例</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-04-27</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">959</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="准备工作"   >
+          <a href="#准备工作" class="heading-link"><i class="fas fa-link"></i></a><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1>
+      
+        <h2 id="java源码"   >
+          <a href="#java源码" class="heading-link"><i class="fas fa-link"></i></a><a href="#java源码" class="headerlink" title="java源码"></a>java源码</h2>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.NinthP;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sound.sampled.Line;</span><br><span class="line"><span class="keyword">import</span> javax.xml.crypto.Data;</span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ScheduledThreadPoolExecutor;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ThreadPoolExecutor;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JVM_FullGC_Program</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">CardInfo</span> &#123;</span><br><span class="line">        <span class="type">BigDecimal</span> <span class="variable">price</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="number">0.0</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;zhangsan&quot;</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">        <span class="type">Date</span> <span class="variable">brithdate</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">m</span><span class="params">()</span> &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">ScheduledThreadPoolExecutor</span> <span class="variable">executor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ScheduledThreadPoolExecutor</span>(<span class="number">50</span>, </span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>.DiscardOldestPolicy());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        executor.setMaximumPoolSize(<span class="number">50</span>);</span><br><span class="line">        <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">            modelFet();</span><br><span class="line">            Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">modelFet</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;CardInfo&gt; taskList = getAllCardInfo();</span><br><span class="line">        taskList.forEach(info -&gt; &#123;</span><br><span class="line">            executor.scheduleWithFixedDelay(() -&gt; &#123;</span><br><span class="line">                info.m();</span><br><span class="line">            &#125;, <span class="number">2</span>, <span class="number">3</span>, TimeUnit.SECONDS);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> List&lt;CardInfo&gt; <span class="title function_">getAllCardInfo</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;CardInfo&gt; taskList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="type">CardInfo</span> <span class="variable">ci</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CardInfo</span>();</span><br><span class="line">            taskList.add(ci);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> taskList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="java命令"   >
+          <a href="#java命令" class="heading-link"><i class="fas fa-link"></i></a><a href="#java命令" class="headerlink" title="java命令"></a>java命令</h2>
+      <p>介绍一下将要用到的Java命令所带的参数</p>
+<p>可以通过java命令获得   &#x2F;&#x2F;就像@help获得帮助文档一样</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -Xms&lt;size&gt;    //设置程序最小内存</span><br><span class="line">java -Xmx&lt;size&gt;    //设置程序最大内存</span><br><span class="line">//java -XX:+PrintFlagsFinal -version  打印出-XX的所有指令</span><br><span class="line">java -XX:+PrintGC  //将GC启动时打印出来大概的信息</span><br></pre></td></tr></table></div></figure>
+
+<p>JDK自带的命令行命令</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jps        		//用于获得系统中运行中的java进程</span><br><span class="line">jinfo &lt;pid&gt; 	//显示指定线程的详情信息</span><br><span class="line">jstat -gc &lt;pid&gt; (ms)//获得JVM各区域详情 参数一:指定进程号 参数二:每xx毫秒刷新输出</span><br><span class="line">jstack &lt;pid&gt;    //跟踪线程中的堆栈信息</span><br><span class="line">jmap -histo &lt;pid&gt; //获得指定线程中实例对象个数和所占字节数</span><br><span class="line">#!!</span><br><span class="line">#jmap命令会导致线程卡死，STW   </span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="启动程序"   >
+          <a href="#启动程序" class="heading-link"><i class="fas fa-link"></i></a><a href="#启动程序" class="headerlink" title="启动程序"></a>启动程序</h1>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -Xms200M -Xmx200M -XX:+PrintGC JVM_FullGC_Program </span><br><span class="line">//将最大和最小内容设置为200M是防止内存抖动对GC测试造成影响  测试实例直接赋予200M而不会进行扩容和缩容</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="现象"   >
+          <a href="#现象" class="heading-link"><i class="fas fa-link"></i></a><a href="#现象" class="headerlink" title="现象"></a>现象</h2>
+      <p>运行之后【短时间】</p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230428164414700.png" >
+      </p>
+<p>运行之后【长时间】</p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/JVM%E8%B0%83%E4%BC%98%E5%AE%9E%E4%BE%8B/image-20230428164438455.png" >
+      </p>
+<p>top命令</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top  //liunx命令  类似于windows中的任务管理器 获得现在系统资源</span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230428165712461.png"  alt="image-20230428165712461">
+      </p>
+<p>jps命令</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps   //显示系统中运行中的java进程号</span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230428164032591.png"  alt="image-20230428164032591">
+      </p>
+<p>jinfo命令</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jinfo 120019 </span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">[root@centos ~]# jinfo 120019</span><br><span class="line">Java System Properties:</span><br><span class="line">#Fri Apr 28 16:36:54 CST 2023</span><br><span class="line">awt.toolkit=sun.awt.X11.XToolkit</span><br><span class="line">java.specification.version=11</span><br><span class="line">sun.cpu.isalist=</span><br><span class="line">sun.jnu.encoding=UTF-8</span><br><span class="line">java.class.path=.</span><br><span class="line">java.vm.vendor=Oracle Corporation</span><br><span class="line">sun.arch.data.model=64</span><br><span class="line">java.vendor.url=https\://openjdk.java.net/</span><br><span class="line">user.timezone=</span><br><span class="line">java.vm.specification.version=11</span><br><span class="line">os.name=Linux</span><br><span class="line">sun.java.launcher=SUN_STANDARD</span><br><span class="line">user.country=US</span><br><span class="line">sun.boot.library.path=/export/server/jdk-11.0.18/lib</span><br><span class="line">sun.java.command=jdk.compiler/com.sun.tools.javac.launcher.Main JVM_FullGC_Program.java</span><br><span class="line">jdk.debug=release</span><br><span class="line">sun.cpu.endian=little</span><br><span class="line">user.home=/root</span><br><span class="line">user.language=en</span><br><span class="line">java.specification.vendor=Oracle Corporation</span><br><span class="line">java.version.date=2023-01-17</span><br><span class="line">java.home=/export/server/jdk-11.0.18</span><br><span class="line">file.separator=/</span><br><span class="line">java.vm.compressedOopsMode=32-bit</span><br><span class="line">line.separator=\n</span><br><span class="line">java.vm.specification.vendor=Oracle Corporation</span><br><span class="line">java.specification.name=Java Platform API Specification</span><br><span class="line">java.awt.graphicsenv=sun.awt.X11GraphicsEnvironment</span><br><span class="line">jdk.module.main.class=com.sun.tools.javac.launcher.Main</span><br><span class="line">sun.management.compiler=HotSpot 64-Bit Tiered Compilers</span><br><span class="line">java.runtime.version=11.0.18+9-LTS-195</span><br><span class="line">user.name=root</span><br><span class="line">path.separator=\:</span><br><span class="line">os.version=3.10.0-1160.el7.x86_64</span><br><span class="line">java.runtime.name=Java(TM) SE Runtime Environment</span><br><span class="line">file.encoding=UTF-8</span><br><span class="line">java.vm.name=Java HotSpot(TM) 64-Bit Server VM</span><br><span class="line">java.vendor.version=18.9</span><br><span class="line">java.vendor.url.bug=https\://bugreport.java.com/bugreport/</span><br><span class="line">java.io.tmpdir=/tmp</span><br><span class="line">java.version=11.0.18</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+
+<p>jstat命令</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat -gc 120019 500  //每0.5秒输出一次</span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230428165346325.png"  alt="image-20230428165346325">
+      </p>
+<p>jstack命令</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack 120019</span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230428165756532.png"  alt="image-20230428165756532">
+      </p>
+<p>可以获得线程中</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pool-1-thread-47 //线程ID</span><br><span class="line">#56				 //线程编号</span><br><span class="line">prio=0           //线程优先级</span><br><span class="line">os_prio=0        //操作系统中优先级</span><br><span class="line">waiting on condition [0x000037f54723e2300] //线程所等待的锁</span><br><span class="line">WAITING          //线程状态</span><br></pre></td></tr></table></div></figure>
+
+<p>​    </p>
+<p>jmap命令</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap -histo 120019</span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230428170854321.png"  alt="image-20230428170854321">
+      </p>
+
+        <h2 id="分析"   >
+          <a href="#分析" class="heading-link"><i class="fas fa-link"></i></a><a href="#分析" class="headerlink" title="分析"></a>分析</h2>
+      <p>由运行程序后长时间结果可以得出</p>
+<p>程序再频繁调动GC 但是GC清理内存结果并不理想  同时CPU占用率会居高不下</p>
+<p>查看线程中实例对象可以知道 某几类对象的实例个数和字节数高</p>
+
+        <h2 id="Arthas"   >
+          <a href="#Arthas" class="heading-link"><i class="fas fa-link"></i></a><a href="#Arthas" class="headerlink" title="Arthas"></a>Arthas</h2>
+      <p>利用阿里开源的Arthas</p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://arthas.aliyun.com/" >https://arthas.aliyun.com/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>在官网下载安装包 然后解压</p>
+<p>进入解压位置  启动arthas</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -jar arthas-boot.jar    </span><br><span class="line">#提前先开启至少一个java进程</span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230428192744362.png"  alt="image-20230428192744362">
+      </p>
+<p>进入该页面即成功启动arthas</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dashboard //会展示当前进程的信息，按ctrl+c可以中断执行。</span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230428192905395.png"  alt="image-20230428192905395">
+      </p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/04/25/canal%E5%AE%9E%E7%8E%B0%E7%BC%93%E5%AD%98%E5%90%8C%E6%AD%A5/">canal实现缓存同步</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-04-25</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.2k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span></div></header><div class="post-body"><div class="post-excerpt">
         <h1 id="使用canal实现Redis与Mysql的缓存同步"   >
           <a href="#使用canal实现Redis与Mysql的缓存同步" class="heading-link"><i class="fas fa-link"></i></a><a href="#使用canal实现Redis与Mysql的缓存同步" class="headerlink" title="使用canal实现Redis与Mysql的缓存同步"></a>使用canal实现Redis与Mysql的缓存同步</h1>
       
@@ -148,12 +258,21 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <p>修改配置文件</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim conf/example/instance.properties</span><br></pre></td></tr></table></div></figure>
 
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425203014303.png" alt="image-20230425203014303"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425203014303.png"  alt="image-20230425203014303">
+      </p>
 <p>修改canal.instance.master.address地址   改为要监控的IP地址以及数据库端口号</p>
 <p>通过ipconfig命令获得本机的IP地址为10.66.9.48</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425203214178.png" alt="image-20230425203214178"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425203214178.png"  alt="image-20230425203214178">
+      </p>
 <h5 id=""><a href="#" class="headerlink" title=""></a></h5><p>修改之后</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425203314812.png" alt="image-20230425203314812"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425203314812.png"  alt="image-20230425203314812">
+      </p>
 <p>返回解压文件夹后开启canal服务</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ../..</span><br><span class="line">cd bin</span><br><span class="line">./startup.sh                //如果修改配置之前开启过服务应先暂停 ./stop.sh</span><br></pre></td></tr></table></div></figure>
 
@@ -162,7 +281,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <p>查看log日志检查canal开启情况</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ../</span><br><span class="line">cd logs/canal</span><br><span class="line">cat canal.log</span><br></pre></td></tr></table></div></figure>
 
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425204205562.png" alt="image-20230425204205562"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425204205562.png"  alt="image-20230425204205562">
+      </p>
 <p>表示成功运行</p>
 
         <h5 id="redis端"   >
@@ -305,13 +427,25 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h3 id="数据"   >
           <a href="#数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据" class="headerlink" title="数据"></a>数据</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163737037.png"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163737037.png" >
+      </p>
 <p>【names.txt】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163737037.png"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163737037.png" >
+      </p>
 <p>【Count.txt】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163842882.png" alt="image-20230306163842882"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306163842882.png"  alt="image-20230306163842882">
+      </p>
 <p>【hasName.txt】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306164322967.png"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306164322967.png" >
+      </p>
 
         <h2 id="实现"   >
           <a href="#实现" class="heading-link"><i class="fas fa-link"></i></a><a href="#实现" class="headerlink" title="实现"></a>实现</h2>
@@ -350,7 +484,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           <a href="#数据存储" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h3>
       <p>数据以 姓名-性别-年龄-年龄-权重 的形式存储</p>
 <p>【names.txt】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306164416510.png"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306164416510.png" >
+      </p>
 
         <h3 id="代码实现"   >
           <a href="#代码实现" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3>
@@ -367,9 +504,15 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
 <p>阶段运行结果</p>
 <p>【控制台输出】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306183501981.png" alt="image-20230306183501981"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306183501981.png"  alt="image-20230306183501981">
+      </p>
 <p>【names.txt中的位置】</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306183537411.png" alt="image-20230306183537411"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306183537411.png"  alt="image-20230306183537411">
+      </p>
 <p>输出数据然后将对应的信息中权重改成原来的一半，再写回list集合中</p>
 <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个StringBuilder 将信息输出出去，然后将修改之后的权重拼接回去</span></span><br><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">sb.append(s.split(<span class="string">&quot;-&quot;</span>)[<span class="number">0</span>]);</span><br><span class="line">System.out.println(sb.toString());</span><br><span class="line"></span><br><span class="line"><span class="comment">//将权重减半</span></span><br><span class="line"><span class="type">double</span> <span class="variable">newWeight</span> <span class="operator">=</span> Double.parseDouble(s.split(<span class="string">&quot;-&quot;</span>)[<span class="number">3</span>]) / <span class="number">2</span>;</span><br><span class="line"><span class="comment">//拼接数据</span></span><br><span class="line">sb.append(<span class="string">&quot;-&quot;</span>+s.split(<span class="string">&quot;-&quot;</span>)[<span class="number">1</span>]+<span class="string">&quot;-&quot;</span>+s.split(<span class="string">&quot;-&quot;</span>)[<span class="number">2</span>]+<span class="string">&quot;-&quot;</span>+newWeight);</span><br><span class="line"><span class="type">String</span> <span class="variable">newInf</span> <span class="operator">=</span> sb.toString();</span><br><span class="line"><span class="comment">//修改在list集合中的数据</span></span><br><span class="line">list.set(index,newInf);</span><br></pre></td></tr></table></div></figure>
 
@@ -380,25 +523,49 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <h3 id="运行结果"   >
           <a href="#运行结果" class="heading-link"><i class="fas fa-link"></i></a><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3>
       <p>第一次</p>
-<p>【控制台】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185140998.png" alt="image-20230306185140998"></p>
-<p>【names.txt】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185200682.png" alt="image-20230306185200682"></p>
+<p>【控制台】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185140998.png"  alt="image-20230306185140998">
+      </p>
+<p>【names.txt】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185200682.png"  alt="image-20230306185200682">
+      </p>
 <p>第二次</p>
-<p>【控制台】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185329272.png" alt="image-20230306185329272"></p>
-<p>【names.txt】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185243449.png" alt="image-20230306185243449"></p>
+<p>【控制台】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185329272.png"  alt="image-20230306185329272">
+      </p>
+<p>【names.txt】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185243449.png"  alt="image-20230306185243449">
+      </p>
 <p>第三次</p>
-<p>【控制台】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185310974.png" alt="image-20230306185310974"></p>
-<p>【names.txt】<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185419248.png" alt="image-20230306185419248"></p>
+<p>【控制台】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185310974.png"  alt="image-20230306185310974">
+      </p>
+<p>【names.txt】
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230306185419248.png"  alt="image-20230306185419248">
+      </p>
 </div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/03/02/IO%E6%B5%81%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%87%BA%E9%94%99/">IO流解压缩出错(未解决)</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-03-02</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.3k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">11分</span></span></div></header><div class="post-body"><div class="post-excerpt">
         <h1 id="2023-03-02"   >
           <a href="#2023-03-02" class="heading-link"><i class="fas fa-link"></i></a><a href="#2023-03-02" class="headerlink" title="2023&#x2F;03&#x2F;02"></a>2023&#x2F;03&#x2F;02</h1>
       <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">File</span> <span class="variable">f</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d2-code\\aaa.zip&quot;</span>);</span><br><span class="line">        <span class="comment">//创建解压目的地的路径</span></span><br><span class="line">        <span class="type">File</span> <span class="variable">dest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d2-code\\&quot;</span>);</span><br><span class="line">        <span class="comment">//创建解压缩流对象</span></span><br><span class="line">        <span class="type">ZipInputStream</span> <span class="variable">zip</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(f));</span><br><span class="line">        <span class="comment">//获取zip中的文件夹\文件 每个都是zipEntry对象</span></span><br><span class="line">        ZipEntry entry;</span><br><span class="line">        <span class="keyword">while</span>((entry= zip.getNextEntry())!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">//当entry不为空的时候进入循环  entry表示压缩包的每一个文件</span></span><br><span class="line">            System.out.println(entry);</span><br><span class="line">            <span class="comment">//对每一个entry进行判断</span></span><br><span class="line">            <span class="keyword">if</span>(entry.isDirectory())&#123;</span><br><span class="line">                <span class="comment">//如果是文件夹则在目的地创建文件夹</span></span><br><span class="line">                <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(dest, entry.toString());</span><br><span class="line">                file.mkdirs();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//如果是文件则直接拷贝</span></span><br><span class="line">                <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="keyword">new</span> <span class="title class_">File</span>(dest, entry.toString()));</span><br><span class="line">                <span class="type">int</span> len;</span><br><span class="line">                <span class="keyword">while</span>((len=zip.read())!=-<span class="number">1</span>)&#123;</span><br><span class="line">                    fos.write(len);</span><br><span class="line">                &#125;</span><br><span class="line">                fos.close();</span><br><span class="line">                zip.closeEntry();<span class="comment">//表示该文件已经操作结束</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//循环结束关闭</span></span><br><span class="line">        zip.close();</span><br></pre></td></tr></table></div></figure>
 
 <p>运行结果</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230302215208856.png"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230302215208856.png" >
+      </p>
 
         <h2 id="aaa-zip结构"   >
           <a href="#aaa-zip结构" class="heading-link"><i class="fas fa-link"></i></a><a href="#aaa-zip结构" class="headerlink" title="aaa.zip结构"></a>aaa.zip结构</h2>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230302215228027.png" alt="image-20230302215228027"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230302215228027.png"  alt="image-20230302215228027">
+      </p>
 <p>分析原因为</p>
 <p>aaa.zip下的aaa和bbb文件夹未被读取到Entry对象中</p>
 
@@ -439,15 +606,24 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <h2 id="现象-case1"   >
           <a href="#现象-case1" class="heading-link"><i class="fas fa-link"></i></a><a href="#现象-case1" class="headerlink" title="现象  case1"></a>现象  case1</h2>
       <p>用debug调试程序 将断点设置在循环控制条件 (entry&#x3D;zip.getNextEntry()) !&#x3D; null  然后单步调试会出现报错</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230303144753331.png"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230303144753331.png" >
+      </p>
 <p>报错</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230303144849131.png"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230303144849131.png" >
+      </p>
 
         <h2 id="现象-case2"   >
           <a href="#现象-case2" class="heading-link"><i class="fas fa-link"></i></a><a href="#现象-case2" class="headerlink" title="现象 case2"></a>现象 case2</h2>
       <p>不用debug调试 直接进行全速运行</p>
 <p>会输出缺少aaa&#x2F;的结果 但是不会报错 同时文件也能被解压成功</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230303145013825.png"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230303145013825.png" >
+      </p>
 
         <h3 id="判断"   >
           <a href="#判断" class="heading-link"><i class="fas fa-link"></i></a><a href="#判断" class="headerlink" title="判断"></a>判断</h3>
@@ -491,7 +667,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h2 id="运行结果"   >
           <a href="#运行结果" class="heading-link"><i class="fas fa-link"></i></a><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230303151228442.png"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230303151228442.png" >
+      </p>
 </div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2022/07/05/%E6%9F%90%E4%B8%AD%E5%8E%82%E7%9A%84java%E5%AE%9E%E4%B9%A0%E7%94%9F%E9%9D%A2%E8%AF%95/">某中厂的java实习生面试</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-07-05</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">545</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">3分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>面试稀碎，所以废话不多说直接进入问题环节吧</p>
 <h2 id=""><a href="#" class="headerlink" title="&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;"></a>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</h2><p>·你能给我做一个简单的自我介绍吗？</p>
 <p>·说一下java里面的内存结构，JVM的这一套内存管理</p>
@@ -534,15 +713,24 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
       <p>视频源来自弹幕量比较大的 《这一定就是原片吧9》</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1c3411Q7XH/?spm_id_from=333.337.search-card.all.click&amp;vd_source=481a97bdbe9fdb27ab06f7f88300d77b</span><br></pre></td></tr></table></div></figure>
 
-<p>视频可直接获得的基本信息：BV号: BV1c3411Q7XH<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309151908372.png" alt="image-20230309151908372"></p>
-<p>​											   作者uid: 37963636    <img src="/%E5%88%A9%E7%94%A8java%E7%88%AC%E5%8F%96%E5%BC%B9%E5%B9%95/image-20230309151847039.png" alt="image-20230309151847039"></p>
+<p>视频可直接获得的基本信息：BV号: BV1c3411Q7XH
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309151908372.png"  alt="image-20230309151908372">
+      </p>
+<p>​											   作者uid: 37963636    
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/%E5%88%A9%E7%94%A8java%E7%88%AC%E5%8F%96%E5%BC%B9%E5%B9%95/image-20230309151847039.png"  alt="image-20230309151847039">
+      </p>
 <p>获取该视频下全部内容，然后分析成分</p>
 <p>用Hutool包链接网络并获得整个网址的html信息 并以字符串的形式存放</p>
 <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//链接网络</span></span><br><span class="line">        String url=<span class="string">&quot;https://www.bilibili.com/video/BV1c3411Q7XH/?spm_id_from=333.337.search-card.all.click&amp;vd_source=481a97bdbe9fdb27ab06f7f88300d77b&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> HttpUtil.get(url);</span><br><span class="line"><span class="comment">//将数据从控制台先输出</span></span><br><span class="line">        System.out.println(s);</span><br></pre></td></tr></table></div></figure>
 
 
 
-<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309151018979.png" alt="image-20230309151018979"  />
+
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309151018979.png"  alt="image-20230309151018979"  />
+      
 
 <p>获得基本数据：视频播放量40491659、弹幕量31912等。</p>
 <p>用BV号对数据筛选看看能获得什么</p>
@@ -554,13 +742,19 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
 <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用Retuil对正则表达式判断,获得所有含有BV号的数据</span></span><br><span class="line">String regex=<span class="string">&quot;BV\\w&#123;10&#125;&quot;</span>;</span><br><span class="line">ArrayList&lt;String&gt; list = (ArrayList&lt;String&gt;) ReUtil.findAll(regex, s, <span class="number">0</span>);</span><br><span class="line">System.out.println(list);</span><br></pre></td></tr></table></div></figure>
 
-<p>在控制台的输出结果为：<img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309153741744.png" alt="image-20230309153741744"></p>
+<p>在控制台的输出结果为：
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309153741744.png"  alt="image-20230309153741744">
+      </p>
 <p>去除本身视频的BV号 BV1c3411Q7XH  再输出list  看看里面所有的BV号和个数</p>
 <p>用循环判断list.contains(“BV1c3411Q7XH”) 如果为true则表示集合中还有这个BV号</p>
 <p>我们的目的是去除所有的BV号 所以循环条件为false的时候就能保证集合中已经没有本视频的BV号</p>
 <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//已知视频本身的BV号为BV1c3411Q7XH  所以滤过本身视频的BV号</span></span><br><span class="line"><span class="keyword">while</span>(list.contains(<span class="string">&quot;BV1c3411Q7XH&quot;</span>))&#123;</span><br><span class="line">    list.remove(<span class="string">&quot;BV1c3411Q7XH&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(list);</span><br><span class="line">System.out.println(list.size());</span><br></pre></td></tr></table></div></figure>
 
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309154949126.png" alt="image-20230309154949126"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309154949126.png"  alt="image-20230309154949126">
+      </p>
 <p>数据备份：</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BV1td4y1N7Vw, BV14P4y1177H, BV11d4y1S7SJ, BV1ma411R7UG, BV1D14y1W74e, BV16d4y1X71i, BV1M84y1B7UW, BV1td4y1N7Vw, BV14P4y1177H, BV11d4y1S7SJ, BV1ma411R7UG, BV1D14y1W74e, BV16d4y1X71i, BV1M84y1B7UW, BV1td4y1N7Vw, BV14P4y1177H, BV11d4y1S7SJ, BV1ma411R7UG, BV1D14y1W74e, BV16d4y1X71i, BV1M84y1B7UW, BV1B741177iT, BV1wJ411H71u, BV14Y4y1r7cU, BV1b8411w7zt, BV1464y1a7jD, BV1M84y1B7UW, BV1UU4y1b7tk, BV16d4y1X71i, BV1dJ411j7yA, BV1td4y1N7Vw, BV1t24y1e7K4, BV1NL411u7e7, BV1ED4y1p7FE, BV1kP4y1C734, BV1iR4y1R7oT, BV1c7411h7Tq, BV1wP4y1v7BF, BV17v4y1v7BS, BV1SB4y167Jj, BV1z3411S7ov, BV1sM411q7Er, BV1cv4y1D7LK, BV1xY4y1o7XZ, BV1a64y1F7rF, BV1We4y1a7Qm, BV1si4y1V7Lb, BV1Lv4y1Q7Bd, BV1D14y1W74e, BV1564y1Z7ef, BV1W84y1a7QJ, BV1LY41127iZ, BV1CG4y1k7ag, BV1rT41127dZ, BV14P4y1177H, BV1Ze4y1y7TT, BV1iK4y1a7or, BV1ma411R7UG, BV19S4y1o7hg, BV1i64y117dz, BV1wD4y177XC, BV1B741177iT, BV1B741177iT, BV1wJ411H71u, BV1wJ411H71u, BV14Y4y1r7cU, BV14Y4y1r7cU, BV1b8411w7zt, BV1b8411w7zt, BV1464y1a7jD, BV1464y1a7jD, BV1M84y1B7UW, BV1M84y1B7UW, BV1UU4y1b7tk, BV1UU4y1b7tk, BV16d4y1X71i, BV16d4y1X71i, BV1dJ411j7yA, BV1dJ411j7yA, BV1td4y1N7Vw, BV1td4y1N7Vw, BV1t24y1e7K4, BV1t24y1e7K4, BV1NL411u7e7, BV1NL411u7e7, BV1ED4y1p7FE, BV1ED4y1p7FE, BV1kP4y1C734, BV1kP4y1C734, BV1iR4y1R7oT, BV1iR4y1R7oT, BV1c7411h7Tq, BV1c7411h7Tq, BV1wP4y1v7BF, BV1wP4y1v7BF, BV17v4y1v7BS, BV17v4y1v7BS, BV1SB4y167Jj, BV1SB4y167Jj, BV1z3411S7ov, BV1z3411S7ov</span><br></pre></td></tr></table></div></figure>
 
@@ -568,10 +762,16 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
 <p>先在页面的总HTML信息中查找本视频的所有出现位置，信息</p>
 <p>第一次:(获得了前四个本视频BV号出现的位置)</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309155236182.png" alt="image-20230309155236182"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309155236182.png"  alt="image-20230309155236182">
+      </p>
 <p>可以知道都是在URL中出现的前几次 并无其他相关信息</p>
 <p>第二次:(获得了第五和第六个本视频BV号出现的位置)</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309155515650.png" alt="image-20230309155515650"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309155515650.png"  alt="image-20230309155515650">
+      </p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;aid&quot;:434581916,&quot;bvid&quot;:&quot;BV1c3411Q7XH&quot;,&quot;p&quot;:1,&quot;episode&quot;:&quot;&quot;,&quot;videoData&quot;:&#123;&quot;bvid&quot;:&quot;BV1c3411Q7XH&quot;,&quot;aid&quot;:434581916,&quot;videos&quot;:1,&quot;tid&quot;:47,&quot;tname&quot;:&quot;短片·手书·配音&quot;,&quot;copyright&quot;:1,&quot;pic&quot;:&quot;http:\u002F\u002Fi1.hdslb.com\u002Fbfs\u002Farchive\u002F4e5c6f04d8d5b1042b2040d2d86e743780aa58ed.jpg&quot;,&quot;title&quot;:&quot;这一定就是原片吧9&quot;,&quot;pubdate&quot;:1672533534,&quot;ctime&quot;:1672533534,&quot;desc&quot;:&quot;视频剧情与人设皆为虚构 不要上升真羊！\n本集设定沸羊羊和美羊羊是男女朋友的关系 本视频是沸美cp向哦\n这个视频是根据之前沸美视频的cp 设定做的，重复也只是吃醋的表现，不是嘲讽&quot;,&quot;desc_v2&quot;:[&#123;&quot;raw_text&quot;:&quot;视频剧情与人设皆为虚构 不要上升真羊！\n本集设定沸羊羊和美羊羊是男女朋友的关系 本视频是沸美cp向哦\n这个视频是根据之前沸美视频的cp 设定做的，重复也只是吃醋的表现，不是嘲讽&quot;,&quot;type&quot;:1,&quot;biz_id&quot;:0&#125;],&quot;state&quot;:0,&quot;duration&quot;:102,&quot;mission_id&quot;:1152893,&quot;rights&quot;:&#123;&quot;bp&quot;:0,&quot;elec&quot;:0,&quot;download&quot;:1,&quot;movie&quot;:0,&quot;pay&quot;:0,&quot;hd5&quot;:1,&quot;no_reprint&quot;:1,&quot;autoplay&quot;:1,&quot;ugc_pay&quot;:0,&quot;is_cooperation&quot;:0,&quot;ugc_pay_preview&quot;:0,&quot;no_background&quot;:0,&quot;clean_mode&quot;:0,&quot;is_stein_gate&quot;:0,&quot;is_360&quot;:0,&quot;no_share&quot;:0,&quot;arc_pay&quot;:0,&quot;free_watch&quot;:0&#125;,&quot;owner&quot;:&#123;&quot;mid&quot;:37963636,&quot;name&quot;:&quot;一只风风o&quot;,&quot;face&quot;:&quot;https:\u002F\u002Fi1.hdslb.com\u002Fbfs\u002Fface\u002F7b51ecbf97f83fd579a71c9b7766f680d08b338c.jpg&quot;&#125;,&quot;stat&quot;:&#123;&quot;aid&quot;:434581916,&quot;view&quot;:40494159,&quot;danmaku&quot;:31912,&quot;reply&quot;:37360,&quot;favorite&quot;:831184,&quot;coin&quot;:1072355,&quot;share&quot;:1301568,&quot;now_rank&quot;:0,&quot;his_rank&quot;:1,&quot;like&quot;:2606795,&quot;dislike&quot;:0,&quot;evaluation&quot;:&quot;&quot;,&quot;argue_msg&quot;:&quot;&quot;,&quot;viewseo&quot;:40494159&#125;,&quot;dynamic&quot;:&quot;&quot;,&quot;cid&quot;:945221244,&quot;dimension&quot;:&#123;&quot;width&quot;:1920,&quot;height&quot;:1080,&quot;rotate&quot;:0&#125;</span><br></pre></td></tr></table></div></figure>
 
 <p>这里已经有很多关于参数的信息了，先分析目前可以知道或者有用的参数</p>
@@ -581,7 +781,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <p>​              “name”: “一只风风o” &#x2F;&#x2F;视频作者用户名}</p>
 <p>#stat:{   “view”:40494159  , “danmaku”:31912 } &#x2F;&#x2F;与上面获取的基本信息对上了  视频播放量40491659、弹幕量31912。</p>
 <p>第三次:(获得了第八次本视频BV号出现的位置)</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309160501356.png" alt="image-20230309160501356"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309160501356.png"  alt="image-20230309160501356">
+      </p>
 <p>“p”:1,”aid”:434581916,”bvid”:”BV1c3411Q7XH”,”cid”:945221244,”vid”:””,”vtype”:”vupload”</p>
 <p>&#x2F;&#x2F;此时bid一样 但是多了一个cid  </p>
 <p>#cid:945221244  &#x2F;&#x2F;未知</p>
@@ -590,18 +793,27 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <p>所以只要弄清楚bid 和 cid的含义</p>
 <p>再用备份数据的BV号 获得所在数据的位置</p>
 <p>第一次:(备用数据第一个)</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309163724217.png" alt="image-20230309163724217"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309163724217.png"  alt="image-20230309163724217">
+      </p>
 <p>{“cid”:796445438,”page”:1,”from”:”vupload”,”part”:”这一定就是原片吧”,”duration”:85,”vid”:””,”weblink”:””,”dimension”:{“width”:576,”height”:1246,”rotate”:0}},”bvid”:”BV1td4y1N7Vw”}</p>
 <p>#cid:796445438 </p>
 <p>#bvid:BV1td4y1N7Vw</p>
 <p>再由part “这一定就是原片吧” 可以推出是推荐视频的bv号</p>
 <p>第二次:(备用数据第二个)</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309164127463.png" alt="image-20230309164127463"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309164127463.png"  alt="image-20230309164127463">
+      </p>
 <p>{“cid”:893220432,”page”:1,”from”:”vupload”,”part”:”这一定就是原片吧2”,”duration”:76,”vid”:””,”weblink”:””,”dimension”:{“width”:886,”height”:1920,”rotate”:0}},”bvid”:”BV14P4y1177H”}</p>
 <p>#cid:893220432</p>
 <p>#bvid:BV14P4y1177H</p>
 <p>再由用户的uid查找位置 看看是否有有用的信息</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309165051439.png" alt="image-20230309165051439"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230309165051439.png"  alt="image-20230309165051439">
+      </p>
 <p>这里出现了uname  可能和评论有关</p>
 <p>由此可以推出cid和bvid可能有某种关系，合理可以推出cid可能与弹幕库相连，可能由cid获得弹幕库</p>
 
@@ -716,7 +928,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <h3 id="lambda表达式"   >
           <a href="#lambda表达式" class="heading-link"><i class="fas fa-link"></i></a><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3>
       <p>本质上是匿名内部类，实际上是一个Runnbale接口的实现类</p>
-</div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">27</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+</div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">28</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
   var isXML = true;
   var search_path = 'search.xml';
 

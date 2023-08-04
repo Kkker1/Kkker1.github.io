@@ -48,7 +48,7 @@ var CONFIG = {
   fancybox: false,
   zoomImage: {"gapAside":"20px"},
   galleryWaterfall: undefined,
-  lazyload: false,
+  lazyload: true,
   pjax: undefined,
   externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
   shortcuts: undefined,
@@ -56,7 +56,7 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">This is Kkker1An's Blog</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">RabbitMQ使用【进阶篇】</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-13</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">3.2k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">27分</span></span></div></header><div class="post-body">
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">RabbitMQ使用【进阶篇】</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-13</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">3.2k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">27分</span></span></div></header><div class="post-body">
         <h1 id="如何保证RabbitMQ的消息发送可靠性"   >
           <a href="#如何保证RabbitMQ的消息发送可靠性" class="heading-link"><i class="fas fa-link"></i></a><a href="#如何保证RabbitMQ的消息发送可靠性" class="headerlink" title="如何保证RabbitMQ的消息发送可靠性"></a>如何保证RabbitMQ的消息发送可靠性</h1>
       
@@ -85,11 +85,17 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h5 id="1-成功发送："   >
           <a href="#1-成功发送：" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-成功发送：" class="headerlink" title="1.成功发送："></a>1.成功发送：</h5>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713155029776.png" alt="image-20230713155029776"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713155029776.png"  alt="image-20230713155029776">
+      </p>
 
         <h5 id="2-失败发送"   >
           <a href="#2-失败发送" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-失败发送" class="headerlink" title="2.失败发送"></a>2.失败发送</h5>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713155150627.png" alt="image-20230713155150627"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713155150627.png"  alt="image-20230713155150627">
+      </p>
 
         <h3 id="2-回退机制"   >
           <a href="#2-回退机制" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-回退机制" class="headerlink" title="(2)回退机制"></a>(2)回退机制</h3>
@@ -108,7 +114,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h4 id="效果"   >
           <a href="#效果" class="heading-link"><i class="fas fa-link"></i></a><a href="#效果" class="headerlink" title="效果"></a>效果</h4>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713161242108.png" alt="image-20230713161242108"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713161242108.png"  alt="image-20230713161242108">
+      </p>
 
         <h1 id="RabbitMQ的消息接收的确认"   >
           <a href="#RabbitMQ的消息接收的确认" class="heading-link"><i class="fas fa-link"></i></a><a href="#RabbitMQ的消息接收的确认" class="headerlink" title="RabbitMQ的消息接收的确认"></a>RabbitMQ的消息接收的确认</h1>
@@ -128,13 +137,22 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
       
         <h4 id="1-正常签收"   >
           <a href="#1-正常签收" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-正常签收" class="headerlink" title="(1)正常签收"></a>(1)正常签收</h4>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713163939606.png" alt="image-20230713163939606"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713163939606.png"  alt="image-20230713163939606">
+      </p>
 
         <h4 id="2-异常签收"   >
           <a href="#2-异常签收" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-异常签收" class="headerlink" title="(2)异常签收"></a>(2)异常签收</h4>
       <p>![](RabbitMQ%E4%BD%BF%E7%94%A8%E3%80%90%E8%BF%9B%E9%98%B6%E7%AF%87%E3%80%91&#x2F;image-20230713162956067.png</p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713163128985.png" alt="image-20230713163128985"></p>
-<p><img src="/RabbitMQ%E4%BD%BF%E7%94%A8%E3%80%90%E8%BF%9B%E9%98%B6%E7%AF%87%E3%80%91/image-20230713163221136.png" alt="image-20230713163221136"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713163128985.png"  alt="image-20230713163128985">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/RabbitMQ%E4%BD%BF%E7%94%A8%E3%80%90%E8%BF%9B%E9%98%B6%E7%AF%87%E3%80%91/image-20230713163221136.png"  alt="image-20230713163221136">
+      </p>
 
         <h1 id="RabbitMQ的消费端限流"   >
           <a href="#RabbitMQ的消费端限流" class="heading-link"><i class="fas fa-link"></i></a><a href="#RabbitMQ的消费端限流" class="headerlink" title="RabbitMQ的消费端限流"></a>RabbitMQ的消费端限流</h1>
@@ -157,7 +175,13 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h3 id="效果-2"   >
           <a href="#效果-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#效果-2" class="headerlink" title="效果"></a>效果</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713165421300.png" alt="image-20230713165421300"><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713165439057.png" alt="image-20230713165439057"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713165421300.png"  alt="image-20230713165421300">
+      
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713165439057.png"  alt="image-20230713165439057">
+      </p>
 <p>总共有20条 19条Ready  1条未被签收</p>
 
         <h1 id="RabbitMQ的TTL"   >
@@ -178,8 +202,14 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h4 id="效果-3"   >
           <a href="#效果-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#效果-3" class="headerlink" title="效果"></a>效果</h4>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713170744420.png" alt="image-20230713170744420"></p>
-<p><img src="/RabbitMQ%E4%BD%BF%E7%94%A8%E3%80%90%E8%BF%9B%E9%98%B6%E7%AF%87%E3%80%91/image-20230713170756794.png" alt="image-20230713170756794"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713170744420.png"  alt="image-20230713170744420">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/RabbitMQ%E4%BD%BF%E7%94%A8%E3%80%90%E8%BF%9B%E9%98%B6%E7%AF%87%E3%80%91/image-20230713170756794.png"  alt="image-20230713170756794">
+      </p>
 
         <h2 id="单个消息设置过期时间"   >
           <a href="#单个消息设置过期时间" class="heading-link"><i class="fas fa-link"></i></a><a href="#单个消息设置过期时间" class="headerlink" title="单个消息设置过期时间"></a>单个消息设置过期时间</h2>
@@ -192,8 +222,14 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h4 id="效果-4"   >
           <a href="#效果-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#效果-4" class="headerlink" title="效果"></a>效果</h4>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713171755975.png" alt="image-20230713171755975"></p>
-<p><img src="/RabbitMQ%E4%BD%BF%E7%94%A8%E3%80%90%E8%BF%9B%E9%98%B6%E7%AF%87%E3%80%91/image-20230713171808499.png" alt="image-20230713171808499"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713171755975.png"  alt="image-20230713171755975">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/RabbitMQ%E4%BD%BF%E7%94%A8%E3%80%90%E8%BF%9B%E9%98%B6%E7%AF%87%E3%80%91/image-20230713171808499.png"  alt="image-20230713171808499">
+      </p>
 
         <h2 id="小结"   >
           <a href="#小结" class="heading-link"><i class="fas fa-link"></i></a><a href="#小结" class="headerlink" title="小结"></a>小结</h2>
@@ -222,18 +258,36 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
       
         <h4 id="1-当消息到了过期时间"   >
           <a href="#1-当消息到了过期时间" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-当消息到了过期时间" class="headerlink" title="(1)当消息到了过期时间"></a>(1)当消息到了过期时间</h4>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713181912511.png" alt="image-20230713181912511"></p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713181933839.png" alt="image-20230713181933839"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713181912511.png"  alt="image-20230713181912511">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713181933839.png"  alt="image-20230713181933839">
+      </p>
 
         <h4 id="2-当消息长度超过了队列限制"   >
           <a href="#2-当消息长度超过了队列限制" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-当消息长度超过了队列限制" class="headerlink" title="(2)当消息长度超过了队列限制"></a>(2)当消息长度超过了队列限制</h4>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713181912511.png" alt="image-20230713181912511"></p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713181933839.png" alt="image-20230713181933839"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713181912511.png"  alt="image-20230713181912511">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713181933839.png"  alt="image-20230713181933839">
+      </p>
 
         <h4 id="3-消息在消费端拒收"   >
           <a href="#3-消息在消费端拒收" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-消息在消费端拒收" class="headerlink" title="(3)消息在消费端拒收"></a>(3)消息在消费端拒收</h4>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713183932822.png" alt="image-20230713183932822"></p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713183952193.png" alt="image-20230713183952193"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713183932822.png"  alt="image-20230713183932822">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230713183952193.png"  alt="image-20230713183952193">
+      </p>
 
         <h3 id="提示"   >
           <a href="#提示" class="heading-link"><i class="fas fa-link"></i></a><a href="#提示" class="headerlink" title="提示"></a>提示</h3>
@@ -247,7 +301,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           <a href="#消息补偿机制" class="heading-link"><i class="fas fa-link"></i></a><a href="#消息补偿机制" class="headerlink" title="消息补偿机制"></a>消息补偿机制</h1>
       <p>【图片来源于CSDN，借鉴于此】</p>
 <p>【<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://blog.csdn.net/m0_48481908/article/details/120160022?ops_request_misc=&request_id=&biz_id=102&utm_term=RabbitMQ%E6%B6%88%E6%81%AF%E8%A1%A5%E5%81%BF&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-3-120160022.nonecase&spm=1018.2226.3001.4187%E3%80%91" >https://blog.csdn.net/m0_48481908/article/details/120160022?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=RabbitMQ%E6%B6%88%E6%81%AF%E8%A1%A5%E5%81%BF&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-3-120160022.nonecase&amp;spm=1018.2226.3001.4187】</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6I235YyF6JuL5LuK5aSp5pyJ5aW95aW95a2m5Lmg5ZCX77yf,size_14,color_FFFFFF,t_70,g_se,x_16.png" alt="在这里插入图片描述"></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6I235YyF6JuL5LuK5aSp5pyJ5aW95aW95a2m5Lmg5ZCX77yf,size_14,color_FFFFFF,t_70,g_se,x_16.png"  alt="在这里插入图片描述">
+      </p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">思路：</span><br><span class="line">1.生产者生产数据并写入自己的数据库</span><br><span class="line">2.生产者发送消息给Q1，并且会延迟一段时间发送相同的消息给Q3。Q1会被Consumer监听到，会产生一个确认信息的信号给Q2,Q2会被回调检查服务监听到，此时会直接将消息写到MDB中</span><br><span class="line">3.消费者将消费数据写入自己的DB中。</span><br><span class="line">4.延迟发送相同的消息给Q3，Q3被回调检查服务监听，会与MDB中数据比对，如果MDB中没有这个消息则说明Q3的消息未被消费，即发送消息给Q1失败，则会调用Producer重发消息</span><br><span class="line">5.定时检查服务来检查生产者DB和MessageDB 如果不一致，如业务DB多于消息MDB则说明有消息未被消费。则需要生产者重发消息【这是为了防止发送消息和延迟发送消息都失败的情况】</span><br></pre></td></tr></table></div></figure>
 
 
@@ -280,8 +337,14 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h3 id="效果-6"   >
           <a href="#效果-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#效果-6" class="headerlink" title="效果"></a>效果</h3>
-      <p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230720224428282.png"></p>
-<p><img src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230720225911561.png" alt="image-20230720225911561"></p>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230720224428282.png" >
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230720225911561.png"  alt="image-20230720225911561">
+      </p>
 <p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
 <p>单机RabbitMq的启动命令</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service rabbitmq-server start 启动</span><br><span class="line">service rabbitmq-server stop  停机</span><br><span class="line">service rabbitmq-server restart 重启</span><br></pre></td></tr></table></div></figure>
@@ -324,7 +387,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           消息幂等性的保证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E8%BD%AC%E6%8D%A2%E5%99%A8"><span class="toc-number">9.</span> <span class="toc-text">
           消息转换器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81-7"><span class="toc-number">9.1.</span> <span class="toc-text">
           相关代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C-6"><span class="toc-number">9.1.1.</span> <span class="toc-text">
-          效果</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">27</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+          效果</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">28</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
   var isXML = true;
   var search_path = 'search.xml';
 
