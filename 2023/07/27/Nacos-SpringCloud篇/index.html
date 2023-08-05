@@ -1,12 +1,12 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="准备工作       想要解析Nacos首先得把Nacos源码下载下来">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="准备工作       想要解析Nacos首先得把Nacos源码下载下来，这自然是第一，再是尝试在本地启动Nacos源码                     Proto编译       因为nacos会按照Protobuf对数据做序列化和反序列化处理，这也是nacos能在多个平台运行的原因，正因为数据按照protobuf序列化了才会不同的语言才能运行 我们">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nacos-[SpringCloud篇]">
 <meta property="og:url" content="https://username.github.io/2023/07/27/Nacos-SpringCloud%E7%AF%87/index.html">
 <meta property="og:site_name" content="KkkerAn&#39;s Blog">
-<meta property="og:description" content="准备工作       想要解析Nacos首先得把Nacos源码下载下来">
+<meta property="og:description" content="准备工作       想要解析Nacos首先得把Nacos源码下载下来，这自然是第一，再是尝试在本地启动Nacos源码                     Proto编译       因为nacos会按照Protobuf对数据做序列化和反序列化处理，这也是nacos能在多个平台运行的原因，正因为数据按照protobuf序列化了才会不同的语言才能运行 我们">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-27T06:11:48.000Z">
-<meta property="article:modified_time" content="2023-08-03T16:00:45.490Z">
+<meta property="article:modified_time" content="2023-08-04T13:30:56.531Z">
 <meta property="article:author" content="KkkerAn">
 <meta property="article:tag" content="SpringCloud">
 <meta property="article:tag" content="nacos">
@@ -34,12 +34,158 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Nacos-[SpringCloud篇]</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-27</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">19</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">1分</span></span></div></header><div class="post-body">
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Nacos-[SpringCloud篇]</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-27</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">752</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">6分</span></span></div></header><div class="post-body">
         <h1 id="准备工作"   >
           <a href="#准备工作" class="heading-link"><i class="fas fa-link"></i></a><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1>
-      <p>想要解析Nacos首先得把Nacos源码下载下来</p>
+      <p>想要解析Nacos首先得把Nacos源码下载下来，这自然是第一，再是尝试在本地启动Nacos源码</p>
+
+        <h2 id="Proto编译"   >
+          <a href="#Proto编译" class="heading-link"><i class="fas fa-link"></i></a><a href="#Proto编译" class="headerlink" title="Proto编译"></a>Proto编译</h2>
+      <p>因为nacos会按照Protobuf对数据做序列化和反序列化处理，这也是nacos能在多个平台运行的原因，正因为数据按照protobuf序列化了才会不同的语言才能运行</p>
+<p>我们要将proto文件编译成java文件</p>
+
+        <h3 id="protobuf"   >
+          <a href="#protobuf" class="heading-link"><i class="fas fa-link"></i></a><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h3>
+      <p>protobuf是Google公司提出的一种轻便高效的结构化数据存储格式，常用于结构化数据的序列化，具有语言无关、平台无关、可扩展性特性，常用于通讯协议、服务端数据交换场景</p>
+<p>类似Json也是一种结构化存储格式</p>
+
+        <h3 id="安装protoc"   >
+          <a href="#安装protoc" class="heading-link"><i class="fas fa-link"></i></a><a href="#安装protoc" class="headerlink" title="安装protoc"></a>安装protoc</h3>
+      <p><strong>接下来我们要参考nacos的官网手册来对Nacos的服务注册、服务发现、心跳检测进行分析</strong></p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/open-api.html" >Nacos Open API</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h1 id="Nacos服务注册"   >
+          <a href="#Nacos服务注册" class="heading-link"><i class="fas fa-link"></i></a><a href="#Nacos服务注册" class="headerlink" title="Nacos服务注册"></a>Nacos服务注册</h1>
+      
+        <h2 id="客户端"   >
+          <a href="#客户端" class="heading-link"><i class="fas fa-link"></i></a><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2>
+      
+        <h2 id="服务端"   >
+          <a href="#服务端" class="heading-link"><i class="fas fa-link"></i></a><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2>
+      <p>对照Nacos Open API找到服务端服务注册</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>服务注册</th>
+<th>请求路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST请求</td>
+<td>&#x2F;nacos&#x2F;v1&#x2F;ns&#x2F;instance</td>
+</tr>
+</tbody></table></div>
+<p>通过UtilsAndCommons类找到</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>常量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;nacos</td>
+<td>NACOS_SERVER_CONTEXT</td>
+</tr>
+<tr>
+<td>&#x2F;v1</td>
+<td>NACOS_SERVER_VERSION</td>
+</tr>
+<tr>
+<td>&#x2F;v1&#x2F;ns</td>
+<td>DEFAULT_NACOS_NAMING_CONTEXT &#x3D; NACOS_SERVER_VERSION+ “&#x2F;ns”</td>
+</tr>
+</tbody></table></div>
+<p>所以&#x2F;nacos&#x2F;v1&#x2F;ns就是NACOS_SERVER_CONTEXT +   DEFAULT_NACOS_NAMING_CONTEXT </p>
+<p>我们的目标就是找到这个路径对应的Controller</p>
+
+        <h3 id="InstanceController"   >
+          <a href="#InstanceController" class="heading-link"><i class="fas fa-link"></i></a><a href="#InstanceController" class="headerlink" title="InstanceController"></a>InstanceController</h3>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(UtilsAndCommons.NACOS_NAMING_CONTEXT + UtilsAndCommons.NACOS_NAMING_INSTANCE_CONTEXT)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InstanceController</span> &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>从InstanceController找到Post请求对应的方法</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CanDistro</span></span><br><span class="line">   <span class="meta">@PostMapping</span></span><br><span class="line">   <span class="meta">@Secured(action = ActionTypes.WRITE)</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">register</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">       </span><br><span class="line">       <span class="comment">//获取命名空间 namespaceId</span></span><br><span class="line">       <span class="keyword">final</span> <span class="type">String</span> <span class="variable">namespaceId</span> <span class="operator">=</span> WebUtils</span><br><span class="line">               .optional(request, CommonParams.NAMESPACE_ID, Constants.DEFAULT_NAMESPACE_ID);</span><br><span class="line">      	</span><br><span class="line">       <span class="comment">//获取服务名称 servicename</span></span><br><span class="line">       <span class="keyword">final</span> <span class="type">String</span> <span class="variable">serviceName</span> <span class="operator">=</span> WebUtils.required(request, CommonParams.SERVICE_NAME);</span><br><span class="line">       <span class="comment">//对seviceName做一个格式化检查</span></span><br><span class="line">       NamingUtils.checkServiceNameFormat(serviceName);</span><br><span class="line">       </span><br><span class="line">       <span class="comment">//创建一个实例对象，链式编程 创建一个实例(通过SwitchDomain.isDefaultInstanceEphemeral()判断是否是临时实例)</span></span><br><span class="line">       <span class="keyword">final</span> <span class="type">Instance</span> <span class="variable">instance</span> <span class="operator">=</span> HttpRequestInstanceBuilder.newBuilder()</span><br><span class="line">               .setDefaultInstanceEphemeral(switchDomain.isDefaultInstanceEphemeral()).setRequest(request).build();</span><br><span class="line">       <span class="comment">//上面创建一个临时实例或者是一个永久实例</span></span><br><span class="line">       </span><br><span class="line">       <span class="comment">//调用getInstanceOperator.reregisterInstance方法注册实例  传入命名空间、服务名称、实例对象</span></span><br><span class="line">       getInstanceOperator().registerInstance(namespaceId, serviceName, instance);</span><br><span class="line">       </span><br><span class="line">       <span class="comment">//发布一个事务 当前已经注册了实例</span></span><br><span class="line">       <span class="comment">//传入参数</span></span><br><span class="line">       NotifyCenter.publishEvent(<span class="keyword">new</span> <span class="title class_">RegisterInstanceTraceEvent</span>(System.currentTimeMillis(), <span class="string">&quot;&quot;</span>, <span class="literal">false</span>, namespaceId , NamingUtils.getGroupName(serviceName) , NamingUtils.getServiceName(serviceName), instance.getIp(),instance.getPort()));</span><br><span class="line">       <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="registerInstance"   >
+          <a href="#registerInstance" class="heading-link"><i class="fas fa-link"></i></a><a href="#registerInstance" class="headerlink" title="registerInstance"></a>registerInstance</h3>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">registerInstance</span><span class="params">(String namespaceId, String serviceName, Instance instance)</span> <span class="keyword">throws</span> NacosException &#123;</span><br><span class="line">    NamingUtils.checkInstanceIsLegal(instance);</span><br><span class="line">    </span><br><span class="line">    <span class="type">boolean</span> <span class="variable">ephemeral</span> <span class="operator">=</span> instance.isEphemeral();</span><br><span class="line">    <span class="type">String</span> <span class="variable">clientId</span> <span class="operator">=</span> IpPortBasedClient.getClientId(instance.toInetAddr(), ephemeral);</span><br><span class="line">    createIpPortClientIfAbsent(clientId);</span><br><span class="line">    <span class="type">Service</span> <span class="variable">service</span> <span class="operator">=</span> getService(namespaceId, serviceName, ephemeral);</span><br><span class="line">    clientOperationService.registerInstance(service, instance, clientId);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="RegisterInstanceTraceEvent"   >
+          <a href="#RegisterInstanceTraceEvent" class="heading-link"><i class="fas fa-link"></i></a><a href="#RegisterInstanceTraceEvent" class="headerlink" title="RegisterInstanceTraceEvent"></a>RegisterInstanceTraceEvent</h2>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>形参</th>
+<th>传入参数</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eventTime</td>
+<td>System.currentTimeMillis()</td>
+<td>当前时间戳</td>
+</tr>
+<tr>
+<td>clientIp</td>
+<td>“”</td>
+<td>注册实例的请求IP，传入空字符串</td>
+</tr>
+<tr>
+<td>rpc</td>
+<td>false</td>
+<td>来源是否为gRPC，传入false</td>
+</tr>
+<tr>
+<td>serviceNamespace</td>
+<td>namespaceId</td>
+<td>命名空间</td>
+</tr>
+<tr>
+<td>serviceGroup</td>
+<td>NamingUtils.getGroupName(serviceName)</td>
+<td>服务分组</td>
+</tr>
+<tr>
+<td>serviceName</td>
+<td>NamingUtils.getServiceName(serviceName)</td>
+<td>服务名称</td>
+</tr>
+<tr>
+<td>instanceIp</td>
+<td>instance.getIp()</td>
+<td>注册实例的地址IP&#x2F;HOST</td>
+</tr>
+<tr>
+<td>instancePort</td>
+<td>instance.getPort()</td>
+<td>注册实例的端口Port</td>
+</tr>
+</tbody></table></div>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">RegisterInstanceTraceEvent</span><span class="params">(<span class="type">long</span> eventTime, String clientIp, <span class="type">boolean</span> rpc, String serviceNamespace,</span></span><br><span class="line"><span class="params">        String serviceGroup, String serviceName, String instanceIp, <span class="type">int</span> instancePort)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(<span class="string">&quot;REGISTER_INSTANCE_TRACE_EVENT&quot;</span>, eventTime, serviceNamespace, serviceGroup, serviceName);</span><br><span class="line">    <span class="built_in">this</span>.clientIp = clientIp;</span><br><span class="line">    <span class="built_in">this</span>.rpc = rpc;</span><br><span class="line">    <span class="built_in">this</span>.instanceIp = instanceIp;</span><br><span class="line">    <span class="built_in">this</span>.instancePort = instancePort;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+
+
+        <h3 id="publishEvent"   >
+          <a href="#publishEvent" class="heading-link"><i class="fas fa-link"></i></a><a href="#publishEvent" class="headerlink" title="publishEvent"></a>publishEvent</h3>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">publishEvent</span><span class="params">(<span class="keyword">final</span> Event event)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> publishEvent(event.getClass(), event);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">        LOGGER.error(<span class="string">&quot;There was an exception to the message publishing : &quot;</span>, ex);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
 </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://username.github.io">KkkerAn</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://username.github.io/2023/07/27/Nacos-SpringCloud%E7%AF%87/">https://username.github.io/2023/07/27/Nacos-SpringCloud%E7%AF%87/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://username.github.io/tags/SpringCloud/">SpringCloud</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://username.github.io/tags/nacos/">nacos</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/07/27/Sentinel-SpringCloud%E7%AF%87/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Sentinel-[SpringCloud篇]</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/07/21/JavaSE%E5%9F%BA%E7%A1%80%E3%80%90%E6%80%BB%E7%BB%93%E7%AF%87%E3%80%91/"><span class="paginator-prev__text">JavaSE基础【总结篇】</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">
-          准备工作</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">29</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+          准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proto%E7%BC%96%E8%AF%91"><span class="toc-number">1.1.</span> <span class="toc-text">
+          Proto编译</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#protobuf"><span class="toc-number">1.1.1.</span> <span class="toc-text">
+          protobuf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85protoc"><span class="toc-number">1.1.2.</span> <span class="toc-text">
+          安装protoc</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Nacos%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C"><span class="toc-number">2.</span> <span class="toc-text">
+          Nacos服务注册</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">2.1.</span> <span class="toc-text">
+          客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-number">2.2.</span> <span class="toc-text">
+          服务端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#InstanceController"><span class="toc-number">2.2.1.</span> <span class="toc-text">
+          InstanceController</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#registerInstance"><span class="toc-number">2.2.2.</span> <span class="toc-text">
+          registerInstance</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegisterInstanceTraceEvent"><span class="toc-number">2.3.</span> <span class="toc-text">
+          RegisterInstanceTraceEvent</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#publishEvent"><span class="toc-number">2.3.1.</span> <span class="toc-text">
+          publishEvent</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">29</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
   var isXML = true;
   var search_path = 'search.xml';
 
