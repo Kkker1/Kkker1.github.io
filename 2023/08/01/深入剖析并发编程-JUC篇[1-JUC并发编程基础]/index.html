@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="JUC并发编程基础   第一篇是JUC并发编程基础 第二篇是JMM、Volatile关键字、synchronize锁详解                       冯诺依曼体系结构       首先，我们要了解并发过程中为什么会导致数据会出错 冯·诺依曼机（von Neumann machine），又称冯·诺依曼计算机，根据冯·诺依曼提出的存储程序概念设计的计算机。主要特征是：指令与数据都以二进">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="JUC并发编程基础   第一篇是JUC并发编程基础 第二篇是JMM、Volatile关键字、synchronize锁详解 第三篇是CAS机制原理、Unsafe魔法类、ThreadLocal线程变量                       冯诺依曼体系结构       首先，我们要了解并发过程中为什么会导致数据会出错 冯·诺依曼机（von Neumann machine），又称冯·诺依曼计算机，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入剖析并发编程-JUC篇[1-JUC并发编程基础]">
 <meta property="og:url" content="https://username.github.io/2023/08/01/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87[1-JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80]/index.html">
 <meta property="og:site_name" content="KkkerAn&#39;s Blog">
-<meta property="og:description" content="JUC并发编程基础   第一篇是JUC并发编程基础 第二篇是JMM、Volatile关键字、synchronize锁详解                       冯诺依曼体系结构       首先，我们要了解并发过程中为什么会导致数据会出错 冯·诺依曼机（von Neumann machine），又称冯·诺依曼计算机，根据冯·诺依曼提出的存储程序概念设计的计算机。主要特征是：指令与数据都以二进">
+<meta property="og:description" content="JUC并发编程基础   第一篇是JUC并发编程基础 第二篇是JMM、Volatile关键字、synchronize锁详解 第三篇是CAS机制原理、Unsafe魔法类、ThreadLocal线程变量                       冯诺依曼体系结构       首先，我们要了解并发过程中为什么会导致数据会出错 冯·诺依曼机（von Neumann machine），又称冯·诺依曼计算机，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801161725875.png">
 <meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801163419744.png">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801181326286.png">
 <meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230801181924213.png">
 <meta property="article:published_time" content="2023-07-31T17:11:50.000Z">
-<meta property="article:modified_time" content="2023-08-03T15:51:55.775Z">
+<meta property="article:modified_time" content="2023-08-06T15:16:16.735Z">
 <meta property="article:author" content="KkkerAn">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -54,6 +54,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <ul>
 <li>第一篇是JUC并发编程基础</li>
 <li>第二篇是JMM、Volatile关键字、synchronize锁详解</li>
+<li>第三篇是CAS机制原理、Unsafe魔法类、ThreadLocal线程变量</li>
 </ul>
 <hr>
 

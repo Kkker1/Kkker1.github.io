@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://username.github.io/MallChat%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/image-20230804170656484.png">
 <meta property="og:image" content="https://username.github.io/MallChat%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/image-20230804170829700.png">
 <meta property="article:published_time" content="2023-07-30T02:00:48.000Z">
-<meta property="article:modified_time" content="2023-08-04T09:31:28.106Z">
+<meta property="article:modified_time" content="2023-08-07T17:42:00.358Z">
 <meta property="article:author" content="KkkerAn">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="MallChat">
@@ -49,7 +49,7 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">MallChat项目分析</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-30</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">4.1k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">45分</span></span></div></header><div class="post-body">
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">MallChat项目分析</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-30</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">7.8k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">73分</span></span></div></header><div class="post-body">
         <h1 id="先跑通项目"   >
           <a href="#先跑通项目" class="heading-link"><i class="fas fa-link"></i></a><a href="#先跑通项目" class="headerlink" title="先跑通项目"></a>先跑通项目</h1>
       
@@ -210,16 +210,18 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <thead>
 <tr>
 <th>访问uri</th>
+<th>请求类型</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>&#x2F;capi&#x2F;chat&#x2F;public&#x2F;member&#x2F;page</td>
+<td>&#x2F;capi&#x2F;user&#x2F;userInfo</td>
+<td>GET请求</td>
 </tr>
 </tbody></table></div>
 
         <h4 id="Controller层"   >
           <a href="#Controller层" class="heading-link"><i class="fas fa-link"></i></a><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h4>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/userInfo&quot;)</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;用户详情&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ApiResult&lt;UserInfoResp&gt; <span class="title function_">getUserInfo</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">//通过获取请求的上下文获取uid调用userService.getUserInfo方法</span></span><br><span class="line">    <span class="keyword">return</span> ApiResult.success(userService.getUserInfo(RequestHolder.get().getUid()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/userInfo&quot;)</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;用户详情&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ApiResult&lt;UserInfoResp&gt; <span class="title function_">getUserInfo</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">//通过获取请求的上下文获取uid调用userService.getUserInfo方法  传入具体的Uid</span></span><br><span class="line">    <span class="keyword">return</span> ApiResult.success(userService.getUserInfo(RequestHolder.get().getUid()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
 <p>调用getUserInfo方法</p>
 <p>将返回结果封装成APIResult对象(统一返回类型)</p>
@@ -231,7 +233,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
       <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserInfoResp <span class="title function_">getUserInfo</span><span class="params">(Long uid)</span>;</span><br></pre></td></tr></table></div></figure>
 
 <p>实现类中</p>
-<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> UserInfoResp <span class="title function_">getUserInfo</span><span class="params">(Long uid)</span> &#123;</span><br><span class="line">       <span class="comment">//查询缓存中有没有，如果 本质上调用map.get() 如果有则返回User 如果没有则返回null</span></span><br><span class="line">       <span class="type">User</span> <span class="variable">userInfo</span> <span class="operator">=</span> userCache.getUserInfo(uid);</span><br><span class="line">       <span class="comment">//查询当前用户(uid)的物品改名卡使用状态</span></span><br><span class="line">       <span class="type">Integer</span> <span class="variable">countByValidItemId</span> <span class="operator">=</span></span><br><span class="line">           userBackpackDao.getCountByValidItemId(uid, ItemEnum.MODIFY_NAME_CARD.getId());</span><br><span class="line">       <span class="keyword">return</span> UserAdapter.buildUserInfoResp(userInfo, countByValidItemId);</span><br><span class="line">       <span class="comment">//将缓存中的数据和当前用户改名卡状态发送到适配器中buildUserInfoResp中</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> UserInfoResp <span class="title function_">getUserInfo</span><span class="params">(Long uid)</span> &#123;</span><br><span class="line">       <span class="comment">//查询缓存中有没有这个Uid,本质上调用map.get() 如果有则返回User 如果没有则返回null</span></span><br><span class="line">       <span class="type">User</span> <span class="variable">userInfo</span> <span class="operator">=</span> userCache.getUserInfo(uid);</span><br><span class="line">       <span class="comment">//查询当前用户(Uid)的物品改名卡使用状态</span></span><br><span class="line">       <span class="type">Integer</span> <span class="variable">countByValidItemId</span> <span class="operator">=</span></span><br><span class="line">           userBackpackDao.getCountByValidItemId(uid, ItemEnum.MODIFY_NAME_CARD.getId());</span><br><span class="line">       <span class="keyword">return</span> UserAdapter.buildUserInfoResp(userInfo, countByValidItemId);</span><br><span class="line">       <span class="comment">//将缓存中的数据和当前用户改名卡状态发送到适配器中buildUserInfoResp中</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></div></figure>
 
 
         <h4 id="getUserInfo"   >
@@ -241,14 +243,574 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
         <h4 id="getInfoBatch"   >
           <a href="#getInfoBatch" class="heading-link"><i class="fas fa-link"></i></a><a href="#getInfoBatch" class="headerlink" title="getInfoBatch"></a>getInfoBatch</h4>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Map&lt;Long, User&gt; <span class="title function_">getUserInfoBatch</span><span class="params">(Set&lt;Long&gt; uids)</span> &#123;</span><br><span class="line">        List&lt;String&gt; keys = uids.stream().map(a -&gt; RedisKey.getKey(RedisKey.USER_INFO_STRING, a)).collect(Collectors.toList());</span><br><span class="line">        List&lt;User&gt; mget = RedisUtils.mget(keys, User.class);</span><br><span class="line">        Map&lt;Long, User&gt; map = mget.stream().filter(Objects::nonNull).collect(Collectors.toMap(User::getId, Function.identity()));</span><br><span class="line">        <span class="comment">//还需要load更新的uid</span></span><br><span class="line">        List&lt;Long&gt; needLoadUidList = uids.stream().filter(a -&gt; !map.containsKey(a)).collect(Collectors.toList());</span><br><span class="line">        <span class="keyword">if</span> (CollUtil.isNotEmpty(needLoadUidList)) &#123;</span><br><span class="line">            List&lt;User&gt; needLoadUserList = userDao.listByIds(needLoadUidList);</span><br><span class="line">            Map&lt;String, User&gt; redisMap = needLoadUserList.stream().collect(Collectors.toMap(a -&gt; RedisKey.getKey(RedisKey.USER_INFO_STRING, a.getId()), Function.identity()));</span><br><span class="line">            RedisUtils.mset(redisMap, <span class="number">5</span> * <span class="number">60</span>);</span><br><span class="line">            map.putAll(needLoadUserList.stream().collect(Collectors.toMap(User::getId, Function.identity())));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
-
-
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Map&lt;Long, User&gt; <span class="title function_">getUserInfoBatch</span><span class="params">(Set&lt;Long&gt; uids)</span> &#123;</span><br><span class="line">    	<span class="comment">//将uids转换成流 然后调用RedisKey的封装类将其拼接成mallchat:userInfo:uid_%d的格式，然后转成List列表</span></span><br><span class="line">        List&lt;String&gt; keys = uids.stream().map(a -&gt; RedisKey.getKey(RedisKey.USER_INFO_STRING, a)).collect(Collectors.toList());</span><br><span class="line">    	<span class="comment">//调用RedisUtils的mget方法，返回多个User放到List中</span></span><br><span class="line">        List&lt;User&gt; mget = RedisUtils.mget(keys, User.class);</span><br><span class="line">    	<span class="comment">//过滤非空的对象，封装成Key为Uid,Value为User的map 这里的map是缓存中的map</span></span><br><span class="line">        Map&lt;Long, User&gt; map = mget.stream().filter(Objects::nonNull).collect(Collectors.toMap(User::getId, Function.identity()));</span><br><span class="line">        <span class="comment">//还需要load更新的uid</span></span><br><span class="line">    	<span class="comment">//找到不包含在缓存中的uid放到needLoadUidList中</span></span><br><span class="line">        List&lt;Long&gt; needLoadUidList = uids.stream().filter(a -&gt; !map.containsKey(a)).collect(Collectors.toList());</span><br><span class="line">    	<span class="comment">//如果needLoadUidList非空则说明有新数据要写到缓存中</span></span><br><span class="line">        <span class="keyword">if</span> (CollUtil.isNotEmpty(needLoadUidList)) &#123;</span><br><span class="line">            <span class="comment">//调用userDao的查询方法 ，UserDao调用getBaseMapper().selectBatchIds(idList)获取数据库中的user用户列表</span></span><br><span class="line">            List&lt;User&gt; needLoadUserList = userDao.listByIds(needLoadUidList);</span><br><span class="line">            <span class="comment">//统一转换成key为mallchat:userInfo:uid_%d,value为User的格式 放到Map</span></span><br><span class="line">            Map&lt;String, User&gt; redisMap = needLoadUserList.stream().collect(Collectors.toMap(a -&gt; RedisKey.getKey(RedisKey.USER_INFO_STRING, a.getId()), Function.identity()));</span><br><span class="line">            <span class="comment">//调用RedisUtils.mset 统一写进缓存 参数一:要写进去的数据,参数二:过期时间5*60</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//将查询UserInfo的缓存设置为300s 即5分钟</span></span><br><span class="line">            RedisUtils.mset(redisMap, <span class="number">5</span> * <span class="number">60</span>);</span><br><span class="line">            <span class="comment">//将更新完到缓存的数据放回到map中，用于进行返回用户数据</span></span><br><span class="line">            map.putAll(needLoadUserList.stream().collect(Collectors.toMap(User::getId, Function.identity())));</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="comment">//返回map</span></span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
 
 
         <h4 id="UserBackPackDao"   >
           <a href="#UserBackPackDao" class="heading-link"><i class="fas fa-link"></i></a><a href="#UserBackPackDao" class="headerlink" title="UserBackPackDao"></a>UserBackPackDao</h4>
       <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserBackpackDao</span> <span class="keyword">extends</span> <span class="title class_">ServiceImpl</span>&lt;UserBackpackMapper, UserBackpack&gt; &#123;</span><br><span class="line">	<span class="comment">//利用了MP</span></span><br><span class="line">	<span class="keyword">public</span> Integer <span class="title function_">getCountByValidItemId</span><span class="params">(Long uid, Long itemId)</span> &#123;</span><br><span class="line">        <span class="comment">//调用lambdaQuery方法</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//这个Select语句是 SELECT COUNT( 1 ) FROM user_backpack WHERE (uid = ? AND item_id = ? AND status = ?)</span></span><br><span class="line">        <span class="comment">//注入的参数是uid: 10004， itemId: 1 ,status =0</span></span><br><span class="line">        <span class="comment">//翻译过来是查询10004号用户，物品ID为1(改名卡),未被使用(0未使用,1已使用)</span></span><br><span class="line">        <span class="comment">//返回了1  即10004用户状态正如参数所示</span></span><br><span class="line">        <span class="keyword">return</span> lambdaQuery().eq(UserBackpack::getUid, uid)</span><br><span class="line">                .eq(UserBackpack::getItemId, itemId)</span><br><span class="line">                .eq(UserBackpack::getStatus, YesOrNoEnum.NO.getStatus())</span><br><span class="line">                .count();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="流程"   >
+          <a href="#流程" class="heading-link"><i class="fas fa-link"></i></a><a href="#流程" class="headerlink" title="流程"></a>流程</h4>
+      <p>①查询用户信息的时候，Controller调用service的查询userInfo的方法，传入请求中的uid 然后包装成APIResult返回前端</p>
+<p>②serviceImpl 查询用户数据 直接查询缓存，如果查询到缓存则直接返回用户数据</p>
+<p>③如果缓存中没有数据则通过userDao查询数据库，数据库返回到的数据先写回到Redis中设置过期时间为300秒</p>
+<p>④将查询结果返回，然后查询用户物品使用信息 调用userBackpackDao的方法</p>
+<p>⑤统一将用户详情信息、用户物品使用信息用userAdapter封装返回</p>
+
+        <h3 id="修改用户名"   >
+          <a href="#修改用户名" class="heading-link"><i class="fas fa-link"></i></a><a href="#修改用户名" class="headerlink" title="修改用户名"></a>修改用户名</h3>
+      <p>访问uil</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>访问uil</th>
+<th>请求类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;capi&#x2F;user&#x2F;name</td>
+<td>PUT请求</td>
+</tr>
+</tbody></table></div>
+
+        <h4 id="Controller层-1"   >
+          <a href="#Controller层-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#Controller层-1" class="headerlink" title="Controller层"></a>Controller层</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PutMapping(&quot;/name&quot;)</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;修改用户名&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ApiResult&lt;Void&gt; <span class="title function_">modifyName</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> ModifyNameReq req)</span> &#123;</span><br><span class="line">    userService.modifyName(RequestHolder.get().getUid(), req);</span><br><span class="line">    <span class="keyword">return</span> ApiResult.success();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>调用userService.modfiyName方法修改用户名</p>
+<p>返回成功结果</p>
+
+        <h4 id="UserService层-1"   >
+          <a href="#UserService层-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#UserService层-1" class="headerlink" title="UserService层"></a>UserService层</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">modifyName</span><span class="params">(Long uid, ModifyNameReq req)</span>;</span><br></pre></td></tr></table></div></figure>
+
+<p>实现类中</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">modifyName</span><span class="params">(Long uid, ModifyNameReq req)</span> &#123;</span><br><span class="line">    <span class="comment">//从请求中获取新的用户名</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">newName</span> <span class="operator">=</span> req.getName();</span><br><span class="line">    <span class="comment">//检查用户名是否合法,如果不合法会抛出异常</span></span><br><span class="line">    AssertUtil.isFalse(sensitiveWordBs.hasSensitiveWord(newName), <span class="string">&quot;名字中包含敏感词，请重新输入&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//检查用户列表中有没有该用户使用这个用户名 如果有则会返回一个User</span></span><br><span class="line">    <span class="type">User</span> <span class="variable">oldUser</span> <span class="operator">=</span> userDao.getByName(newName);</span><br><span class="line">    <span class="comment">//判断用户中有这个名字则抛出异常</span></span><br><span class="line">    AssertUtil.isEmpty(oldUser, <span class="string">&quot;名字已经被抢占了，请换一个哦~~&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断用户有没有改名机会，如果有改名机会则会返回一个UserBackpack 如果没有则会返回null</span></span><br><span class="line">    <span class="type">UserBackpack</span> <span class="variable">firstValidItem</span> <span class="operator">=</span> userBackpackDao.getFirstValidItem(uid, ItemEnum.MODIFY_NAME_CARD.getId());</span><br><span class="line">    <span class="comment">//如果没有改名卡则抛出异常</span></span><br><span class="line">    AssertUtil.isNotEmpty(firstValidItem, <span class="string">&quot;改名次数不够了，等后续活动送改名卡哦&quot;</span>);</span><br><span class="line">   </span><br><span class="line">    <span class="comment">//走到这里用户可以改名，然后判断有没有使用改名卡</span></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">useSuccess</span> <span class="operator">=</span> userBackpackDao.invalidItem(firstValidItem.getId());</span><br><span class="line">    <span class="comment">//采用乐观锁判断改名卡使用是否成功</span></span><br><span class="line">    <span class="keyword">if</span> (useSuccess) &#123;</span><br><span class="line">        <span class="comment">//如果用户改名成功，则进入条件判断中</span></span><br><span class="line">        <span class="comment">//改名</span></span><br><span class="line">        userDao.modifyName(uid, req.getName());</span><br><span class="line">       </span><br><span class="line">        <span class="comment">//调用userInfoChange(uid) 删除缓存中用户信息并更新缓存数据物品使用信息</span></span><br><span class="line">        userCache.userInfoChange(uid);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="getFirstValidItem"   >
+          <a href="#getFirstValidItem" class="heading-link"><i class="fas fa-link"></i></a><a href="#getFirstValidItem" class="headerlink" title="getFirstValidItem"></a>getFirstValidItem</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> UserBackpack <span class="title function_">getFirstValidItem</span><span class="params">(Long uid, Long itemId)</span> &#123;</span><br><span class="line">    	<span class="comment">//调用LambdaQueryWrapper可以使用匿名类和lambda表达式进行查询条件的拼接</span></span><br><span class="line">    </span><br><span class="line">    	<span class="comment">//SELECT id,uid,item_id,status,idempotent,create_time,update_time FROM user_backpack </span></span><br><span class="line">    	<span class="comment">//WHERE (uid = ? AND item_id = ? AND status = ?) limit 1	</span></span><br><span class="line">    	<span class="comment">//参数:10004(Long), 1(Long), 0(Integer)  </span></span><br><span class="line"> </span><br><span class="line">        LambdaQueryWrapper&lt;UserBackpack&gt; wrapper = <span class="keyword">new</span> <span class="title class_">QueryWrapper</span>&lt;UserBackpack&gt;().lambda()</span><br><span class="line">                .eq(UserBackpack::getUid, uid)   <span class="comment">//限制uid相等</span></span><br><span class="line">                .eq(UserBackpack::getItemId, itemId)  <span class="comment">//限制itemId相等</span></span><br><span class="line">                .eq(UserBackpack::getStatus, YesOrNoEnum.NO.getStatus())  <span class="comment">//限制物品使用情况，0即未使用</span></span><br><span class="line">                .last(<span class="string">&quot;limit 1&quot;</span>);  <span class="comment">//只能返回一个</span></span><br><span class="line">    </span><br><span class="line">    	<span class="comment">//返回一条查询结果</span></span><br><span class="line">        <span class="keyword">return</span> getOne(wrapper);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="invaldItem"   >
+          <a href="#invaldItem" class="heading-link"><i class="fas fa-link"></i></a><a href="#invaldItem" class="headerlink" title="invaldItem"></a>invaldItem</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">invalidItem</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">		<span class="comment">//使用改名卡,修改用户物品信息表</span></span><br><span class="line">        <span class="type">UserBackpack</span> <span class="variable">update</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserBackpack</span>();</span><br><span class="line">        update.setId(id);</span><br><span class="line">        update.setStatus(YesOrNoEnum.YES.getStatus());</span><br><span class="line">    </span><br><span class="line">    	<span class="comment">//UPDATE user_backpack SET status=? WHERE id=?</span></span><br><span class="line">    	<span class="comment">//参数：1(Integer), 2(Long)</span></span><br><span class="line">    	<span class="comment">//更新用户物品使用表，如果更新成功则返回true,如果更新失败则返回false</span></span><br><span class="line">        <span class="keyword">return</span> updateById(update);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="ModifyName"   >
+          <a href="#ModifyName" class="heading-link"><i class="fas fa-link"></i></a><a href="#ModifyName" class="headerlink" title="ModifyName"></a>ModifyName</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">modifyName</span><span class="params">(Long uid, String name)</span> &#123;</span><br><span class="line">    	<span class="comment">//更新用户表，用户使用了改名卡修改名字</span></span><br><span class="line">    	<span class="type">User</span> <span class="variable">update</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        update.setId(uid);</span><br><span class="line">        update.setName(name);</span><br><span class="line">    	</span><br><span class="line">    	<span class="comment">//更新用户信息</span></span><br><span class="line">    	<span class="comment">//UPDATE user SET name=? WHERE id=?</span></span><br><span class="line">    	<span class="comment">//参数：鱼鱼(String), 10004(Long)</span></span><br><span class="line">        updateById(update);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="userInfoChange"   >
+          <a href="#userInfoChange" class="heading-link"><i class="fas fa-link"></i></a><a href="#userInfoChange" class="headerlink" title="userInfoChange"></a>userInfoChange</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">userInfoChange</span><span class="params">(Long uid)</span> &#123;</span><br><span class="line">    	<span class="comment">//删除用户缓存</span></span><br><span class="line">        delUserInfo(uid);</span><br><span class="line">    	<span class="comment">//更新缓存中用户物品使用时间</span></span><br><span class="line">        refreshUserModifyTime(uid);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="流程-1"   >
+          <a href="#流程-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#流程-1" class="headerlink" title="流程"></a>流程</h4>
+      <p>①调用Controller来处理改名请求，Controller调用service来进行改名操作</p>
+<p>②判断用户名是否合法、用户名是否被占用、是否有改名次数，如果都有则进入改名阶段,如果有其一没有则抛出异常</p>
+<p>③改名，先修改改名卡使用情况，如果修改成功则代表着改名成功，如果修改失败则说明有线程竞争</p>
+<p>④改名成功，删除缓存中用户信息，缓存添加修改使用物品时间</p>
+
+        <h3 id="可选勋章预览"   >
+          <a href="#可选勋章预览" class="heading-link"><i class="fas fa-link"></i></a><a href="#可选勋章预览" class="headerlink" title="可选勋章预览"></a>可选勋章预览</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>访问Uri</th>
+<th>请求类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;capi&#x2F;user&#x2F;badges</td>
+<td>GET请求</td>
+</tr>
+</tbody></table></div>
+
+        <h4 id="Controller层-2"   >
+          <a href="#Controller层-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#Controller层-2" class="headerlink" title="Controller层"></a>Controller层</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/badges&quot;)</span></span><br><span class="line">   <span class="meta">@ApiOperation(&quot;可选徽章预览&quot;)</span></span><br><span class="line">   <span class="keyword">public</span> ApiResult&lt;List&lt;BadgeResp&gt;&gt; <span class="title function_">badges</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> ApiResult.success(userService.badges(RequestHolder.get().getUid()));</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>调用Service层的badges方法 传入参数是请求中的uid</p>
+
+        <h4 id="Service层"   >
+          <a href="#Service层" class="heading-link"><i class="fas fa-link"></i></a><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;BadgeResp&gt; <span class="title function_">badges</span><span class="params">(Long uid)</span>;</span><br></pre></td></tr></table></div></figure>
+
+<p>实现类</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> List&lt;BadgeResp&gt; <span class="title function_">badges</span><span class="params">(Long uid)</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//查询Cache中勋章列表   参数Type:2 表示勋章</span></span><br><span class="line">    List&lt;ItemConfig&gt; itemConfigs = itemCache.getByType(ItemTypeEnum.BADGE.getType());</span><br><span class="line">  </span><br><span class="line">    <span class="comment">//查询uid下的可用勋章，然后返回一个List&lt;UserBackpack&gt;</span></span><br><span class="line">    List&lt;UserBackpack&gt; backpacks = userBackpackDao.getByItemIds(uid, itemConfigs.stream().map(ItemConfig::getId).collect(Collectors.toList()));</span><br><span class="line">   </span><br><span class="line">    <span class="comment">//根据uid查询用户信息，获取当前用户佩戴的勋章</span></span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userDao.getById(uid);</span><br><span class="line">    <span class="comment">//将总勋章列表、用户可用勋章、当前用户佩戴勋章传入适配器中的buildBadgeResp中，然后返回给前端</span></span><br><span class="line">    <span class="keyword">return</span> UserAdapter.buildBadgeResp(itemConfigs, backpacks, user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="getByType"   >
+          <a href="#getByType" class="heading-link"><i class="fas fa-link"></i></a><a href="#getByType" class="headerlink" title="getByType"></a>getByType</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Cacheable(cacheNames = &quot;item&quot;, key = &quot;&#x27;itemsByType:&#x27;+#type&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;ItemConfig&gt; <span class="title function_">getByType</span><span class="params">(Integer type)</span> &#123;</span><br><span class="line">        <span class="comment">//传入参数：2 表示勋章</span></span><br><span class="line">        <span class="comment">//调用itemConfigDao的方法 返回数据 写入缓存中</span></span><br><span class="line">        <span class="keyword">return</span> itemConfigDao.getByType(type);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;ItemConfig&gt; <span class="title function_">getByType</span><span class="params">(Integer type)</span> &#123;</span><br><span class="line">    <span class="comment">//返回list,list中装着ambdaQuery查询结果</span></span><br><span class="line">    </span><br><span class="line"> 	<span class="comment">//SELECT id,type,img,`describe`,create_time,update_time FROM item_config WHERE (type = ?) </span></span><br><span class="line">    <span class="comment">//限制Type==type,然后转化成list</span></span><br><span class="line">    <span class="keyword">return</span> lambdaQuery().eq(ItemConfig::getType, type).list();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="getByItemId"   >
+          <a href="#getByItemId" class="heading-link"><i class="fas fa-link"></i></a><a href="#getByItemId" class="headerlink" title="getByItemId"></a>getByItemId</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;UserBackpack&gt; <span class="title function_">getByItemIds</span><span class="params">(Long uid, List&lt;Long&gt; itemIds)</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//Preparing: SELECT id,uid,item_id,status,idempotent,create_time,update_time </span></span><br><span class="line">    <span class="comment">//FROM user_backpack WHERE (uid = ? AND item_id IN (?,?,?,?,?) AND status = ?)</span></span><br><span class="line">	<span class="comment">//==&gt; Parameters: 10004(Long), 2(Long), 3(Long), 4(Long), 5(Long), 6(Long), 0(Integer)</span></span><br><span class="line">    			<span class="comment">//返回LambdaQuery结果</span></span><br><span class="line">    			<span class="comment">//查询条件限制uid相等</span></span><br><span class="line">    	<span class="keyword">return</span> lambdaQuery().eq(UserBackpack::getUid, uid)</span><br><span class="line">        		<span class="comment">//在总勋章列表中的itemIds</span></span><br><span class="line">                .in(UserBackpack::getItemId, itemIds)</span><br><span class="line">            	<span class="comment">//是否使用勋章</span></span><br><span class="line">                .eq(UserBackpack::getStatus, YesOrNoEnum.NO.getStatus())</span><br><span class="line">                .list();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个方法就是判断用户是否有拥有的勋章</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="userDao-getById"   >
+          <a href="#userDao-getById" class="heading-link"><i class="fas fa-link"></i></a><a href="#userDao-getById" class="headerlink" title="userDao.getById"></a>userDao.getById</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">default</span> T <span class="title function_">getById</span><span class="params">(Serializable id)</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//SELECT id,name,avatar,sex,open_id,last_opt_time,ip_info,item_id,status,create_time,update_time 			//FROM user WHERE id=?</span></span><br><span class="line">    <span class="comment">//调用mp的方法，查询uid为id的用户信息，获取当前用户佩戴的勋章</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.getBaseMapper().selectById(id);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="buildBadgeResp"   >
+          <a href="#buildBadgeResp" class="heading-link"><i class="fas fa-link"></i></a><a href="#buildBadgeResp" class="headerlink" title="buildBadgeResp"></a>buildBadgeResp</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;BadgeResp&gt; <span class="title function_">buildBadgeResp</span><span class="params">(List&lt;ItemConfig&gt; itemConfigs, List&lt;UserBackpack&gt; backpacks, User user)</span> &#123;</span><br><span class="line">    	<span class="comment">//判断user是否为空</span></span><br><span class="line">        <span class="keyword">if</span> (ObjectUtil.isNull(user)) &#123;</span><br><span class="line">            <span class="comment">// 这里 user 入参可能为空，防止 NPE 问题</span></span><br><span class="line">            <span class="comment">//如果为空则返回空集合</span></span><br><span class="line">            <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        &#125;</span><br><span class="line">	</span><br><span class="line">    	<span class="comment">//将用户的可用勋章方法哦obtianItemSet中</span></span><br><span class="line">        Set&lt;Long&gt; obtainItemSet = 						backpacks.stream().map(UserBackpack::getItemId).collect(Collectors.toSet());</span><br><span class="line">    	<span class="comment">//利用总勋章列表放到流中</span></span><br><span class="line">        <span class="keyword">return</span> itemConfigs.stream().map(a -&gt; &#123;</span><br><span class="line">            <span class="comment">//new一个勋章返回类型</span></span><br><span class="line">            <span class="type">BadgeResp</span> <span class="variable">resp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BadgeResp</span>();</span><br><span class="line">            <span class="comment">//将a的属性copy到resp中</span></span><br><span class="line">            BeanUtil.copyProperties(a, resp);</span><br><span class="line">            <span class="comment">//设置勋章ID，为了下一步与用户是否佩戴进行一个比较</span></span><br><span class="line">            resp.setObtain(obtainItemSet.contains(a.getId()) ? YesOrNoEnum.YES.getStatus() : YesOrNoEnum.NO.getStatus());</span><br><span class="line">            <span class="comment">//用户列表中是否有使用这个勋章，如果有则是佩戴勋章</span></span><br><span class="line">            resp.setWearing(ObjectUtil.equal(a.getId(), user.getItemId()) ? YesOrNoEnum.YES.getStatus() : YesOrNoEnum.NO.getStatus());</span><br><span class="line">            <span class="keyword">return</span> resp;</span><br><span class="line">            <span class="comment">//排序</span></span><br><span class="line">        &#125;).sorted(Comparator.comparing(BadgeResp::getWearing, Comparator.reverseOrder())</span><br><span class="line">                .thenComparing(BadgeResp::getObtain, Comparator.reverseOrder()))</span><br><span class="line">                .collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="流程-2"   >
+          <a href="#流程-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#流程-2" class="headerlink" title="流程"></a>流程</h4>
+      <p>①Controller调用Service中的方法，封装成APIResult返回</p>
+<p>②Service中先获取总的勋章列表并写入缓存中，其次再获取用户可用的勋章列表，最后获取用户信息来判断佩戴的勋章</p>
+<p>③将总勋章列表、可用勋章列表、用户佩戴勋章传入适配器，适配器进行一个buildBadgeResp方法返回前端</p>
+
+        <h3 id="佩戴勋章"   >
+          <a href="#佩戴勋章" class="heading-link"><i class="fas fa-link"></i></a><a href="#佩戴勋章" class="headerlink" title="佩戴勋章"></a>佩戴勋章</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>访问URI</th>
+<th>请求类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;capi&#x2F;user&#x2F;badge</td>
+<td>PUT请求</td>
+</tr>
+</tbody></table></div>
+
+        <h4 id="Controller层-3"   >
+          <a href="#Controller层-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#Controller层-3" class="headerlink" title="Controller层"></a>Controller层</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PutMapping(&quot;/badge&quot;)</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;佩戴徽章&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ApiResult&lt;Void&gt; <span class="title function_">wearingBadge</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> WearingBadgeReq req)</span> &#123;</span><br><span class="line">    userService.wearingBadge(RequestHolder.get().getUid(), req);</span><br><span class="line">    <span class="keyword">return</span> ApiResult.success();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>从请求中获取uid和整个请求都传入给userService.wearingBadge</p>
+
+        <h4 id="Service层-1"   >
+          <a href="#Service层-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#Service层-1" class="headerlink" title="Service层"></a>Service层</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">wearingBadge</span><span class="params">(Long uid, WearingBadgeReq req)</span>;</span><br></pre></td></tr></table></div></figure>
+
+<p>实现类中</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">wearingBadge</span><span class="params">(Long uid, WearingBadgeReq req)</span> &#123;</span><br><span class="line">    <span class="comment">//判断用户是否有这个勋章</span></span><br><span class="line">    <span class="type">UserBackpack</span> <span class="variable">firstValidItem</span> <span class="operator">=</span> userBackpackDao.getFirstValidItem(uid, req.getBadgeId());</span><br><span class="line">    <span class="comment">//如果没有勋章则会返回为null，为null则抛出异常</span></span><br><span class="line">    AssertUtil.isNotEmpty(firstValidItem, <span class="string">&quot;您没有这个徽章哦，快去达成条件获取吧&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断这个是不是勋章</span></span><br><span class="line">    <span class="type">ItemConfig</span> <span class="variable">itemConfig</span> <span class="operator">=</span> itemConfigDao.getById(firstValidItem.getItemId());</span><br><span class="line">    <span class="comment">//如果返回字段中类型不是勋章则会抛出异常</span></span><br><span class="line">    AssertUtil.equal(itemConfig.getType(), ItemTypeEnum.BADGE.getType(), <span class="string">&quot;该徽章不可佩戴&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//佩戴勋章 更新用户表</span></span><br><span class="line">    userDao.wearingBadge(uid, req.getBadgeId());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    userCache.userInfoChange(uid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>先调用getFirstValidItem方法 这里和使用改名卡那个方法是同一个，意义是确认是否拥有这个勋章如果有则会返回一条数据，如果没有则返回null</p>
+
+        <h4 id="getFirstValidItem-1"   >
+          <a href="#getFirstValidItem-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#getFirstValidItem-1" class="headerlink" title="getFirstValidItem"></a>getFirstValidItem</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> UserBackpack <span class="title function_">getFirstValidItem</span><span class="params">(Long uid, Long itemId)</span> &#123;</span><br><span class="line">    	<span class="comment">//调用LambdaQueryWrapper可以使用匿名类和lambda表达式进行查询条件的拼接</span></span><br><span class="line">    </span><br><span class="line">    	<span class="comment">//SELECT id,uid,item_id,status,idempotent,create_time,update_time FROM user_backpack </span></span><br><span class="line">    	<span class="comment">//WHERE (uid = ? AND item_id = ? AND status = ?) limit 1	</span></span><br><span class="line">    	<span class="comment">//参数:10004(Long), 2(Long), 0(Integer)  -0表示没有使用过 -1表示使用过  </span></span><br><span class="line"> </span><br><span class="line">        LambdaQueryWrapper&lt;UserBackpack&gt; wrapper = <span class="keyword">new</span> <span class="title class_">QueryWrapper</span>&lt;UserBackpack&gt;().lambda()</span><br><span class="line">                .eq(UserBackpack::getUid, uid)   <span class="comment">//限制uid相等</span></span><br><span class="line">                .eq(UserBackpack::getItemId, itemId)  <span class="comment">//限制itemId相等</span></span><br><span class="line">                .eq(UserBackpack::getStatus, YesOrNoEnum.NO.getStatus())  <span class="comment">//限制物品使用情况，0即未使用</span></span><br><span class="line">                .last(<span class="string">&quot;limit 1&quot;</span>);  <span class="comment">//只能返回一个</span></span><br><span class="line">    </span><br><span class="line">    	<span class="comment">//返回一条查询结果</span></span><br><span class="line">        <span class="keyword">return</span> getOne(wrapper);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="itemConfigDao-getById"   >
+          <a href="#itemConfigDao-getById" class="heading-link"><i class="fas fa-link"></i></a><a href="#itemConfigDao-getById" class="headerlink" title="itemConfigDao.getById"></a>itemConfigDao.getById</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//SELECT id,type,img,`describe`,create_time,update_time FROM item_config WHERE id=?</span></span><br><span class="line"><span class="comment">//Parameters: 2(Long)</span></span><br></pre></td></tr></table></div></figure>
+
+<p>判断这个物品是不是勋章 ，查询结果会包含一个type字段，通过字段来判断是不是勋章</p>
+
+        <h4 id="wearingBadge"   >
+          <a href="#wearingBadge" class="heading-link"><i class="fas fa-link"></i></a><a href="#wearingBadge" class="headerlink" title="wearingBadge"></a>wearingBadge</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">wearingBadge</span><span class="params">(Long uid, Long badgeId)</span> &#123;</span><br><span class="line">    <span class="type">User</span> <span class="variable">update</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">    <span class="comment">//设置Uid</span></span><br><span class="line">    update.setId(uid);</span><br><span class="line">    <span class="comment">//设置使用物品类型  即勋章类型</span></span><br><span class="line">    update.setItemId(badgeId);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//==&gt;  Preparing: UPDATE user SET item_id=? WHERE id=?</span></span><br><span class="line">	<span class="comment">//==&gt; Parameters: 2(Long), 10004(Long)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//更新user表</span></span><br><span class="line">    updateById(update);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="userInfoChange-1"   >
+          <a href="#userInfoChange-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#userInfoChange-1" class="headerlink" title="userInfoChange"></a>userInfoChange</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">userInfoChange</span><span class="params">(Long uid)</span> &#123;</span><br><span class="line">    	<span class="comment">//删除用户缓存</span></span><br><span class="line">        delUserInfo(uid);</span><br><span class="line">    	<span class="comment">//更新缓存中用户物品使用时间</span></span><br><span class="line">        refreshUserModifyTime(uid);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="流程-3"   >
+          <a href="#流程-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#流程-3" class="headerlink" title="流程"></a>流程</h4>
+      <p>①先判断用户是否有这个物品。如果没有会抛出异常</p>
+<p>②判断在合格物品是不是勋章。如果不是会抛出异常</p>
+<p>③更新用户表信息，将Item_id设置为这个物品</p>
+<p>④更新缓存，删除本地缓存删除Redis缓存</p>
+
+        <h3 id="黑名单"   >
+          <a href="#黑名单" class="heading-link"><i class="fas fa-link"></i></a><a href="#黑名单" class="headerlink" title="黑名单"></a>黑名单</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>访问URI</th>
+<th>请求类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;capi&#x2F;user&#x2F;black</td>
+<td>PUT请求</td>
+</tr>
+</tbody></table></div>
+
+        <h4 id="Controller层-4"   >
+          <a href="#Controller层-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#Controller层-4" class="headerlink" title="Controller层"></a>Controller层</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PutMapping(&quot;/black&quot;)</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;拉黑用户&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ApiResult&lt;Void&gt; <span class="title function_">black</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> BlackReq req)</span> &#123;</span><br><span class="line">    <span class="comment">//从请求上下文中获取拉黑用户uid</span></span><br><span class="line">    <span class="type">Long</span> <span class="variable">uid</span> <span class="operator">=</span> RequestHolder.get().getUid();</span><br><span class="line">    <span class="comment">//判断拉黑目标用户是否是管理员，如果是管理员返回true</span></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">hasPower</span> <span class="operator">=</span> iRoleService.hasPower(uid, RoleEnum.ADMIN);</span><br><span class="line">    <span class="comment">//如果是管理员则抛出异常没有权限拉黑</span></span><br><span class="line">    AssertUtil.isTrue(hasPower, <span class="string">&quot;没有权限&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//没有异常则可以运行到这里 说明有权限 调用Service方法来拉黑用户</span></span><br><span class="line">    userService.black(req);</span><br><span class="line">    <span class="keyword">return</span> ApiResult.success();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="Service层-2"   >
+          <a href="#Service层-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#Service层-2" class="headerlink" title="Service层"></a>Service层</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">black</span><span class="params">(BlackReq req)</span>;</span><br></pre></td></tr></table></div></figure>
+
+<p>实现类中</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">black</span><span class="params">(BlackReq req)</span> &#123;</span><br><span class="line">    <span class="comment">//从请求上下文中获取要拉黑用户Uid</span></span><br><span class="line">    <span class="type">Long</span> <span class="variable">uid</span> <span class="operator">=</span> req.getUid();</span><br><span class="line">    <span class="comment">//创建一个黑名单用户</span></span><br><span class="line">    <span class="type">Black</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Black</span>();</span><br><span class="line">    <span class="comment">//设置拉黑用户UID、拉黑类型为UID  还有一种拉黑是拉黑IP地址</span></span><br><span class="line">    user.setTarget(uid.toString());</span><br><span class="line">    user.setType(BlackTypeEnum.UID.getType());</span><br><span class="line">    <span class="comment">//调用blackDao中的save方法 插入一条用户数据到User表中</span></span><br><span class="line">    </span><br><span class="line">    blackDao.save(user);</span><br><span class="line">    <span class="comment">//查询用户表中的UID用户 </span></span><br><span class="line">    <span class="type">User</span> <span class="variable">byId</span> <span class="operator">=</span> userDao.getById(uid);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//拉黑IP地址 一个是创建用户IP地址 一个是最后更新用户的IP地址 两个IP都拉黑</span></span><br><span class="line">    blackIp(byId.getIpInfo().getCreateIp());</span><br><span class="line">    blackIp(byId.getIpInfo().getUpdateIp());</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//发布一条事件 一个用户拉黑事件</span></span><br><span class="line">    applicationEventPublisher.publishEvent(<span class="keyword">new</span> <span class="title class_">UserBlackEvent</span>(<span class="built_in">this</span>, byId));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h4 id="blackIp"   >
+          <a href="#blackIp" class="heading-link"><i class="fas fa-link"></i></a><a href="#blackIp" class="headerlink" title="blackIp"></a>blackIp</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">blackIp</span><span class="params">(String ip)</span> &#123;</span><br><span class="line">    <span class="comment">//判断IP是否为空，如果为空则直接返回</span></span><br><span class="line">    <span class="keyword">if</span> (StrUtil.isBlank(ip)) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//创建一个拉黑用户</span></span><br><span class="line">        <span class="type">Black</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Black</span>();</span><br><span class="line">        <span class="comment">//设置IP地址</span></span><br><span class="line">        user.setTarget(ip);</span><br><span class="line">        user.setType(BlackTypeEnum.IP.getType());</span><br><span class="line">        <span class="comment">//更新黑名单表</span></span><br><span class="line">        blackDao.save(user);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        log.error(<span class="string">&quot;duplicate black ip:&#123;&#125;&quot;</span>, ip);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="hasPower"   >
+          <a href="#hasPower" class="heading-link"><i class="fas fa-link"></i></a><a href="#hasPower" class="headerlink" title="hasPower"></a>hasPower</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasPower</span><span class="params">(Long uid, RoleEnum roleEnum)</span> &#123;<span class="comment">//超级管理员无敌的好吧，后期做成权限=》资源模式</span></span><br><span class="line">    Set&lt;Long&gt; roleSet = userCache.getRoleSet(uid);</span><br><span class="line">    <span class="keyword">return</span> isAdmin(roleSet) || roleSet.contains(roleEnum.getId());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="getRoleSet"   >
+          <a href="#getRoleSet" class="heading-link"><i class="fas fa-link"></i></a><a href="#getRoleSet" class="headerlink" title="getRoleSet"></a>getRoleSet</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Cacheable(cacheNames = &quot;user&quot;, key = &quot;&#x27;roles&#x27;+#uid&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Set&lt;Long&gt; <span class="title function_">getRoleSet</span><span class="params">(Long uid)</span> &#123;</span><br><span class="line">    <span class="comment">//查询数据库判断是否有管理员身份</span></span><br><span class="line">    List&lt;UserRole&gt; userRoles = userRoleDao.listByUid(uid);</span><br><span class="line">    <span class="comment">//将用户身份返回一个set</span></span><br><span class="line">    <span class="keyword">return</span> userRoles.stream()</span><br><span class="line">            .map(UserRole::getRoleId)</span><br><span class="line">            .collect(Collectors.toSet());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="listByUid"   >
+          <a href="#listByUid" class="heading-link"><i class="fas fa-link"></i></a><a href="#listByUid" class="headerlink" title="listByUid"></a>listByUid</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;UserRole&gt; <span class="title function_">listByUid</span><span class="params">(Long uid)</span> &#123;</span><br><span class="line">    <span class="comment">//查询user_role表 通过uid来查询身份 返回集合</span></span><br><span class="line">    <span class="keyword">return</span> lambdaQuery()</span><br><span class="line">            .eq(UserRole::getUid, Objects.requireNonNull(uid))</span><br><span class="line">            .list();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="流程-4"   >
+          <a href="#流程-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#流程-4" class="headerlink" title="流程"></a>流程</h4>
+      <p>①判断目标拉黑用户是否是管理员，如果是管理员则没有权限拉黑抛出异常结束方法，如果不是管理员则继续拉黑操作</p>
+<p>②插入一条拉黑用户信息到拉黑数据表中 先是拉黑UID</p>
+<p>③再判断创造用户时IP是否存在，如果存在则插入一条创建IP地址的拉黑用户信息</p>
+<p>④再判断更新用户时IP是否存在，如果存在则插入一条更新IP地址的拉黑用户信息</p>
+<p>⑤发布一条事件，用户拉黑事件</p>
+
+        <h3 id="徽章聚合信息"   >
+          <a href="#徽章聚合信息" class="heading-link"><i class="fas fa-link"></i></a><a href="#徽章聚合信息" class="headerlink" title="徽章聚合信息"></a>徽章聚合信息</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>访问URI</th>
+<th>请求类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;capi&#x2F;user&#x2F;public&#x2F;badges&#x2F;batch</td>
+<td>POST请求</td>
+</tr>
+</tbody></table></div>
+
+        <h4 id="Controller层-5"   >
+          <a href="#Controller层-5" class="heading-link"><i class="fas fa-link"></i></a><a href="#Controller层-5" class="headerlink" title="Controller层"></a>Controller层</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/public/badges/batch&quot;)</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;徽章聚合信息-返回的代表需要刷新的&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ApiResult&lt;List&lt;ItemInfoDTO&gt;&gt; <span class="title function_">getItemInfo</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> ItemInfoReq req)</span> &#123;</span><br><span class="line">    <span class="comment">//调用service层中的getItemInfo方法</span></span><br><span class="line">    <span class="keyword">return</span> ApiResult.success(userService.getItemInfo(req));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="Service层-3"   >
+          <a href="#Service层-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#Service层-3" class="headerlink" title="Service层"></a>Service层</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;ItemInfoDTO&gt; <span class="title function_">getItemInfo</span><span class="params">(ItemInfoReq req)</span>;</span><br></pre></td></tr></table></div></figure>
+
+<p>实现类中</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;ItemInfoDTO&gt; <span class="title function_">getItemInfo</span><span class="params">(ItemInfoReq req)</span> &#123;<span class="comment">//简单做，更新时间可判断被修改</span></span><br><span class="line">    <span class="keyword">return</span> req.getReqList().stream().map(a -&gt; &#123;</span><br><span class="line">        <span class="comment">//查询</span></span><br><span class="line">        <span class="type">ItemConfig</span> <span class="variable">itemConfig</span> <span class="operator">=</span> itemCache.getById(a.getItemId());</span><br><span class="line">        <span class="keyword">if</span> (Objects.nonNull(a.getLastModifyTime()) &amp;&amp; a.getLastModifyTime() &gt;= itemConfig.getUpdateTime().getTime()) &#123;</span><br><span class="line">            <span class="keyword">return</span> ItemInfoDTO.skip(a.getItemId());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">ItemInfoDTO</span> <span class="variable">dto</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ItemInfoDTO</span>();</span><br><span class="line">        dto.setItemId(itemConfig.getId());</span><br><span class="line">        dto.setImg(itemConfig.getImg());</span><br><span class="line">        dto.setDescribe(itemConfig.getDescribe());</span><br><span class="line">        <span class="keyword">return</span> dto;</span><br><span class="line">    &#125;).collect(Collectors.toList());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="用户聚合信息"   >
+          <a href="#用户聚合信息" class="heading-link"><i class="fas fa-link"></i></a><a href="#用户聚合信息" class="headerlink" title="用户聚合信息"></a>用户聚合信息</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>访问URI</th>
+<th>请求类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;public&#x2F;summary&#x2F;userInfo&#x2F;batc</td>
+<td>POST请求</td>
+</tr>
+</tbody></table></div>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/public/summary/userInfo/batch&quot;)</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;用户聚合信息-返回的代表需要刷新的&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ApiResult&lt;List&lt;SummeryInfoDTO&gt;&gt; <span class="title function_">getSummeryUserInfo</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> SummeryInfoReq req)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> ApiResult.success(userService.getSummeryUserInfo(req));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -365,7 +927,44 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
           UserService层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getUserInfo"><span class="toc-number">1.7.1.3.</span> <span class="toc-text">
           getUserInfo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getInfoBatch"><span class="toc-number">1.7.1.4.</span> <span class="toc-text">
           getInfoBatch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UserBackPackDao"><span class="toc-number">1.7.1.5.</span> <span class="toc-text">
-          UserBackPackDao</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5"><span class="toc-number">2.</span> <span class="toc-text">
+          UserBackPackDao</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">1.7.1.6.</span> <span class="toc-text">
+          流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E5%90%8D"><span class="toc-number">1.7.2.</span> <span class="toc-text">
+          修改用户名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Controller%E5%B1%82-1"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">
+          Controller层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UserService%E5%B1%82-1"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">
+          UserService层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getFirstValidItem"><span class="toc-number">1.7.2.3.</span> <span class="toc-text">
+          getFirstValidItem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#invaldItem"><span class="toc-number">1.7.2.4.</span> <span class="toc-text">
+          invaldItem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ModifyName"><span class="toc-number">1.7.2.5.</span> <span class="toc-text">
+          ModifyName</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#userInfoChange"><span class="toc-number">1.7.2.6.</span> <span class="toc-text">
+          userInfoChange</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B-1"><span class="toc-number">1.7.2.7.</span> <span class="toc-text">
+          流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E5%8B%8B%E7%AB%A0%E9%A2%84%E8%A7%88"><span class="toc-number">1.7.3.</span> <span class="toc-text">
+          可选勋章预览</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Controller%E5%B1%82-2"><span class="toc-number">1.7.3.1.</span> <span class="toc-text">
+          Controller层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Service%E5%B1%82"><span class="toc-number">1.7.3.2.</span> <span class="toc-text">
+          Service层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getByType"><span class="toc-number">1.7.3.3.</span> <span class="toc-text">
+          getByType</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getByItemId"><span class="toc-number">1.7.3.4.</span> <span class="toc-text">
+          getByItemId</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#userDao-getById"><span class="toc-number">1.7.3.5.</span> <span class="toc-text">
+          userDao.getById</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#buildBadgeResp"><span class="toc-number">1.7.3.6.</span> <span class="toc-text">
+          buildBadgeResp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B-2"><span class="toc-number">1.7.3.7.</span> <span class="toc-text">
+          流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%A9%E6%88%B4%E5%8B%8B%E7%AB%A0"><span class="toc-number">1.7.4.</span> <span class="toc-text">
+          佩戴勋章</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Controller%E5%B1%82-3"><span class="toc-number">1.7.4.1.</span> <span class="toc-text">
+          Controller层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Service%E5%B1%82-1"><span class="toc-number">1.7.4.2.</span> <span class="toc-text">
+          Service层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getFirstValidItem-1"><span class="toc-number">1.7.4.3.</span> <span class="toc-text">
+          getFirstValidItem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#itemConfigDao-getById"><span class="toc-number">1.7.4.4.</span> <span class="toc-text">
+          itemConfigDao.getById</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wearingBadge"><span class="toc-number">1.7.4.5.</span> <span class="toc-text">
+          wearingBadge</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#userInfoChange-1"><span class="toc-number">1.7.4.6.</span> <span class="toc-text">
+          userInfoChange</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B-3"><span class="toc-number">1.7.4.7.</span> <span class="toc-text">
+          流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%91%E5%90%8D%E5%8D%95"><span class="toc-number">1.7.5.</span> <span class="toc-text">
+          黑名单</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Controller%E5%B1%82-4"><span class="toc-number">1.7.5.1.</span> <span class="toc-text">
+          Controller层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Service%E5%B1%82-2"><span class="toc-number">1.7.5.2.</span> <span class="toc-text">
+          Service层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#blackIp"><span class="toc-number">1.7.5.3.</span> <span class="toc-text">
+          blackIp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hasPower"><span class="toc-number">1.7.5.4.</span> <span class="toc-text">
+          hasPower</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getRoleSet"><span class="toc-number">1.7.5.5.</span> <span class="toc-text">
+          getRoleSet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#listByUid"><span class="toc-number">1.7.5.6.</span> <span class="toc-text">
+          listByUid</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B-4"><span class="toc-number">1.7.5.7.</span> <span class="toc-text">
+          流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%BD%E7%AB%A0%E8%81%9A%E5%90%88%E4%BF%A1%E6%81%AF"><span class="toc-number">1.7.6.</span> <span class="toc-text">
+          徽章聚合信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Controller%E5%B1%82-5"><span class="toc-number">1.7.6.1.</span> <span class="toc-text">
+          Controller层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Service%E5%B1%82-3"><span class="toc-number">1.7.6.2.</span> <span class="toc-text">
+          Service层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%81%9A%E5%90%88%E4%BF%A1%E6%81%AF"><span class="toc-number">1.7.7.</span> <span class="toc-text">
+          用户聚合信息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5"><span class="toc-number">2.</span> <span class="toc-text">
           异常情况</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%9C%A8%E7%BA%BF%E7%94%A8%E6%88%B7%E6%95%B0%E9%87%8F%EF%BC%8C%E7%94%A8%E6%88%B7%E5%B7%B2%E7%BB%8F%E4%B8%8B%E7%BA%BF%E8%80%8C%E6%98%BE%E7%A4%BA%E8%BF%98%E5%9C%A8%E7%BA%BF%E4%B8%8A%E4%B8%AD"><span class="toc-number">2.1.</span> <span class="toc-text">
           异常在线用户数量，用户已经下线而显示还在线上中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%AB%AF1"><span class="toc-number">2.1.1.</span> <span class="toc-text">
           用户端1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%AB%AF2"><span class="toc-number">2.1.2.</span> <span class="toc-text">
