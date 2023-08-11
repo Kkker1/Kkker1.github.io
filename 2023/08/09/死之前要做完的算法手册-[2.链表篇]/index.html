@@ -1,0 +1,497 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="链表基础 1、单向链表                                      移除链表元素       给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val &#x3D;&#x3D; val 的节点，并返回 新的头节点 。                     203.移除链表元素       Leetcode.203题(easy)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="死之前要做完的算法手册-[2.链表篇]">
+<meta property="og:url" content="https://username.github.io/2023/08/09/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-[2.%E9%93%BE%E8%A1%A8%E7%AF%87]/index.html">
+<meta property="og:site_name" content="KkkerAn&#39;s Blog">
+<meta property="og:description" content="链表基础 1、单向链表                                      移除链表元素       给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val &#x3D;&#x3D; val 的节点，并返回 新的头节点 。                     203.移除链表元素       Leetcode.203题(easy)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://username.github.io/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810162248140.png">
+<meta property="og:image" content="https://username.github.io/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810160723221.png">
+<meta property="og:image" content="https://username.github.io/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810161243007.png">
+<meta property="og:image" content="https://username.github.io/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810161427054.png">
+<meta property="og:image" content="https://username.github.io/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810161712465.png">
+<meta property="article:published_time" content="2023-08-09T04:59:45.000Z">
+<meta property="article:modified_time" content="2023-08-10T12:30:46.951Z">
+<meta property="article:author" content="KkkerAn">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://username.github.io/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810162248140.png"><title>死之前要做完的算法手册-[2.链表篇] | KkkerAn's Blog</title><link ref="canonical" href="https://username.github.io/2023/08/09/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-[2.%E9%93%BE%E8%A1%A8%E7%AF%87]/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">死之前要做完的算法手册-[2.链表篇]</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-09</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">3.1k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">25分</span></span></div></header><div class="post-body"><p><strong>链表基础</strong></p>
+<p>1、单向链表</p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810162248140.png"  alt="单向链表模型">
+      </p>
+
+        <h1 id="移除链表元素"   >
+          <a href="#移除链表元素" class="heading-link"><i class="fas fa-link"></i></a><a href="#移除链表元素" class="headerlink" title="移除链表元素"></a>移除链表元素</h1>
+      <p>给你一个链表的头节点 <code>head</code> 和一个整数 <code>val</code> ，请你删除链表中所有满足 <code>Node.val == val</code> 的节点，并返回 <strong>新的头节点</strong> 。</p>
+
+        <h2 id="203-移除链表元素"   >
+          <a href="#203-移除链表元素" class="heading-link"><i class="fas fa-link"></i></a><a href="#203-移除链表元素" class="headerlink" title="203.移除链表元素"></a>203.移除链表元素</h2>
+      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-linked-list-elements/" >Leetcode.203题(easy)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h3 id="第一次做"   >
+          <a href="#第一次做" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次做" class="headerlink" title="第一次做"></a>第一次做</h3>
+      <p>第一次做于23&#x2F;08&#x2F;10</p>
+
+        <h4 id="第一次代码"   >
+          <a href="#第一次代码" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次代码" class="headerlink" title="第一次代码"></a>第一次代码</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode <span class="title function_">removeElements</span><span class="params">(ListNode head, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">       ListNode tempNode=head;</span><br><span class="line">       <span class="keyword">while</span>(head!=<span class="literal">null</span>)&#123;</span><br><span class="line">           <span class="keyword">if</span>(head.val==val)&#123;</span><br><span class="line">               <span class="keyword">if</span>(head.next!=<span class="literal">null</span>)</span><br><span class="line">               head.next=head.next.next;</span><br><span class="line">               head=head.next;</span><br><span class="line">               <span class="keyword">continue</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="type">ListNode</span> <span class="variable">node</span> <span class="operator">=</span> head.next;</span><br><span class="line">           <span class="keyword">if</span>(node.val==val)&#123;</span><br><span class="line">               head.next=node.next;</span><br><span class="line">           &#125;</span><br><span class="line">           head=node;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> tempNode;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h5 id="提交错误"   >
+          <a href="#提交错误" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交错误" class="headerlink" title="提交错误"></a>提交错误</h5>
+      <p>CASE: 输入[7,7,7,7] val&#x3D;7 返回[7,7] 预期返回[]</p>
+
+        <h4 id="第二次代码"   >
+          <a href="#第二次代码" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二次代码" class="headerlink" title="第二次代码"></a>第二次代码</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode <span class="title function_">removeElements</span><span class="params">(ListNode head, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">    ListNode tempNode=head;</span><br><span class="line">    <span class="keyword">while</span>(head!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(tempNode!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(tempNode.val==val)&#123;</span><br><span class="line">                tempNode=tempNode.next;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">node</span> <span class="operator">=</span> head.next;</span><br><span class="line">        <span class="keyword">if</span>(node!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(node.val==val)&#123;</span><br><span class="line">            head.next=node.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        head=node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tempNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h5 id="提交错误-1"   >
+          <a href="#提交错误-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交错误-1" class="headerlink" title="提交错误"></a>提交错误</h5>
+      <p>CASE:输入[1,2,2,1] val&#x3D;2 返回[1,2,1] 预期返回[]</p>
+
+        <h5 id="原因"   >
+          <a href="#原因" class="heading-link"><i class="fas fa-link"></i></a><a href="#原因" class="headerlink" title="原因"></a>原因</h5>
+      <p>我只判断了一次当头结点为val的时候将头部指针指向后面一个，但是后面移动的时候当连续得出现要删除的元素时候没办法处理了</p>
+<p>也即我没判断当前结点为val的时候的删除元素操作</p>
+
+        <h3 id="题解"   >
+          <a href="#题解" class="heading-link"><i class="fas fa-link"></i></a><a href="#题解" class="headerlink" title="题解"></a>题解</h3>
+      <p><strong>虚拟头结点法</strong></p>
+<p>定义一个虚拟头结点 将原本的头结点插入到虚拟头结点之后 这样就不用判断是否为头结点元素的删除</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode <span class="title function_">removeElements</span><span class="params">(ListNode head, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="comment">//定义一个虚拟的头结点</span></span><br><span class="line">    	ListNode VirHead=<span class="keyword">new</span> <span class="title class_">ListNode</span>();</span><br><span class="line">    	<span class="comment">//将虚拟头指向原先头结点</span></span><br><span class="line">        VirHead.next=head;</span><br><span class="line">    	<span class="comment">//获取一个当前结点指针 循环用当前指针操作</span></span><br><span class="line">        ListNode curNode=VirHead;</span><br><span class="line">    	</span><br><span class="line">    	<span class="comment">//循环条件是curNode.next!=null 意图是操作当前结点的下一个结点，而不是操作当前结点 因为删除和添加结点都需要前后结点</span></span><br><span class="line">        <span class="keyword">while</span>(curNode.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">//如果下一个结点元素值为目标值</span></span><br><span class="line">            <span class="keyword">if</span>(curNode.next.val==val)&#123;</span><br><span class="line">                <span class="comment">//将当前结点指向下一个结点的下一个结点 然后再循环判断移动之后的下一个结点是不是要删除的结点</span></span><br><span class="line">                curNode.next=curNode.next.next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//否则下一个结点不是要移除的元素，将当前结点移动到下一结点</span></span><br><span class="line">                curNode=curNode.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> VirHead.next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+<p><strong>当前头结点操作</strong></p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode <span class="title function_">removeElements</span><span class="params">(ListNode head, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">    	<span class="comment">//判断头结点是不是要删除的元素   </span></span><br><span class="line">       <span class="keyword">while</span>(head!=<span class="literal">null</span>)&#123;</span><br><span class="line">           <span class="keyword">if</span>(head.val==val)&#123;</span><br><span class="line">               <span class="comment">//是要删除的元素则将head往后移动一位</span></span><br><span class="line">               head=head.next;</span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">               <span class="comment">//否则说明头结点不是要删除的结点 跳出循环</span></span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    	<span class="comment">//获取一个node指针来指向头结点的位置  这个node是用来循环操作的</span></span><br><span class="line">       ListNode node=head;</span><br><span class="line">       <span class="comment">//运行到这里头结点已经不可能是目标值了</span></span><br><span class="line">	</span><br><span class="line">    	<span class="comment">//判断当前位置不为空并且下一个结点不为空</span></span><br><span class="line">       <span class="keyword">while</span>(node!=<span class="literal">null</span>&amp;&amp;node.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">           <span class="keyword">if</span>(node.next.val==val)&#123;</span><br><span class="line">               node.next=node.next.next;</span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">               node=node.next;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    	<span class="comment">//返回头结点</span></span><br><span class="line">       <span class="keyword">return</span> head;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+      <p>通过代码随想录的视频学习了这道题的做法，我发现我自己在第一次做的时候无论是移动头结点的位置和非头结点的位置 我都是将当前结点指向要删除的元素的下一个结点 并且移动指针到下一个结点，而忽略了对连续元素的判断</p>
+<p>我们移除结点需要注意的点：</p>
+<p>① 我们要删除结点需要获取<strong>目标上一个节点、目标结点、下一个结点</strong>，如果目标是头结点则将头结点指向头结点下一个结点即可</p>
+<p>②我们要删除非头结点，正因为删除结点需要获取目标上一个节点、目标结点下一个结点所以我们直接从<strong>当前结点</strong>来判断下一个结点是不是要删除的元素</p>
+<p>②移动当前指针的条件：下一个结点不是要删除的元素，反之如果是则本次循环<strong>仅将当前结点指向目标结点的下一个结点，而不移动当前结点指针</strong></p>
+<p>我推荐是用<strong>虚拟头结点</strong>来做这道题，这样我们就少了对是否头结点的判断，我们只要做好删除非头结点的逻辑处理，然后返回的结点为虚拟头结点的下一个结点即可</p>
+
+        <h3 id="图解"   >
+          <a href="#图解" class="heading-link"><i class="fas fa-link"></i></a><a href="#图解" class="headerlink" title="图解"></a>图解</h3>
+      <p><strong>虚拟头结点</strong></p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810160723221.png"  alt="虚拟头结点(1)">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810161243007.png"  alt="虚拟头结点(2)">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810161427054.png"  alt="虚拟头结点(3)">
+      </p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B2.%E9%93%BE%E8%A1%A8%E7%AF%87%5D/image-20230810161712465.png"  alt="虚拟头结点(4)">
+      </p>
+
+        <h1 id="设计链表"   >
+          <a href="#设计链表" class="heading-link"><i class="fas fa-link"></i></a><a href="#设计链表" class="headerlink" title="设计链表"></a>设计链表</h1>
+      <p>你可以选择使用单链表或者双链表，设计并实现自己的链表。</p>
+<p>单链表中的节点应该具备两个属性：<code>val</code> 和 <code>next</code> 。<code>val</code> 是当前节点的值，<code>next</code> 是指向下一个节点的指针&#x2F;引用。</p>
+<p>如果是双向链表，则还需要属性 <code>prev</code> 以指示链表中的上一个节点。假设链表中的所有节点下标从 <strong>0</strong> 开始。</p>
+<p>实现 <code>MyLinkedList</code> 类：</p>
+<ul>
+<li><code>MyLinkedList()</code> 初始化 <code>MyLinkedList</code> 对象。</li>
+<li><code>int get(int index)</code> 获取链表中下标为 <code>index</code> 的节点的值。如果下标无效，则返回 <code>-1</code> 。</li>
+<li><code>void addAtHead(int val)</code> 将一个值为 <code>val</code> 的节点插入到链表中第一个元素之前。在插入完成后，新节点会成为链表的第一个节点。</li>
+<li><code>void addAtTail(int val)</code> 将一个值为 <code>val</code> 的节点追加到链表中作为链表的最后一个元素。</li>
+<li><code>void addAtIndex(int index, int val)</code> 将一个值为 <code>val</code> 的节点插入到链表中下标为 <code>index</code> 的节点之前。如果 <code>index</code> 等于链表的长度，那么该节点会被追加到链表的末尾。如果 <code>index</code> 比长度更大，该节点将 <strong>不会插入</strong> 到链表中。</li>
+<li><code>void deleteAtIndex(int index)</code> 如果下标有效，则删除链表中下标为 <code>index</code> 的节点。</li>
+</ul>
+
+        <h2 id="707-设计链表"   >
+          <a href="#707-设计链表" class="heading-link"><i class="fas fa-link"></i></a><a href="#707-设计链表" class="headerlink" title="707.设计链表"></a>707.设计链表</h2>
+      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-linked-list/" >Leetcode.707题(medium)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h3 id="第一次做-1"   >
+          <a href="#第一次做-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次做-1" class="headerlink" title="第一次做"></a>第一次做</h3>
+      <p>第一次做于23&#x2F;08&#x2F;10</p>
+
+        <h4 id="第一次代码-1"   >
+          <a href="#第一次代码-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次代码-1" class="headerlink" title="第一次代码"></a>第一次代码</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyLinkedList</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//用来记录链表索引下标</span></span><br><span class="line">    <span class="type">int</span> count=-<span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    MyLinkedList next;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyLinkedList</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//空参构造</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;count)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        MyLinkedList cur=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        cur=<span class="built_in">this</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(i&lt;index)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur.val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//添加到链表头部</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtHead</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        MyLinkedList node= <span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        node.val=val;</span><br><span class="line">        node.next=<span class="built_in">this</span>;</span><br><span class="line">        <span class="built_in">this</span>.next=node;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtTail</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        MyLinkedList cur=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        cur=<span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">while</span>(cur.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        MyLinkedList node=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        node.val=val;</span><br><span class="line">        node.next=<span class="literal">null</span>;</span><br><span class="line">        cur.next=node;</span><br><span class="line">        count++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtIndex</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;count)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(index==count+<span class="number">1</span>)&#123;</span><br><span class="line">            addAtTail(val);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        MyLinkedList node=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        MyLinkedList cur=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        cur=<span class="built_in">this</span>;</span><br><span class="line">        node.val=val;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;index-<span class="number">1</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//找到前一个元素</span></span><br><span class="line">        node.next=cur.next;</span><br><span class="line">        cur.next=node;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteAtIndex</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;count)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        MyLinkedList node=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        MyLinkedList cur=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        cur=<span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;index-<span class="number">1</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//找到下标为index的前一个结点</span></span><br><span class="line">        <span class="keyword">if</span>(cur.next.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            cur.next=cur.next.next;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            cur.next=<span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h5 id="提交错误-2"   >
+          <a href="#提交错误-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交错误-2" class="headerlink" title="提交错误"></a>提交错误</h5>
+      <p>​	CASE： 超出时间限制</p>
+
+        <h5 id="原因-1"   >
+          <a href="#原因-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#原因-1" class="headerlink" title="原因"></a>原因</h5>
+      <p>我添加头结点的时候将新结点指向this。this的next指向了新结点 这就造成了一个双向的指向效果达成死锁</p>
+
+        <h4 id="第二次代码-1"   >
+          <a href="#第二次代码-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二次代码-1" class="headerlink" title="第二次代码"></a>第二次代码</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyLinkedList</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//用来记录链表索引下标</span></span><br><span class="line">    <span class="type">int</span> count=-<span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    MyLinkedList next;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyLinkedList</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//空参构造</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;count)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        MyLinkedList cur=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        cur=<span class="built_in">this</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(i&lt;index)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur.val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//添加到链表头部</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtHead</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        MyLinkedList node= <span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        node.val=val;</span><br><span class="line">        node.next=<span class="built_in">this</span>;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtTail</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        MyLinkedList cur=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        cur=<span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">while</span>(cur.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        MyLinkedList node=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        node.val=val;</span><br><span class="line">        node.next=<span class="literal">null</span>;</span><br><span class="line">        cur.next=node;</span><br><span class="line">        count++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtIndex</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;count)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(index==count+<span class="number">1</span>)&#123;</span><br><span class="line">            addAtTail(val);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        MyLinkedList node=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        MyLinkedList cur=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        cur=<span class="built_in">this</span>;</span><br><span class="line">        node.val=val;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;index-<span class="number">1</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//找到前一个元素</span></span><br><span class="line">        node.next=cur.next;</span><br><span class="line">        cur.next=node;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteAtIndex</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;count)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        MyLinkedList node=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        MyLinkedList cur=<span class="keyword">new</span> <span class="title class_">MyLinkedList</span>();</span><br><span class="line">        cur=<span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;index-<span class="number">1</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//找到下标为index的前一个结点</span></span><br><span class="line">        <span class="keyword">if</span>(cur.next.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            cur.next=cur.next.next;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            cur.next=<span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h5 id="提交错误-3"   >
+          <a href="#提交错误-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交错误-3" class="headerlink" title="提交错误"></a>提交错误</h5>
+      <p>CASE:Cannot read field “next” because “<local4>.next” is null  at line 82, MyLinkedList.deleteAtIndex</p>
+<p>输入[“MyLinkedList”,”addAtHead”,”addAtHead”,”addAtHead”,”addAtIndex”,”deleteAtIndex”,”addAtHead”,”addAtTail”,”get”,”addAtHead”,”addAtIndex”,”addAtHead”]</p>
+<p>[[],[7],[2],[1],[3,0],[2],[6],[4],[4],[4],[5,0],[6]]</p>
+
+        <h5 id="原因-2"   >
+          <a href="#原因-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#原因-2" class="headerlink" title="原因"></a>原因</h5>
+      <p>添加和删除索引下标为index结点的时候遍历忘了加i++导致死循环最后挑不出来，而cur&#x3D;&#x3D;null就正好报错</p>
+<p>这道题花了好久的时间才做出来</p>
+
+        <h4 id="第三次代码"   >
+          <a href="#第三次代码" class="heading-link"><i class="fas fa-link"></i></a><a href="#第三次代码" class="headerlink" title="第三次代码"></a>第三次代码</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LinkNode</span>&#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    LinkNode next;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LinkNode</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LinkNode</span><span class="params">(<span class="type">int</span> val)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.val=val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyLinkedList</span> &#123;</span><br><span class="line">    <span class="type">int</span> size;</span><br><span class="line">    LinkNode head=<span class="keyword">new</span> <span class="title class_">LinkNode</span>();</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyLinkedList</span><span class="params">()</span> &#123;</span><br><span class="line">       size=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(index&lt;<span class="number">0</span>||index&gt;size-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>  -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LinkNode cur=head;</span><br><span class="line">        <span class="keyword">while</span>(index&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur.val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtHead</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line"></span><br><span class="line">        LinkNode node=<span class="keyword">new</span> <span class="title class_">LinkNode</span>(val);</span><br><span class="line">        </span><br><span class="line">        node.next=head.next;</span><br><span class="line">        head.next=node;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtTail</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line"></span><br><span class="line">        LinkNode cur=<span class="keyword">new</span> <span class="title class_">LinkNode</span>();</span><br><span class="line">        LinkNode node=<span class="keyword">new</span> <span class="title class_">LinkNode</span>(val);</span><br><span class="line"></span><br><span class="line">        cur=head;</span><br><span class="line">        <span class="keyword">while</span>(cur.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//找到尾结点</span></span><br><span class="line">        cur.next=node;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtIndex</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(index&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            addAtHead(val);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(index==size)&#123;</span><br><span class="line">            addAtTail(val);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;size)&#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LinkNode cur=<span class="keyword">new</span> <span class="title class_">LinkNode</span>();</span><br><span class="line">        LinkNode node=<span class="keyword">new</span> <span class="title class_">LinkNode</span>(val);</span><br><span class="line"></span><br><span class="line">        cur=head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(index&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            index--;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//找到index前一个元素</span></span><br><span class="line">        node.next=cur.next;</span><br><span class="line">        cur.next=node;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteAtIndex</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(index&lt;<span class="number">0</span>||index&gt;size-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LinkNode cur=<span class="keyword">new</span> <span class="title class_">LinkNode</span>();</span><br><span class="line"></span><br><span class="line">        cur=head;</span><br><span class="line">        <span class="keyword">if</span>(index==<span class="number">0</span>)&#123;</span><br><span class="line">            head=head.next;</span><br><span class="line">            size--;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(index&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line">        cur.next=cur.next.next;</span><br><span class="line">        </span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h5 id="提交成功"   >
+          <a href="#提交成功" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交成功" class="headerlink" title="提交成功"></a>提交成功</h5>
+      
+        <h3 id="题解-1"   >
+          <a href="#题解-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LinkNode</span>&#123;</span><br><span class="line">    <span class="comment">//val用于存放数据</span></span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    <span class="comment">//next指向下一个结点</span></span><br><span class="line">    LinkNode next;</span><br><span class="line">    <span class="comment">//空参构造</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LinkNode</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LinkNode</span><span class="params">(<span class="type">int</span> val)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.val=val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyLinkedList</span> &#123;</span><br><span class="line">    <span class="comment">//用于表示链表长度</span></span><br><span class="line">    <span class="type">int</span> size;</span><br><span class="line">    <span class="comment">//虚拟头结点head，不存放数据</span></span><br><span class="line">    LinkNode head=<span class="keyword">new</span> <span class="title class_">LinkNode</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyLinkedList</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">//初始化长度为0</span></span><br><span class="line">       size=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="comment">//检验index的合法性</span></span><br><span class="line">        <span class="keyword">if</span>(index&lt;<span class="number">0</span>||index&gt;size-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>  -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">//定义一个当前结点指针用于遍历</span></span><br><span class="line">        LinkNode cur=head;</span><br><span class="line">        <span class="comment">//遍历找到index前一个结点</span></span><br><span class="line">        <span class="keyword">while</span>(index&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//返回数据  cur现在指向index-1的位置</span></span><br><span class="line">        <span class="keyword">return</span> cur.next.val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtHead</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line"></span><br><span class="line">        LinkNode node=<span class="keyword">new</span> <span class="title class_">LinkNode</span>(val);</span><br><span class="line">        <span class="comment">//将虚拟头结点后的下一个结点给node</span></span><br><span class="line">        node.next=head.next;</span><br><span class="line">        <span class="comment">//将虚拟头结点指向node</span></span><br><span class="line">        head.next=node;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtTail</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//cur用于遍历</span></span><br><span class="line">        LinkNode cur=head;</span><br><span class="line">        LinkNode node=<span class="keyword">new</span> <span class="title class_">LinkNode</span>(val);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//当cur.next==null 也即cur是最后一个结点</span></span><br><span class="line">        <span class="keyword">while</span>(cur.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//找到尾结点</span></span><br><span class="line">        cur.next=node;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAtIndex</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="comment">//如果index&lt;=0 说明插入头结点</span></span><br><span class="line">        <span class="keyword">if</span>(index&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            addAtHead(val);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果index==size说明插入尾结点</span></span><br><span class="line">        <span class="keyword">if</span>(index==size)&#123;</span><br><span class="line">            addAtTail(val);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//index&gt;size不合法</span></span><br><span class="line">        <span class="keyword">if</span>(index&gt;size)&#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LinkNode cur=head;</span><br><span class="line">        LinkNode node=<span class="keyword">new</span> <span class="title class_">LinkNode</span>(val);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历链表，找到目标结点的前一个结点</span></span><br><span class="line">        <span class="keyword">while</span>(index&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            index--;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//找到index前一个元素</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//将当前结点的下一个结点给node  当前结点指向node</span></span><br><span class="line">        node.next=cur.next;</span><br><span class="line">        cur.next=node;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteAtIndex</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(index&lt;<span class="number">0</span>||index&gt;size-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LinkNode cur=head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//找到要删除的结点的前一个结点</span></span><br><span class="line">        <span class="keyword">while</span>(index&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将目标结点的下一个结点由cur.next保存</span></span><br><span class="line">        cur.next=cur.next.next;</span><br><span class="line">        </span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="总结-1"   >
+          <a href="#总结-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3>
+      <p>这道题做了我很久，一来是我通过看视频然后知道用虚拟头结点的做法，我第一开始做的时候不知道哪里是当前位置，哪里是头结点</p>
+<p>二来是一个问题卡了我很久，就是一直有一个val&#x3D;0的数据存在，后面我才知道我把head当成一个结点存放进链表中了，而这个<strong>head应该就是虚拟头结点</strong></p>
+<p>三是小问题的卡，有的地方size++没写有的地方size–没写导致一直编译报错</p>
+
+        <h3 id="踩坑点"   >
+          <a href="#踩坑点" class="heading-link"><i class="fas fa-link"></i></a><a href="#踩坑点" class="headerlink" title="踩坑点"></a>踩坑点</h3>
+      <p>这里定义的head就是虚拟头结点，不用自己在创建一个虚拟头结点指向head</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://username.github.io">KkkerAn</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://username.github.io/2023/08/09/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-[2.%E9%93%BE%E8%A1%A8%E7%AF%87]/">https://username.github.io/2023/08/09/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-[2.%E9%93%BE%E8%A1%A8%E7%AF%87]/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://username.github.io/tags/java/">java</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2023/08/04/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-%5B1.%E6%95%B0%E7%BB%84%E7%AF%87%5D/"><span class="paginator-prev__text">死之前要做完的算法手册-[1.数组篇]</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="toc-number">1.</span> <span class="toc-text">
+          移除链表元素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#203-%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="toc-number">1.1.</span> <span class="toc-text">
+          203.移除链表元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%81%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">
+          第一次做</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">
+          第一次代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E9%94%99%E8%AF%AF"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">
+          提交错误</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">
+          第二次代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E9%94%99%E8%AF%AF-1"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">
+          提交错误</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">
+          原因</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-number">1.1.2.</span> <span class="toc-text">
+          题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.3.</span> <span class="toc-text">
+          总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3"><span class="toc-number">1.1.4.</span> <span class="toc-text">
+          图解</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">
+          设计链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#707-%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text">
+          707.设计链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%81%9A-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">
+          第一次做</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BB%A3%E7%A0%81-1"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">
+          第一次代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E9%94%99%E8%AF%AF-2"><span class="toc-number">2.1.1.1.1.</span> <span class="toc-text">
+          提交错误</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0-1"><span class="toc-number">2.1.1.1.2.</span> <span class="toc-text">
+          原因</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BB%A3%E7%A0%81-1"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">
+          第二次代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E9%94%99%E8%AF%AF-3"><span class="toc-number">2.1.1.2.1.</span> <span class="toc-text">
+          提交错误</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0-2"><span class="toc-number">2.1.1.2.2.</span> <span class="toc-text">
+          原因</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E4%BB%A3%E7%A0%81"><span class="toc-number">2.1.1.3.</span> <span class="toc-text">
+          第三次代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%88%90%E5%8A%9F"><span class="toc-number">2.1.1.3.1.</span> <span class="toc-text">
+          提交成功</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3-1"><span class="toc-number">2.1.2.</span> <span class="toc-text">
+          题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">2.1.3.</span> <span class="toc-text">
+          总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E7%82%B9"><span class="toc-number">2.1.4.</span> <span class="toc-text">
+          踩坑点</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">31</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.xml"></script></body></html>
