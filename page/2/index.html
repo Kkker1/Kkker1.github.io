@@ -28,7 +28,154 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/07/20/JavaSE%E5%9F%BA%E7%A1%80-%E9%94%81%E3%80%90%E6%BA%90%E7%A0%81%E7%AF%87%E3%80%91/">JavaSE基础-锁【源码篇】</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-20</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">4k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">31分</span></span></div></header><div class="post-body"><div class="post-excerpt">
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/07/21/JavaSE%E5%9F%BA%E7%A1%80%E3%80%90%E6%80%BB%E7%BB%93%E7%AF%87%E3%80%91/">JavaSE基础【总结篇】</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-21</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">658</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">3分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p><strong>前言</strong></p>
+<p>这个文档记录的是JavaSE的基础，本着我学习的路线再进一步深化和理解，这个过程是一个必不可少的过程。</p>
+<p><em>光学别人的是别人教的好而不是我学的好，想要真正掌握必须自己重新查一遍、看一遍</em></p>
+<p>复盘和深化学习路线参考于Java从入门到精通(第六版)目录，这一块要重新学习的主要是最最最基础的内容</p>
+<hr>
+
+        <h1 id="Java语言基础"   >
+          <a href="#Java语言基础" class="heading-link"><i class="fas fa-link"></i></a><a href="#Java语言基础" class="headerlink" title="Java语言基础"></a>Java语言基础</h1>
+      
+        <h2 id="基本数据类型"   >
+          <a href="#基本数据类型" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2>
+      <p>一共八个基本数据类型</p>
+<p>整型：byte,short,int,long</p>
+<p>浮点型:float,double</p>
+<p>布尔型:boolean</p>
+<p>字符型:char</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th></th>
+<th>字节数</th>
+<th>二进制位</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>1字节</td>
+<td>8</td>
+<td>[-2^7,2^7-1]</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2字节</td>
+<td>16</td>
+<td>[-2^15,2^15-1]</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4字节</td>
+<td>32</td>
+<td>[-2^31,2^31-1]</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8字节</td>
+<td>64</td>
+<td>[-2^63,2^63-1]</td>
+</tr>
+<tr>
+<td>float(单精度)</td>
+<td>4字节</td>
+<td>32</td>
+<td></td>
+</tr>
+<tr>
+<td>double(双精度)</td>
+<td>8字节</td>
+<td>64</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>1字节</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td>char</td>
+<td>2字节</td>
+<td>16</td>
+<td>[0,2^16-1]</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="变量和常量"   >
+          <a href="#变量和常量" class="heading-link"><i class="fas fa-link"></i></a><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h2>
+      <p>变量:在程序运行过程中，可以发生变化的量</p>
+<p>常量:在程序运行过程中，不会发生变化的量</p>
+<p>常量一般用final关键字进行修饰，只能赋值一次</p>
+<p>变量有成员变量、局部变量、静态变量、参数变量</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">成员变量：定义在类中、方法外的变量，可以被类中的方法调用，可以被权限修饰符修饰</span><br><span class="line">局部变量：定义在方法体、代码块中的变量，作用域仅限当前方法、代码块中，局部变量在使用前必须先声明，并且不能被权限修饰符修饰</span><br><span class="line">静态变量：定义在类中、方法外的变量，并且用<span class="keyword">static</span>关键字修饰，可以被权限修饰符修饰</span><br><span class="line">参数变量: 方法声明时的变量，作用域仅限于方法体中</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h2 id="运算符"   >
+          <a href="#运算符" class="heading-link"><i class="fas fa-link"></i></a><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2>
+      <p>&amp;符号和&amp;&amp;之间有什么区别？</p>
+<p>&amp;是普通与，无论第一个条件如何都会进行第二个条件判断，&amp;&amp;是短路与，如果第一个条件为false就不会进入第二个条件判断</p>
+<p>|符号和||之间有什么区别？</p>
+<p>同理，|是普通或，无论第一个条件如何都会进行第二个条件判断，||是短路或，如果第一个条件为true就不会进入第二个条件判断</p>
+
+        <h2 id="数据类型转换"   >
+          <a href="#数据类型转换" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2>
+      
+        <h2 id="关键字"   >
+          <a href="#关键字" class="heading-link"><i class="fas fa-link"></i></a><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2>
+      
+        <h2 id="权限修饰符"   >
+          <a href="#权限修饰符" class="heading-link"><i class="fas fa-link"></i></a><a href="#权限修饰符" class="headerlink" title="权限修饰符"></a>权限修饰符</h2>
+      <hr>
+
+        <h1 id="数组"   >
+          <a href="#数组" class="heading-link"><i class="fas fa-link"></i></a><a href="#数组" class="headerlink" title="数组"></a>数组</h1>
+      
+        <h2 id="一维数组"   >
+          <a href="#一维数组" class="heading-link"><i class="fas fa-link"></i></a><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h2>
+      
+        <h2 id="二维数组"   >
+          <a href="#二维数组" class="heading-link"><i class="fas fa-link"></i></a><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h2>
+      
+        <h2 id="数组的基本操作"   >
+          <a href="#数组的基本操作" class="heading-link"><i class="fas fa-link"></i></a><a href="#数组的基本操作" class="headerlink" title="数组的基本操作"></a>数组的基本操作</h2>
+      <hr>
+
+        <h1 id="类和对象"   >
+          <a href="#类和对象" class="heading-link"><i class="fas fa-link"></i></a><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h1>
+      
+        <h2 id="对象"   >
+          <a href="#对象" class="heading-link"><i class="fas fa-link"></i></a><a href="#对象" class="headerlink" title="对象"></a>对象</h2>
+      
+        <h2 id="类"   >
+          <a href="#类" class="heading-link"><i class="fas fa-link"></i></a><a href="#类" class="headerlink" title="类"></a>类</h2>
+      
+        <h3 id="面向对象的操作"   >
+          <a href="#面向对象的操作" class="heading-link"><i class="fas fa-link"></i></a><a href="#面向对象的操作" class="headerlink" title="面向对象的操作"></a>面向对象的操作</h3>
+      <hr>
+
+        <h1 id="字符串"   >
+          <a href="#字符串" class="heading-link"><i class="fas fa-link"></i></a><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1>
+      <hr>
+
+        <h1 id="异常"   >
+          <a href="#异常" class="heading-link"><i class="fas fa-link"></i></a><a href="#异常" class="headerlink" title="异常"></a>异常</h1>
+      <hr>
+
+        <h1 id="枚举"   >
+          <a href="#枚举" class="heading-link"><i class="fas fa-link"></i></a><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1>
+      <hr>
+
+        <h1 id="反射与注解"   >
+          <a href="#反射与注解" class="heading-link"><i class="fas fa-link"></i></a><a href="#反射与注解" class="headerlink" title="反射与注解"></a>反射与注解</h1>
+      <hr>
+
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      </div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/07/20/JavaSE%E5%9F%BA%E7%A1%80-%E9%94%81%E3%80%90%E6%BA%90%E7%A0%81%E7%AF%87%E3%80%91/">JavaSE基础-锁【源码篇】</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-20</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">4k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">31分</span></span></div></header><div class="post-body"><div class="post-excerpt">
         <h1 id="Lock"   >
           <a href="#Lock" class="heading-link"><i class="fas fa-link"></i></a><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h1>
       <p>我们首先要看JUC标准中的Lock接口</p>
@@ -1026,150 +1173,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
       
         <h2 id="编程题：输入一个整数，转为二进制，并求出1个个数。"   >
           <a href="#编程题：输入一个整数，转为二进制，并求出1个个数。" class="heading-link"><i class="fas fa-link"></i></a><a href="#编程题：输入一个整数，转为二进制，并求出1个个数。" class="headerlink" title="编程题：输入一个整数，转为二进制，并求出1个个数。"></a>编程题：输入一个整数，转为二进制，并求出1个个数。</h2>
-      </div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/07/12/MySql%E9%9D%A2%E8%AF%95%E9%A2%98/">MySql面试题</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-12</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.9k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">15分</span></span></div></header><div class="post-body"><div class="post-excerpt">
-        <h1 id="InnoDb和MyIsam的区别"   >
-          <a href="#InnoDb和MyIsam的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#InnoDb和MyIsam的区别" class="headerlink" title="InnoDb和MyIsam的区别"></a>InnoDb和MyIsam的区别</h1>
-      <p>我答:</p>
-<p>MySql5以后默认的引擎是InnoDB,InnoDB支持行锁、事务</p>
-<p>MyIsam主要在内存中，不支持事务</p>
-<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">主要从四个方面来区别</span><br><span class="line">InnoDB支持事务、行级锁、外键</span><br><span class="line">而Myisam不支持事务、行级锁、外键</span><br><span class="line"></span><br><span class="line">存储结构的不同</span><br><span class="line">    </span><br><span class="line">InnoDB的存储方式是索引和数据存放在.idb文件中</span><br><span class="line">myisam的存储是索引和数据分开存放 索引存在.MYI中 数据存在.MYD中</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="介绍一下Mysql中事务的特性"   >
-          <a href="#介绍一下Mysql中事务的特性" class="heading-link"><i class="fas fa-link"></i></a><a href="#介绍一下Mysql中事务的特性" class="headerlink" title="介绍一下Mysql中事务的特性"></a>介绍一下Mysql中事务的特性</h1>
-      <p>我答:mySql的事务主要有四个特性 ACID</p>
-<p>1.原子性2.一致性3.隔离性4.。。。</p>
-<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">事务是一组操作的集合，它是一个不可分割的操作单元，当事务提交之后，这些操作要么同时成功要么同时失败</span><br><span class="line">事务有四个特性即ACID</span><br><span class="line"><span class="number">1.</span>原子性:表示事务是不可分割的操作单元，事务内的操作要么全部被执行要么全部不被执行</span><br><span class="line"><span class="number">2.</span>一致性:事务完成时，所有数据必须保持一致状态，主要是约束一致性和数据一致性</span><br><span class="line"><span class="number">3.</span>隔离性:数据库提供的隔离机制，保证一个事务内部是对其他并发事务隔离的</span><br><span class="line"><span class="number">4.</span>持久性:当事务一旦提交,它对数据库中数据改变应该是永久的</span><br><span class="line">实现事务的原子性和一致性依赖于undo log日志 而事务的持久性依赖于redo log日志</span><br><span class="line">就举一个转账的例子:当A向B转账<span class="number">500</span>元时，原子性提现在A和B操作要么同时成功要么同时失败，而一致性表现在当A减少<span class="number">500</span>元B就必须要增加<span class="number">500</span>元保证数据的一致，隔离性表现在A像B转账的时候不会受到其他事务的影响，而持久性体现在一旦转账成功，数据修改就是永久性的。</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="并发事务会带来哪些问题？"   >
-          <a href="#并发事务会带来哪些问题？" class="heading-link"><i class="fas fa-link"></i></a><a href="#并发事务会带来哪些问题？" class="headerlink" title="并发事务会带来哪些问题？"></a>并发事务会带来哪些问题？</h1>
-      <p>我答：1.脏读2.不可重复读3.幻读</p>
-<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">事务并发操作可能会带来有四个问题</span><br><span class="line"><span class="number">1.</span>更新丢失:更新丢失又分为两种一种是回滚覆盖，一种是更新覆盖，我们解决更新丢失一般采用乐观锁的思想加入版本号</span><br><span class="line"><span class="number">2.</span>脏读:脏读指一个事务读到了另一个事务还未提交的数据，那么读到的数据就是脏数据</span><br><span class="line"><span class="number">3.</span>不可重复读:不可重复读意思是当事务多次读取同一行数据时，前后读到的数据不一致</span><br><span class="line"><span class="number">4.</span>幻读:幻读指的是在事务按照相同条件查询，而前后查询到的数据行数的不一致，通常是当插入操作时查询数据不存在而当执行插入操作时数据又存在了。</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="并发事务带来的更新丢失是什么"   >
-          <a href="#并发事务带来的更新丢失是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#并发事务带来的更新丢失是什么" class="headerlink" title="并发事务带来的更新丢失是什么?"></a>并发事务带来的更新丢失是什么?</h1>
-      <p>我答:在并发操作下，可能会产生数据覆盖的情况，导致前一个线程的数据被覆盖也就是更新丢失了</p>
-<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">更新丢失是当多个事务更新同一行数据的时候可能产生的数据丢失现象，更新丢失分为两钟：</span><br><span class="line">    一种是回滚覆盖，一种是更新覆盖</span><br><span class="line">    回滚覆盖：当事务进行回滚操作时，把其他事务提交的数据给覆盖了</span><br><span class="line">    更新覆盖：当事务进行更新操作时，把其他事务提交的数据给覆盖了 【例如一个更新年龄一个更新金额，后提交的会把前一个给覆盖了】</span><br><span class="line">    </span><br><span class="line">我们解决更新丢失是采用乐观锁的机制，方案是版本号，通过版本号确认是否数据被修改过</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="事务隔离级别有哪些？MySql默认的事务隔离级别是哪个"   >
-          <a href="#事务隔离级别有哪些？MySql默认的事务隔离级别是哪个" class="heading-link"><i class="fas fa-link"></i></a><a href="#事务隔离级别有哪些？MySql默认的事务隔离级别是哪个" class="headerlink" title="事务隔离级别有哪些？MySql默认的事务隔离级别是哪个"></a>事务隔离级别有哪些？MySql默认的事务隔离级别是哪个</h1>
-      <p>我答:读未提交、读已提交(RC)、可重复读(RR)、串行化</p>
-<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">事务隔离级别有四个：</span><br><span class="line"><span class="number">1.</span>读未提交：脏读、不可重复读、幻读都没有解决</span><br><span class="line"><span class="number">2.</span>读已提交：解决了脏读的问题，没有解决不可重复读、幻读</span><br><span class="line"><span class="number">3.</span>可重复读：解决了脏读、不可重复读的问题，没有解决幻读的现象，这是MySql默认的事务级别</span><br><span class="line"><span class="number">4.</span>串行化：解决了脏读、不可重复读、幻读，但是因为事务是串行执行(排队)，所以性能较差</span><br></pre></td></tr></table></div></figure>
-
-<div class="table-container"><table>
-<thead>
-<tr>
-<th align="center">隔离级别</th>
-<th align="center">回滚覆盖</th>
-<th align="center">提交覆盖</th>
-<th align="center">幻读</th>
-<th align="center">不可重复读</th>
-<th align="center">幻读</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">读未提交（READ UNCOMMITTED）</td>
-<td align="center">×</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">读已提交（READ COMMITTED）</td>
-<td align="center">×</td>
-<td align="center">√</td>
-<td align="center">×</td>
-<td align="center">√</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">可重复读（REPEATABLE READ)</td>
-<td align="center">×</td>
-<td align="center">×</td>
-<td align="center">×</td>
-<td align="center">×</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">串行化  （SERIALIZABLE）</td>
-<td align="center">×</td>
-<td align="center">×</td>
-<td align="center">×</td>
-<td align="center">×</td>
-<td align="center">×</td>
-</tr>
-</tbody></table></div>
-
-        <h1 id="Redo-Log和Undo-Log的区别"   >
-          <a href="#Redo-Log和Undo-Log的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#Redo-Log和Undo-Log的区别" class="headerlink" title="Redo Log和Undo Log的区别"></a>Redo Log和Undo Log的区别</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Redo Log:当数据发生变化的时，redo log buffer会先将数据写入到redo log file中，当数据库宕机时可以冲redo log file中恢复数据</span><br><span class="line">undo log:记录的是数据的逻辑日志，他主要的作用在提供回滚和MVCC中。当日志执行回滚操作的时候读取undo log来回滚到之前的数据</span><br><span class="line">    </span><br><span class="line">redo log保证了事务的持久性，而undo log保证了事务的原子性和一致性</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="事务的隔离性是怎么保证的-（说说MVCC机制的理解）"   >
-          <a href="#事务的隔离性是怎么保证的-（说说MVCC机制的理解）" class="heading-link"><i class="fas fa-link"></i></a><a href="#事务的隔离性是怎么保证的-（说说MVCC机制的理解）" class="headerlink" title="事务的隔离性是怎么保证的?（说说MVCC机制的理解）"></a>事务的隔离性是怎么保证的?（说说MVCC机制的理解）</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">事务的隔离性主要是依靠锁+MVCC机制的实现</span><br><span class="line">其中MVCC指的是多版本并发空值，MVCC实现主要是有三个部分</span><br><span class="line">    第一个部分是隐藏字段，在Mysql中会有三个隐藏字段<span class="number">1.</span>事务ID(trx_id)<span class="number">2.</span>回滚指针(roll_pointer)<span class="number">3.</span>隐式主键(ROW_id)</span><br><span class="line">    第二个部分是undo log版本链，每个数据都有多个版本，多版本之间通过undo log链进行链接，链头是最新版本即最新数据，链尾是最老版本即最老数据</span><br><span class="line">    第三部分是Read View，ReadView解决的是一个事务选择的哪个版本的问题，而不同隔离级别的快照读也不同，RC级别下每一条Select语句都会生成ReadView 而RR级别只会在第一次执行Select生成ReadView然后后面复用这个ReadView，所以RR解决了不可重复读的问题，而RC没有解决不可重复读的问题</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="说说MySql的主从复制"   >
-          <a href="#说说MySql的主从复制" class="heading-link"><i class="fas fa-link"></i></a><a href="#说说MySql的主从复制" class="headerlink" title="说说MySql的主从复制"></a>说说MySql的主从复制</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MySql的主从搭建主要的用途：</span><br><span class="line"><span class="number">1.</span>实时灾备，用于故障切换</span><br><span class="line"><span class="number">2.</span>读写分离</span><br><span class="line"><span class="number">3.</span>用于数据备份</span><br><span class="line"></span><br><span class="line">MySql的主从复制的实现主要是以下三个步骤</span><br><span class="line"><span class="number">1.</span>主库开启了Binlog日志，当事务提交的时候会将记录在二进制日志文件binlog中</span><br><span class="line"><span class="number">2.</span>从库的IOthread读取到主库的BinLog日志的信息写到自己的中继日志 relay Log中</span><br><span class="line"><span class="number">3.</span>从库从relay Log进行数据的重做</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="你们项目中有没有使用过分库分表呢"   >
-          <a href="#你们项目中有没有使用过分库分表呢" class="heading-link"><i class="fas fa-link"></i></a><a href="#你们项目中有没有使用过分库分表呢" class="headerlink" title="你们项目中有没有使用过分库分表呢?"></a>你们项目中有没有使用过分库分表呢?</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">分库分表主要是因为单机存储达到瓶颈或者连接数，处理能力达到上限才需要用到</span><br><span class="line">我项目中没有用到分库分表[当单表数据量超过1000w或者20G时可以考虑分库分表]</span><br><span class="line">而对数据库优化这方面我学习到了分库分表的思想</span><br><span class="line"></span><br><span class="line">分库分表就是把一个数据库的数据分散存放到多个数据库上，分库分表包括垂直分库、垂直分表、水平分库、水平分表这四部分</span><br><span class="line"><span class="number">1.</span>垂直分库，将一个数据库按照业务不同来进行分库，将不同业务的表分布到不同数据库中</span><br><span class="line"><span class="number">2.</span>垂直分库，将一个数据库的表按照字段分表，不同字段分到不同表中</span><br><span class="line"><span class="number">3.</span>水平分库，将一个数据库的表，分散到不同数据库中【表结构一样数据不一样】</span><br><span class="line"><span class="number">4.</span>水平分表，将一个表的数据，分散到不同的表中【可以是同一个数据库中】</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="说说数据库中锁的种类"   >
-          <a href="#说说数据库中锁的种类" class="heading-link"><i class="fas fa-link"></i></a><a href="#说说数据库中锁的种类" class="headerlink" title="说说数据库中锁的种类"></a>说说数据库中锁的种类</h1>
-      
-        <h1 id="我们如何定位慢查询"   >
-          <a href="#我们如何定位慢查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#我们如何定位慢查询" class="headerlink" title="我们如何定位慢查询"></a>我们如何定位慢查询</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>我们可以开启MySql的慢查询日志，我们通过查看慢查询日志的信息可以知道慢查询的情况</span><br><span class="line"><span class="number">2.</span>通过show profile命令可以知道每一条SQL的执行耗时的基本情况，然后通过show profile <span class="keyword">for</span> query query_id 查询到指定的SQL各个阶段的耗时情况</span><br><span class="line"><span class="number">3.</span>通过在SQL语句前面添加explain关键字，查询当前sql的执行计划,可以通过key和key_len字段知道是否有命中索引，索引是否失效，通过type字段查看是否有优化空间，是否存在全盘扫描或者全索引扫描，通过extra字段知道是否有回表</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="什么是聚簇索引和非聚簇索引"   >
-          <a href="#什么是聚簇索引和非聚簇索引" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是聚簇索引和非聚簇索引" class="headerlink" title="什么是聚簇索引和非聚簇索引"></a>什么是聚簇索引和非聚簇索引</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">聚簇索引主要是数据和索引放在一起，索引结构的叶子结点保存了行数据。一般情况下是主键作为聚簇索引</span><br><span class="line">非聚簇索引就是数据和索引分开存放的，叶子结点存放的是对应主键的位置，我们创建的索引通常都是非聚簇索引</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="什么是回表查询"   >
-          <a href="#什么是回表查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是回表查询" class="headerlink" title="什么是回表查询"></a>什么是回表查询</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过非聚簇索引找到的数据不够，要通过主键值返回去查询聚簇索引获得整个行数据这个情况就是回表查询</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="什么是覆盖索引？"   >
-          <a href="#什么是覆盖索引？" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是覆盖索引？" class="headerlink" title="什么是覆盖索引？"></a>什么是覆盖索引？</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">覆盖索引指的是在查询时使用了索引，并且需要返回的列，在本次查找中可以全部找到。可以不用通过回表查询，这样能显著提高性能</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="什么情况下会造成索引失效？"   >
-          <a href="#什么情况下会造成索引失效？" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么情况下会造成索引失效？" class="headerlink" title="什么情况下会造成索引失效？"></a>什么情况下会造成索引失效？</h1>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>使用联合索引违背了最左前缀法则.</span><br><span class="line"><span class="number">2.</span>字符串没有加单引号，会导致类型转化造成了索引失效</span><br><span class="line"><span class="number">3.</span>在索引列上进行了运算操作，会导致索引失效</span><br><span class="line"><span class="number">4.</span>使用了模糊匹配，如果仅仅是尾部模糊匹配索引不会失效，而使用了头部模糊匹配索引会失效、</span><br><span class="line"><span class="number">5.</span>使用了or关键字，or条件一侧有索引一侧没有索引会造成索引失效，而两侧都有索引则不会失效</span><br><span class="line"><span class="number">6.</span>数据分布造成影响，如果使用索引比走全表扫描还慢则不会使用索引</span><br><span class="line"><span class="number">7.</span>范围查询右边的列索引会失效 如使用&lt;,&gt;则右边的列会失效</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="数据库优化"   >
-          <a href="#数据库优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据库优化" class="headerlink" title="数据库优化"></a>数据库优化</h1>
-      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MySql优化我觉得主要从两个部分</span><br></pre></td></tr></table></div></figure>
-
-
-        <h2 id="设计层面进行优化"   >
-          <a href="#设计层面进行优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#设计层面进行优化" class="headerlink" title="设计层面进行优化"></a>设计层面进行优化</h2>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>可以使用MySql主从集群，可以防止单个MySql宕机导致服务不可用，搭建集群可以保证服务的高可用</span><br><span class="line"><span class="number">2.</span>可以使用主从结构，进行读写分离</span><br><span class="line"><span class="number">3.</span>可以使用分库分表的思想，降低单个服务器节点上的IO压力</span><br></pre></td></tr></table></div></figure>
-
-
-        <h2 id="SQL优化"   >
-          <a href="#SQL优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#SQL优化" class="headerlink" title="SQL优化"></a>SQL优化</h2>
-      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>查询尽量使用索引来进行数据扫描</span><br><span class="line"><span class="number">2.</span>join优化，尽量使用inner join而不使用left join和right join 如果必须要用，则一定要以小表驱动</span><br><span class="line"><span class="number">3.</span>联合查询尽量用union all 替代union    union会多一次过滤操作，降低性能</span><br><span class="line"><span class="number">4.</span>插入数据的时候，批量插入，顺序插入 如果要大批量插入使用load命令</span><br><span class="line"><span class="number">5.</span>主键优化，主键长度尽量短、顺序插入</span><br><span class="line"><span class="number">6.</span>limit优化 使用覆盖索引+子查询</span><br><span class="line"><span class="number">7.</span>count优化 count(<span class="number">1</span>)≈count(*)&gt;count(主键id)&gt;count(字段)</span><br><span class="line"><span class="number">8.</span>update优化 尽量根据主键\索引更新数据  防止行锁升级成表锁java</span><br><span class="line"><span class="number">9.</span>group by  索引，多字段满足最左前缀法则</span><br><span class="line"><span class="number">10.</span>order by 直接通过索引返回数据</span><br></pre></td></tr></table></div></figure>
-
-
-        <h1 id="为什么MySql用B-树不用跳表？"   >
-          <a href="#为什么MySql用B-树不用跳表？" class="heading-link"><i class="fas fa-link"></i></a><a href="#为什么MySql用B-树不用跳表？" class="headerlink" title="为什么MySql用B+树不用跳表？"></a>为什么MySql用B+树不用跳表？</h1>
-      </div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-right"></i></a></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">31</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+      </div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-right"></i></a></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">32</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
   var isXML = true;
   var search_path = 'search.xml';
 
