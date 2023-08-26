@@ -28,7 +28,250 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/03/06/%E5%AE%9E%E7%8E%B0%E5%B8%A6%E6%9D%83%E9%87%8D%E7%9A%84%E7%AE%97%E6%B3%95%E9%94%99%E8%A7%A3%E4%B8%8E%E6%94%B9%E6%AD%A3/">实现带权重的算法错解与改正</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-03-06</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">3.5k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">27分</span></span></div></header><div class="post-body"><div class="post-excerpt">
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/04/25/canal%E5%AE%9E%E7%8E%B0%E7%BC%93%E5%AD%98%E5%90%8C%E6%AD%A5/">canal实现缓存同步</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-04-25</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.2k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="使用canal实现Redis与Mysql的缓存同步"   >
+          <a href="#使用canal实现Redis与Mysql的缓存同步" class="heading-link"><i class="fas fa-link"></i></a><a href="#使用canal实现Redis与Mysql的缓存同步" class="headerlink" title="使用canal实现Redis与Mysql的缓存同步"></a>使用canal实现Redis与Mysql的缓存同步</h1>
+      
+        <h2 id="在停机的条件下进行数据同步"   >
+          <a href="#在停机的条件下进行数据同步" class="heading-link"><i class="fas fa-link"></i></a><a href="#在停机的条件下进行数据同步" class="headerlink" title="在停机的条件下进行数据同步"></a>在停机的条件下进行数据同步</h2>
+      <p>直接单线程更新数据即可  可以达成数据一致性</p>
+
+        <h2 id="在不停机的条件下进行数据同步"   >
+          <a href="#在不停机的条件下进行数据同步" class="heading-link"><i class="fas fa-link"></i></a><a href="#在不停机的条件下进行数据同步" class="headerlink" title="在不停机的条件下进行数据同步"></a>在不停机的条件下进行数据同步</h2>
+      <p>Redis和Mysql进行数据同步的时候有四种方案</p>
+
+        <h3 id="方案1"   >
+          <a href="#方案1" class="heading-link"><i class="fas fa-link"></i></a><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h3>
+      <p>先更新数据库再更新缓存</p>
+<p>存在问题</p>
+<p>再更新Mysql成功之后更新Redis失败 会导致脏数据的存在</p>
+<p>举例：</p>
+<p>甲的订单库存为100个 更改Mysql之后Mysql变成99个  再更新Redis时失败</p>
+<p>导致结果为 Redis中数据为100  而Mysql中数据为99  存在脏数据</p>
+
+        <h4 id="正常情况下"   >
+          <a href="#正常情况下" class="heading-link"><i class="fas fa-link"></i></a><a href="#正常情况下" class="headerlink" title="正常情况下"></a>正常情况下</h4>
+      <p>A更新Mysql 为50</p>
+<p>A更新Redis  为50</p>
+<p>B更新Mysql 为30</p>
+<p>B更新Redis 为30</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>最终结果是Mysql：30 Redis：30    数据一致</p>
+
+        <h4 id="多线程异常情况下"   >
+          <a href="#多线程异常情况下" class="heading-link"><i class="fas fa-link"></i></a><a href="#多线程异常情况下" class="headerlink" title="多线程异常情况下"></a>多线程异常情况下</h4>
+      <p>A更新Mysql为50</p>
+<p>B更新Mysql为30</p>
+<p>B更新Redis为30</p>
+<p>A更新Redis为50</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>最终结果是Mysql:30 Redis:50   </p>
+<p>因此会导致数据的不一致 </p>
+
+        <h3 id="方案2"   >
+          <a href="#方案2" class="heading-link"><i class="fas fa-link"></i></a><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h3>
+      <p>先更新缓存再更新数据库</p>
+<p>同时也存在问题</p>
+
+        <h4 id="正常情况下-1"   >
+          <a href="#正常情况下-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#正常情况下-1" class="headerlink" title="正常情况下"></a>正常情况下</h4>
+      <p>A更新Redis为50</p>
+<p>A更新Mysql为50</p>
+<p>B更新Redis为30</p>
+<p>B更新Mysql为30</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>最终结果时Mysql:30 Redis:30  数据一致</p>
+
+        <h4 id="多线程异常情况下-1"   >
+          <a href="#多线程异常情况下-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#多线程异常情况下-1" class="headerlink" title="多线程异常情况下"></a>多线程异常情况下</h4>
+      <p>A更新Redis为50</p>
+<p>B更新Redis为30</p>
+<p>B更新Mysql为30</p>
+<p>A更新Mysql为50</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>最终结果时Mysql:50 Redis:30 数据不一致</p>
+<p>并且数据库作为底单数据，所以不推荐使用此方案</p>
+
+        <h3 id="方案3"   >
+          <a href="#方案3" class="heading-link"><i class="fas fa-link"></i></a><a href="#方案3" class="headerlink" title="方案3"></a>方案3</h3>
+      <p>先删除缓存再更新数据库</p>
+
+        <h4 id="异常情况"   >
+          <a href="#异常情况" class="heading-link"><i class="fas fa-link"></i></a><a href="#异常情况" class="headerlink" title="异常情况"></a>异常情况</h4>
+      <p>A线程删除缓存之后更新数据库【此时数据库并未更新完】 </p>
+<p>B线程来获取数据</p>
+<p>B线程发现缓存中没有数据,B就去查数据库</p>
+<p>B查询数据库获得旧数据,并且写回于缓存中</p>
+<p>A更新数据库完成  【Redis此时只有B线程处理后写回的旧数据】</p>
+<p>其他线程获取数据时 发现缓存没有查数据库再把新数据写回缓存</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>最终结果 数据库中为新数据   缓存中存在B线程写回的旧数据 并且无法更改【一直存在脏数据】</p>
+
+        <h4 id="改进方法"   >
+          <a href="#改进方法" class="heading-link"><i class="fas fa-link"></i></a><a href="#改进方法" class="headerlink" title="改进方法"></a>改进方法</h4>
+      
+        <h5 id="延迟双删"   >
+          <a href="#延迟双删" class="heading-link"><i class="fas fa-link"></i></a><a href="#延迟双删" class="headerlink" title="延迟双删"></a>延迟双删</h5>
+      <p>在删除缓存之后数据库更新未完成  其他线程写回的旧数据再进行一次删除</p>
+<p>即删除缓存-&gt;数据库更新-&gt;删除缓存  </p>
+<p>删除两次缓存保证数据的最终一致性</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.先删除旧数据</span></span><br><span class="line">jedis.del(order.getId()+<span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="comment">//2.更新数据库</span></span><br><span class="line">orderDao.update(order);</span><br><span class="line"><span class="comment">//3.暂停一会等待其他线程获取旧数据</span></span><br><span class="line">thread.sleep(<span class="number">2</span>);<span class="comment">//暂停时间大概是处理业务逻辑时间后再加几百毫秒</span></span><br><span class="line"><span class="comment">//4.再删除旧数据</span></span><br><span class="line">jedis.del(order.getId()+<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<p>最终保证数据最终的一致性</p>
+<p>但是</p>
+<p>1、无法较为精准地控制休眠时间</p>
+<p>2、这种同步删除的操作会降低吞吐量</p>
+
+        <h3 id="方案4"   >
+          <a href="#方案4" class="heading-link"><i class="fas fa-link"></i></a><a href="#方案4" class="headerlink" title="方案4"></a>方案4</h3>
+      <p>先更新数据库再删除缓存</p>
+<p>问题是在数据库未更新完时 其他线程获得的数据是缓存旧值</p>
+
+        <h5 id="此时用canal监控Mysql并且同步写回到Redis中"   >
+          <a href="#此时用canal监控Mysql并且同步写回到Redis中" class="heading-link"><i class="fas fa-link"></i></a><a href="#此时用canal监控Mysql并且同步写回到Redis中" class="headerlink" title="此时用canal监控Mysql并且同步写回到Redis中"></a>此时用canal监控Mysql并且同步写回到Redis中</h5>
+      
+        <h4 id="准备工作"   >
+          <a href="#准备工作" class="heading-link"><i class="fas fa-link"></i></a><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4>
+      
+        <h5 id="mysql端"   >
+          <a href="#mysql端" class="heading-link"><i class="fas fa-link"></i></a><a href="#mysql端" class="headerlink" title="mysql端"></a>mysql端</h5>
+      <p>打开mysql的安装路径-修改my.ini文件</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql-bin  #开启 binlog</span><br><span class="line">binlog-format=ROW  #选择ROW模式</span><br><span class="line">server_id=1        #配置Mysql replaction需要定义</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+
+<p>修改文件之后重启mysql服务即可</p>
+
+        <h5 id="canal端"   >
+          <a href="#canal端" class="heading-link"><i class="fas fa-link"></i></a><a href="#canal端" class="headerlink" title="canal端"></a>canal端</h5>
+      <p>下载canal.depolyer-1.1.6.tar.gz 并解压到对应文件夹</p>
+<p>修改配置文件</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim conf/example/instance.properties</span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425203014303.png"  alt="image-20230425203014303">
+      </p>
+<p>修改canal.instance.master.address地址   改为要监控的IP地址以及数据库端口号</p>
+<p>通过ipconfig命令获得本机的IP地址为10.66.9.48</p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425203214178.png"  alt="image-20230425203214178">
+      </p>
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><p>修改之后</p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425203314812.png"  alt="image-20230425203314812">
+      </p>
+<p>返回解压文件夹后开启canal服务</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ../..</span><br><span class="line">cd bin</span><br><span class="line">./startup.sh                //如果修改配置之前开启过服务应先暂停 ./stop.sh</span><br></pre></td></tr></table></div></figure>
+
+
+
+<p>查看log日志检查canal开启情况</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ../</span><br><span class="line">cd logs/canal</span><br><span class="line">cat canal.log</span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230425204205562.png"  alt="image-20230425204205562">
+      </p>
+<p>表示成功运行</p>
+
+        <h5 id="redis端"   >
+          <a href="#redis端" class="heading-link"><i class="fas fa-link"></i></a><a href="#redis端" class="headerlink" title="redis端"></a>redis端</h5>
+      <p>启动服务端口号为6379</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server redis6379.conf</span><br></pre></td></tr></table></div></figure>
+
+
+
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/03/09/%E6%8E%A2%E7%A9%B6safeEqual%E6%96%B9%E6%B3%95/">探究safeEqual方法</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-03-09</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.4k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">10分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p><strong>对safeEqual判断</strong></p>
+
+        <h1 id="代码如下"   >
+          <a href="#代码如下" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h1>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">safeEqual</span><span class="params">(String a,String b)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.length()!=b.length())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> equal=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        equal |= a.charAt(i) ^ b.charAt(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> equal==<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>这几行代码很少，一段段很好看懂</p>
+<p>一开始判断字符串长度,如果字符串长度不相同的话直接返回false;</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a.length()!=b.length())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>定义了一个equal变量  先赋值为0;</p>
+<p>到下面循环的时候字符串长度已经相同了</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> equal=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        equal |= a.charAt(i) ^ b.charAt(i);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>对a字符串循环,取出每一个字符来然后与b中的每一个字符做异或操作，如果有不相同的结果就会为1,再把1与equal变量做或操作。</p>
+<p>只要异或有一次为1则后面equal的值都会为1</p>
+<p>最后返回的值是 比较equal是否为0  如果equal为0则返回true,如果为1则返回false</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> equal==<span class="number">0</span>;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h2 id="第一次思考"   >
+          <a href="#第一次思考" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次思考" class="headerlink" title="第一次思考"></a>第一次思考</h2>
+      <p>如果改正一下中间循环的操作是否更简单呢？</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">safeEqual</span><span class="params">(String a,String b)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.length()!=b.length())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> equal=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        equal = a.charAt(i) ^ b.charAt(i);</span><br><span class="line">        <span class="keyword">if</span>(equal!=<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>1.先判断字符串是否长度相同，如果不同直接返回false</p>
+<p>2.再循环获得每一个字符 只要有一个字符不相同的时候就返回false</p>
+<p>3.如果循环结束都没有返回false 那就是字符串相同所以返回true</p>
+
+        <h3 id="关键点"   >
+          <a href="#关键点" class="heading-link"><i class="fas fa-link"></i></a><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3>
+      <p>但是这个方法的名字是safeEqual,如果是下面的循环直接中断和每一次遍历完字符串有什么区别呢？</p>
+<p>经过提示，我去JDK里面也找到一个有相同思路的方法</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isEqual</span><span class="params">(<span class="type">byte</span>[] digesta, <span class="type">byte</span>[] digestb)</span> &#123;</span><br><span class="line">    <span class="comment">/* All bytes in digesta are examined to determine equality.</span></span><br><span class="line"><span class="comment">     * The calculation time depends only on the length of digesta</span></span><br><span class="line"><span class="comment">     * It does not depend on the length of digestb or the contents</span></span><br><span class="line"><span class="comment">     * of digesta and digestb.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">if</span> (digesta == digestb) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (digesta == <span class="literal">null</span> || digestb == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">lenA</span> <span class="operator">=</span> digesta.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">lenB</span> <span class="operator">=</span> digestb.length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lenB == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> lenA == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    result |= lenA - lenB;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// time-constant comparison</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; lenA; i++) &#123;</span><br><span class="line">        <span class="comment">// If i &gt;= lenB, indexB is 0; otherwise, i.</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">indexB</span> <span class="operator">=</span> ((i - lenB) &gt;&gt;&gt; <span class="number">31</span>) * i;</span><br><span class="line">        result |= digesta[i] ^ digestb[indexB];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="重点"   >
+          <a href="#重点" class="heading-link"><i class="fas fa-link"></i></a><a href="#重点" class="headerlink" title="重点"></a>重点</h3>
+      <p>在JDK里面这个方法中有一个注释 不太一样</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// time-constant comparison</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; lenA; i++) &#123;</span><br><span class="line">        <span class="comment">// If i &gt;= lenB, indexB is 0; otherwise, i.</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">indexB</span> <span class="operator">=</span> ((i - lenB) &gt;&gt;&gt; <span class="number">31</span>) * i;</span><br><span class="line">        result |= digesta[i] ^ digestb[indexB];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result == <span class="number">0</span>;</span><br></pre></td></tr></table></div></figure>
+
+<p>time-constant comparison</p>
+<p>经过找资料之后发现这个一个黑客技术：计时攻击</p>
+<p>开始理解这个遍历完字符串的原因</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设A字符串为aaaaaaaaaa b字符串为bbbbbbbbbb</span></span><br><span class="line">那么</span><br><span class="line">    如果用改过之后的方法,当遍历到第一个字符的时候就已经返回了。</span><br><span class="line">    这样返回数据的速度很快, 如果利用这一个运行时间 就可能可以猜出第一个字母就不是a</span><br><span class="line"></span><br><span class="line">同理 </span><br><span class="line">    如果<span class="string">&quot;bxxxxxxxxxxx&quot;</span>的时间运行时间较长于其他的字符</span><br><span class="line">    那么就可以猜测第一个字符就是b开头的</span><br><span class="line"></span><br><span class="line">找到可能的第一个字符，再用第一个字符固定的字符串</span><br><span class="line">    如<span class="string">&quot;baaaaaaaaaa&quot;</span> 和b字符串做比较  </span><br><span class="line">    不断遍历就很大可能可以获得到b字符串所有的数据</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<p>这种方法有可能用来撞库获得用户密码数据，所以safeEqual的关键点于每一次比较之后都是遍历完字符串，对返回时间都大概是相近的，所以对计时攻击有抵抗作用</p>
+
+        <h2 id="第二次思考"   >
+          <a href="#第二次思考" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二次思考" class="headerlink" title="第二次思考"></a>第二次思考</h2>
+      
+        <h3 id="关键点-1"   >
+          <a href="#关键点-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#关键点-1" class="headerlink" title="关键点"></a>关键点</h3>
+      <p>没有对数据做校验，可能会传来空字符串</p>
+<p>safeEqual还有代码的不完全，对接受的数据字符串a和字符串b没有做非空判断，所以代码是不安全的</p>
+<p>直接对a和b的长度进行判断可能程序会出异常</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private boolean safeEqual(String a,String b)&#123;</span><br><span class="line">    if(a.length()!=b.length())&#123;</span><br><span class="line">        return false;</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>而在jdk中的代码对a和b是否为空做了判断</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isEqual</span><span class="params">(<span class="type">byte</span>[] digesta, <span class="type">byte</span>[] digestb)</span> &#123;</span><br><span class="line">    <span class="comment">/* All bytes in digesta are examined to determine equality.</span></span><br><span class="line"><span class="comment">     * The calculation time depends only on the length of digesta</span></span><br><span class="line"><span class="comment">     * It does not depend on the length of digestb or the contents</span></span><br><span class="line"><span class="comment">     * of digesta and digestb.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">if</span> (digesta == digestb) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (digesta == <span class="literal">null</span> || digestb == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>对传来的数据digesta和digestb做了非空判断，如果其中有一个为空就直接返回false</p>
+
+        <h2 id="第三次思考"   >
+          <a href="#第三次思考" class="heading-link"><i class="fas fa-link"></i></a><a href="#第三次思考" class="headerlink" title="第三次思考"></a>第三次思考</h2>
+      
+        <h3 id="关键点-2"   >
+          <a href="#关键点-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#关键点-2" class="headerlink" title="关键点"></a>关键点</h3>
+      <p>safeEqual和IsEqual方法都是为了可能因为避免结束时间不同而导致的数据泄露，那能不能不用遍历完来改进代码呢？如果每次都是遍历完的话字符串太长会浪费资源</p>
+<p>所以我觉得可以调用sleep来解决这个问题</p>
+
+        <h3 id="改进之后"   >
+          <a href="#改进之后" class="heading-link"><i class="fas fa-link"></i></a><a href="#改进之后" class="headerlink" title="改进之后"></a>改进之后</h3>
+      <p>1.先对字符串做非空判断</p>
+<p>2.对字符串长度做判断</p>
+<p>3.使进程睡眠一个随机时间</p>
+<p>4.对字符串遍历 当发现有一个不同的时候就返回false</p>
+<p>代码如下</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">safeEqual</span><span class="params">(String a,String b)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a==<span class="literal">null</span>||b==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(a.length()!=b.length())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">    <span class="type">Random</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">    <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> r.nextInt(<span class="number">1000</span>)+<span class="number">100</span>;</span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">          t.sleep(l);</span><br><span class="line">     &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">          e.printStackTrace();</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="type">int</span> equal=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        equal = a.charAt(i) ^ b.charAt(i);</span><br><span class="line">        <span class="keyword">if</span>(equal!=<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="新的问题"   >
+          <a href="#新的问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#新的问题" class="headerlink" title="新的问题"></a>新的问题</h3>
+      <p>1.因中断引起的资源损失会不会导致得不偿失？</p>
+<p>2.大数据统计的时间ms值是否一样能造成Time Attack的效果？</p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/03/06/%E5%AE%9E%E7%8E%B0%E5%B8%A6%E6%9D%83%E9%87%8D%E7%9A%84%E7%AE%97%E6%B3%95%E9%94%99%E8%A7%A3%E4%B8%8E%E6%94%B9%E6%AD%A3/">实现带权重的算法错解与改正</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-03-06</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">3.5k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">27分</span></span></div></header><div class="post-body"><div class="post-excerpt">
         <h1 id="学习带权重的算法"   >
           <a href="#学习带权重的算法" class="heading-link"><i class="fas fa-link"></i></a><a href="#学习带权重的算法" class="headerlink" title="学习带权重的算法"></a>学习带权重的算法</h1>
       <p>在学习IO流中用权重的算法生成点名器  要求是每次点名之后被点到的人之后的概率为之前概率的一半</p>
@@ -575,7 +818,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <h3 id="lambda表达式"   >
           <a href="#lambda表达式" class="heading-link"><i class="fas fa-link"></i></a><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3>
       <p>本质上是匿名内部类，实际上是一个Runnbale接口的实现类</p>
-</div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">35</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+</div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">37</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
   var isXML = true;
   var search_path = 'search.xml';
 
