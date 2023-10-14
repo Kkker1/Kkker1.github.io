@@ -1,0 +1,540 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="动态规划       动态规划的问题，通常是有多个重叠子问题构成，类似于背包问题，于是可以用动态规划来解决。  动态规划中每一个状态一定是由上一个状态推导出来的  动态规划与贪心算法的区别：  动态规划的每一个状态都是由上一个确定的状态推导出 贪心算法的每一个状态都是局部最优解，来从局部最优解中选出全局最优解  通过卡哥的视频学习，我们首先要学习一个做动态规">
+<meta property="og:type" content="article">
+<meta property="og:title" content="死之前要做完的算法手册-[9.动态规划]">
+<meta property="og:url" content="https://username.github.io/2023/10/13/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-[9.%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92]/index.html">
+<meta property="og:site_name" content="KkkerAn&#39;s Blog">
+<meta property="og:description" content="动态规划       动态规划的问题，通常是有多个重叠子问题构成，类似于背包问题，于是可以用动态规划来解决。  动态规划中每一个状态一定是由上一个状态推导出来的  动态规划与贪心算法的区别：  动态规划的每一个状态都是由上一个确定的状态推导出 贪心算法的每一个状态都是局部最优解，来从局部最优解中选出全局最优解  通过卡哥的视频学习，我们首先要学习一个做动态规">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-13T10:33:53.000Z">
+<meta property="article:modified_time" content="2023-10-14T06:20:18.961Z">
+<meta property="article:author" content="KkkerAn">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary"><title>死之前要做完的算法手册-[9.动态规划] | KkkerAn's Blog</title><link ref="canonical" href="https://username.github.io/2023/10/13/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-[9.%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92]/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">死之前要做完的算法手册-[9.动态规划]</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-13</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.3k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">16分</span></span></div></header><div class="post-body">
+        <h1 id="动态规划"   >
+          <a href="#动态规划" class="heading-link"><i class="fas fa-link"></i></a><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1>
+      <p>动态规划的问题，通常是有多个重叠子问题构成，类似于背包问题，于是可以用动态规划来解决。</p>
+<blockquote>
+<p>动态规划中每一个状态一定是由上一个状态推导出来的</p>
+</blockquote>
+<p><strong>动态规划</strong>与<strong>贪心算法</strong>的区别：</p>
+<ul>
+<li>动态规划的每一个状态都是由上一个确定的状态推导出</li>
+<li>贪心算法的每一个状态都是局部最优解，来从局部最优解中选出全局最优解</li>
+</ul>
+<p>通过卡哥的视频学习，我们首先要学习一个做动态规划的一个思路，也即公式：动态规划五部曲</p>
+<p><strong>动态规划五部曲</strong></p>
+<ul>
+<li>确认dp数组以及下标的含义</li>
+<li>确定递推公式：</li>
+<li>dp数组如何初始化</li>
+<li>确认遍历顺序</li>
+<li>打印dp数组值，确保推导正确</li>
+</ul>
+
+        <h2 id="基本问题"   >
+          <a href="#基本问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本问题" class="headerlink" title="基本问题"></a>基本问题</h2>
+      
+        <h3 id="509-斐波那契数"   >
+          <a href="#509-斐波那契数" class="heading-link"><i class="fas fa-link"></i></a><a href="#509-斐波那契数" class="headerlink" title="509.斐波那契数"></a>509.斐波那契数</h3>
+      <p><strong>斐波那契数</strong> （通常用 <code>F(n)</code> 表示）形成的序列称为 <strong>斐波那契数列</strong> 。该数列由 <code>0</code> 和 <code>1</code> 开始，后面的每一项数字都是前面两项数字的和。也就是：</p>
+<blockquote>
+<p>F(0) &#x3D; 0，F(1) &#x3D; 1<br>F(n) &#x3D; F(n - 1) + F(n - 2)，其中 n &gt; 1</p>
+</blockquote>
+<p>给定 <code>n</code> ，请计算 <code>F(n)</code> 。</p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/fibonacci-number/" >Leetcode.509(easy)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h4 id="第一次做"   >
+          <a href="#第一次做" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次做" class="headerlink" title="第一次做"></a>第一次做</h4>
+      <p>第一次做于23&#x2F;10&#x2F;13</p>
+
+        <h5 id="第一次代码"   >
+          <a href="#第一次代码" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次代码" class="headerlink" title="第一次代码"></a>第一次代码</h5>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">fib</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] dp=<span class="keyword">new</span> <span class="title class_">int</span>[n+<span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        dp[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            dp[i]=dp[i-<span class="number">1</span>]+dp[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h6 id="提交成功"   >
+          <a href="#提交成功" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交成功" class="headerlink" title="提交成功"></a>提交成功</h6>
+      
+        <h4 id="题解"   >
+          <a href="#题解" class="heading-link"><i class="fas fa-link"></i></a><a href="#题解" class="headerlink" title="题解"></a>题解</h4>
+      <p>思路：我们求这个题可以用动态规划也能用递归函数，但是这里我们主要用的是动态规划来做这道题目，因为这道题目给出了递推公式，也提供了初始化数值，所以这道题很容易就能ac</p>
+<p><strong>实现</strong></p>
+<ul>
+<li><p>动态规划五部曲</p>
+<ul>
+<li><p>确认dp数组以及下标的含义：dp数组用于记录每一个斐波那契数值，下标i就是对应的n</p>
+</li>
+<li><p>确定递推公式：<br>$$<br>F(n)&#x3D;Fn(n-1)+Fn(n-2)<br>$$</p>
+</li>
+<li><p>dp数组如何初始化:<code>F(0)=0,F(1)=1</code></p>
+</li>
+<li><p>确认遍历顺序:从前向后</p>
+</li>
+<li><p>打印dp数组值，确保推导正确：当出现错误的时候Debug，通过递推公式以及遍历顺序确定dp数组的数值</p>
+</li>
+</ul>
+</li>
+<li><p>检验n的有效性，当n小于2的时候数值已经确定，直接返回n：<code>return n</code></p>
+</li>
+<li><p>维护一个dp数组，由递推公式从前向后给dp数组赋值</p>
+</li>
+<li><p>返回n对应下标dp[n]：<code>return dp[n]</code></p>
+</li>
+</ul>
+<p><strong>未压缩状态代码</strong></p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">fib</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="comment">//当n为0和1的时候数值都已经确定，直接返回</span></span><br><span class="line">    	<span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">		</span><br><span class="line">    	<span class="comment">//维护一个dp数组，后一个数字是前两个数字的和，初始化数组</span></span><br><span class="line">        <span class="type">int</span>[] dp=<span class="keyword">new</span> <span class="title class_">int</span>[n+<span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        dp[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    	</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            dp[i]=dp[i-<span class="number">1</span>]+dp[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="comment">//返回对应的数据</span></span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+<p>因此我们可以知道，这个结果后一个数字由前两个数字确定，所以其实不用维护一个dp数组，我们只要知道前两个数的大小就能推出最后一个数是多少，也即：<strong>我们只需知道前两个数字数值就能推出下一个数字数值</strong></p>
+<p><strong>压缩状态后代码</strong></p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">fib</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(n&lt;<span class="number">2</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="type">int</span> dp0=<span class="number">0</span>; <span class="comment">//第一个数字</span></span><br><span class="line">        <span class="type">int</span> dp1=<span class="number">1</span>; <span class="comment">//第二个数字</span></span><br><span class="line">        <span class="type">int</span> sum=<span class="number">0</span>; <span class="comment">//要求的值</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            sum=dp0+dp1; <span class="comment">//当前数值是前两个数字之和</span></span><br><span class="line">            dp0=dp1; <span class="comment">//将第一个数字数值更新成第二个数字数值</span></span><br><span class="line">            dp1=sum; <span class="comment">//将第二个数字数值更新成当前数字值，更新数据用于求下一个数值</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+
+
+        <h3 id="70-爬楼梯"   >
+          <a href="#70-爬楼梯" class="heading-link"><i class="fas fa-link"></i></a><a href="#70-爬楼梯" class="headerlink" title="70.爬楼梯"></a>70.爬楼梯</h3>
+      <p>假设你正在爬楼梯。需要 <code>n</code> 阶你才能到达楼顶。</p>
+<p>每次你可以爬 <code>1</code> 或 <code>2</code> 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/climbing-stairs/description/" >Leetcode.70题(easy)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h4 id="第一次做-1"   >
+          <a href="#第一次做-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次做-1" class="headerlink" title="第一次做"></a>第一次做</h4>
+      <p>第一次做于23&#x2F;10&#x2F;14</p>
+
+        <h5 id="第一次代码-1"   >
+          <a href="#第一次代码-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次代码-1" class="headerlink" title="第一次代码"></a>第一次代码</h5>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">climbStairs</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;<span class="number">2</span>) <span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> dp0=<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> dp1=<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            sum=dp0+dp1;</span><br><span class="line">            dp0=dp1;</span><br><span class="line">            dp1=sum;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h6 id="提交成功-1"   >
+          <a href="#提交成功-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交成功-1" class="headerlink" title="提交成功"></a>提交成功</h6>
+      
+        <h4 id="题解-1"   >
+          <a href="#题解-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#题解-1" class="headerlink" title="题解"></a>题解</h4>
+      <p>思想：这道题和斐波那契数本质上是一样的，只是在分析这道题的题意的时候要推导出<strong>递推公式</strong></p>
+<p><strong>实现</strong></p>
+<ul>
+<li><p>动态规划五部曲</p>
+<ul>
+<li><p>确定dp数组以及下标的含义：dp[i]是走到第i个台阶有几种方法，下标i对应第n个台阶</p>
+</li>
+<li><p>确定递推公式</p>
+<p>第i阶台阶的走法由第i-1阶台阶以及第i-2阶台阶方法之和：</p>
+<ul>
+<li>达到第i阶台阶：第i-1阶台阶只走一步，第i-2阶台阶只走两步</li>
+<li>也即第i阶台阶&#x3D;第i-1阶台阶方法×（1）+第i-2阶台阶方法× （1），例如i&#x3D;3，那么到达第三阶台阶只有第二阶台阶方法再走一步以及第一阶台阶走两步</li>
+</ul>
+<p>也即递推公式：<br>$$<br>F(n)&#x3D;F(n-1)+F(n-2)<br>$$</p>
+</li>
+<li><p>dp数组如何初始化：第一阶台阶只有一种方法dp1&#x3D;1，第二阶台阶只有两种方法dp2&#x3D;2</p>
+</li>
+<li><p>遍历顺序：从前向后，因为后一阶台阶都由前面两阶台阶方法确定</p>
+</li>
+<li><p>打印dp数组</p>
+</li>
+</ul>
+</li>
+<li><p>检验台阶n的有效性：n&lt;&#x3D;2的时候直接返回n：<code>if(n&lt;=2) return n;</code></p>
+</li>
+<li><p>初始化dp数组：因为第0阶台阶毫无意义，所以我们只要初始化第一阶和第二阶台阶数值：<code>dp1=1;dp2=2;</code></p>
+</li>
+<li><p>从第三阶台阶开始遍历，维护dp数组</p>
+</li>
+<li><p>返回第n阶台阶dp[n]</p>
+</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">climbStairs</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">2</span>) <span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> dp1=<span class="number">1</span>; <span class="comment">//第一阶一种方法</span></span><br><span class="line">        <span class="type">int</span> dp2=<span class="number">2</span>; <span class="comment">//第二阶两种方法</span></span><br><span class="line">        <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">//从第三阶开始</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">3</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            sum=dp1+dp2;</span><br><span class="line">            dp1=dp2;</span><br><span class="line">            dp2=sum;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="746-使用最小花费爬楼梯"   >
+          <a href="#746-使用最小花费爬楼梯" class="heading-link"><i class="fas fa-link"></i></a><a href="#746-使用最小花费爬楼梯" class="headerlink" title="746.使用最小花费爬楼梯"></a>746.使用最小花费爬楼梯</h3>
+      <p>给你一个整数数组 <code>cost</code> ，其中 <code>cost[i]</code> 是从楼梯第 <code>i</code> 个台阶向上爬需要支付的费用。一旦你支付此费用，即可选择向上爬一个或者两个台阶。</p>
+<p>你可以选择从下标为 <code>0</code> 或下标为 <code>1</code> 的台阶开始爬楼梯。</p>
+<p>请你计算并返回达到楼梯顶部的最低花费。</p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/min-cost-climbing-stairs/description/" >Leetcode.746题(easy)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h4 id="第一次做-2"   >
+          <a href="#第一次做-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次做-2" class="headerlink" title="第一次做"></a>第一次做</h4>
+      <p>第一次做于23&#x2F;10&#x2F;14</p>
+
+        <h5 id="第一次代码-2"   >
+          <a href="#第一次代码-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一次代码-2" class="headerlink" title="第一次代码"></a>第一次代码</h5>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minCostClimbingStairs</span><span class="params">(<span class="type">int</span>[] cost)</span> &#123;</span><br><span class="line">        <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=cost.length;i&gt;=<span class="number">2</span>;)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cost[i-<span class="number">1</span>]&lt;cost[i-<span class="number">2</span>])&#123;</span><br><span class="line">                sum+=cost[i-<span class="number">1</span>];</span><br><span class="line">                i--;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                sum+=cost[i-<span class="number">2</span>];</span><br><span class="line">                i=i-<span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h6 id="提交失败"   >
+          <a href="#提交失败" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交失败" class="headerlink" title="提交失败"></a>提交失败</h6>
+      <p>CASE:</p>
+<p>cost&#x3D;[0,2,2,1]</p>
+<p>输出：3</p>
+<p>预期输出：2</p>
+
+        <h5 id="第二次代码"   >
+          <a href="#第二次代码" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二次代码" class="headerlink" title="第二次代码"></a>第二次代码</h5>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minCostClimbingStairs</span><span class="params">(<span class="type">int</span>[] cost)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    	<span class="comment">//维护Cost[i]表示跳到当前位置i所需的最小花费之和</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;cost.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cost[i-<span class="number">1</span>]&lt;cost[i-<span class="number">2</span>])&#123;</span><br><span class="line">                cost[i]=cost[i]+cost[i-<span class="number">1</span>];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                cost[i]=cost[i]+cost[i-<span class="number">2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    	</span><br><span class="line">    	<span class="comment">//因为顶楼可以由倒数第一阶台阶跳一格和倒数第二阶跳两格，所以从两者花费较少的一个达到</span></span><br><span class="line">        <span class="keyword">if</span>(cost[cost.length-<span class="number">2</span>]&lt;cost[cost.length-<span class="number">1</span>])&#123;</span><br><span class="line">            <span class="keyword">return</span> cost[cost.length-<span class="number">2</span>];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> cost[cost.length-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h6 id="提交成功-2"   >
+          <a href="#提交成功-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交成功-2" class="headerlink" title="提交成功"></a>提交成功</h6>
+      
+        <h4 id="题解-2"   >
+          <a href="#题解-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#题解-2" class="headerlink" title="题解"></a>题解</h4>
+      <p>思路：这道题由前面爬楼梯题目结合了体力值，本质上还是爬楼梯那道题目，但是这里的区别还有在于楼顶在于多少，例如cost&#x3D;{10,15,20}，cost.length&#x3D;&#x3D;3,那么楼顶在下标为3的位置，也即[10,15,20,楼顶]</p>
+<p><strong>实现</strong></p>
+<ul>
+<li><p>动态规划五部曲</p>
+<ul>
+<li><p>确定dp数组以及下标的含义：dp[i]是对应下标i的<strong>最小体力耗费</strong>，i对应台阶位置</p>
+</li>
+<li><p>确定递推公式</p>
+<p>第i个台阶的最小花费在dp[i-1]+cost[i-1]和dp[i-2]+cost[i-2]之间的最小值<br>$$<br>F(n)&#x3D;Math.min(F(n-1)+cost[n-1],F(n-2)+cost[n-2])<br>$$</p>
+</li>
+<li><p>初始化dp数组：dp[0]&#x3D;0，dp[1]&#x3D;0，因为可以选择从0或者1台阶开始跳，所以选择的时候花费为0，也即站在0台阶或者1台阶的时候不需要体力消耗</p>
+</li>
+<li><p>遍历顺序：从前向后，后面的台阶一定是前两个台阶走上来的，所以后一个状态一定能从前两个台阶状态确定</p>
+</li>
+<li><p>打印dp数组</p>
+</li>
+</ul>
+</li>
+<li><p>初始化dp数组，dp&#x3D;0，dp1&#x3D;0，dpi&#x3D;0</p>
+</li>
+<li><p>遍历cost数组，到达第i个台阶体力消耗是前两个台阶的最小体力消耗加上对应的跳跃消耗：</p>
+<p><code>dpi=Math.min(dp0+cost[i-2],dp1+cost[i-1])</code></p>
+<p>更新dp0和dp1，<code>dp0=dp1;dp1=dpi;</code></p>
+</li>
+</ul>
+<p>因为顶楼在数组外面，所以达到顶楼之后不需要花费，直接返回dpI</p>
+<p><strong>代码</strong></p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minCostClimbingStairs</span><span class="params">(<span class="type">int</span>[] cost)</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> dp0=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> dp1=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> dpi=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=cost.length;i++)&#123;</span><br><span class="line">            dpi=Math.min(dp0+cost[i-<span class="number">2</span>],dp1+cost[i-<span class="number">1</span>]);</span><br><span class="line">            dp0=dp1;</span><br><span class="line">            dp1=dpi;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://username.github.io">KkkerAn</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://username.github.io/2023/10/13/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-[9.%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92]/">https://username.github.io/2023/10/13/%E6%AD%BB%E4%B9%8B%E5%89%8D%E8%A6%81%E5%81%9A%E5%AE%8C%E7%9A%84%E7%AE%97%E6%B3%95%E6%89%8B%E5%86%8C-[9.%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92]/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://username.github.io/tags/java/">java</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2023/09/29/%E7%9F%A5%E5%85%B6%E7%84%B6,%E7%9F%A5%E5%85%B6%E6%89%80%E4%BB%A5%E7%84%B6%E4%B9%8BJAVA%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E7%AF%87%5B1%5D/"><span class="paginator-prev__text">知其然,知其所以然之JAVA虚拟机-JVM篇[1]</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">1.</span> <span class="toc-text">
+          动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">
+          基本问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#509-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">
+          509.斐波那契数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%81%9A"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">
+          第一次做</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">
+          第一次代码</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%88%90%E5%8A%9F"><span class="toc-number">1.1.1.1.1.1.</span> <span class="toc-text">
+          提交成功</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">
+          题解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#70-%E7%88%AC%E6%A5%BC%E6%A2%AF"><span class="toc-number">1.1.2.</span> <span class="toc-text">
+          70.爬楼梯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%81%9A-1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">
+          第一次做</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BB%A3%E7%A0%81-1"><span class="toc-number">1.1.2.1.1.</span> <span class="toc-text">
+          第一次代码</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%88%90%E5%8A%9F-1"><span class="toc-number">1.1.2.1.1.1.</span> <span class="toc-text">
+          提交成功</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3-1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">
+          题解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#746-%E4%BD%BF%E7%94%A8%E6%9C%80%E5%B0%8F%E8%8A%B1%E8%B4%B9%E7%88%AC%E6%A5%BC%E6%A2%AF"><span class="toc-number">1.1.3.</span> <span class="toc-text">
+          746.使用最小花费爬楼梯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%81%9A-2"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">
+          第一次做</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BB%A3%E7%A0%81-2"><span class="toc-number">1.1.3.1.1.</span> <span class="toc-text">
+          第一次代码</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E5%A4%B1%E8%B4%A5"><span class="toc-number">1.1.3.1.1.1.</span> <span class="toc-text">
+          提交失败</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.3.1.2.</span> <span class="toc-text">
+          第二次代码</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%88%90%E5%8A%9F-2"><span class="toc-number">1.1.3.1.2.1.</span> <span class="toc-text">
+          提交成功</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3-2"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">
+          题解</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.</span> <span class="toc-text">
+          总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">43</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>KkkerAn</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.xml"></script></body></html>
