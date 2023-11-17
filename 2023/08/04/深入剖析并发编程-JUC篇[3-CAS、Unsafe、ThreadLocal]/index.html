@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量   第一篇是JUC并发编程基础 第二篇是JMM、Volatile关键字、synchronize锁详解 第三篇是CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量 第四篇是Atomic原子包源码详解 第五篇是AQS源码以及机制详解">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量   第一篇是JUC并发编程基础 第二篇是JMM、Volatile关键字、synchronize锁详解 第三篇是CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量 第四篇是Atomic原子包源码详解 第五篇是AQS源码以及机制详解、ReentrantLock">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入剖析并发编程-JUC篇[3-CAS、Unsafe、LockSupport、ThreadLocal]">
 <meta property="og:url" content="https://username.github.io/2023/08/04/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87[3-CAS%E3%80%81Unsafe%E3%80%81ThreadLocal]/index.html">
 <meta property="og:site_name" content="KkkerAn&#39;s Blog">
-<meta property="og:description" content="CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量   第一篇是JUC并发编程基础 第二篇是JMM、Volatile关键字、synchronize锁详解 第三篇是CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量 第四篇是Atomic原子包源码详解 第五篇是AQS源码以及机制详解">
+<meta property="og:description" content="CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量   第一篇是JUC并发编程基础 第二篇是JMM、Volatile关键字、synchronize锁详解 第三篇是CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量 第四篇是Atomic原子包源码详解 第五篇是AQS源码以及机制详解、ReentrantLock">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230811185534370.png">
 <meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230811185534370.png">
@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230811184249053.png">
 <meta property="og:image" content="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230811184358056.png">
 <meta property="article:published_time" content="2023-08-04T02:20:55.000Z">
-<meta property="article:modified_time" content="2023-09-13T12:47:16.695Z">
+<meta property="article:modified_time" content="2023-11-17T11:50:05.262Z">
 <meta property="article:author" content="KkkerAn">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -50,14 +50,16 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">深入剖析并发编程-JUC篇[3-CAS、Unsafe、LockSupport、ThreadLocal]</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-04</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">5.6k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">42分</span></span></div></header><div class="post-body"><p><strong>CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量</strong></p>
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">深入剖析并发编程-JUC篇[3-CAS、Unsafe、LockSupport、ThreadLocal]</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-04</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">5.7k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">43分</span></span></div></header><div class="post-body"><p><strong>CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量</strong></p>
 <hr>
 <ul>
 <li>第一篇是JUC并发编程基础</li>
 <li>第二篇是JMM、Volatile关键字、synchronize锁详解</li>
 <li>第三篇是CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量</li>
 <li>第四篇是Atomic原子包源码详解</li>
-<li>第五篇是AQS源码以及机制详解</li>
+<li>第五篇是AQS源码以及机制详解、ReentrantLock可重入锁、ReentrantReadWriteLock读写锁、JUC并发工具包</li>
+<li>第六篇是并发容器</li>
+<li>第七篇是进程、线程、线程池</li>
 </ul>
 <hr>
 
@@ -81,8 +83,11 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <img   class="lazyload lazyload-gif"
           src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230811185534370.png"  alt="CAS原理">
       </p>
-<p>而我们要好奇一点 这个比较和交换这个过程难道不会出现问题吗？</p>
+<p>而我们要好奇一点 </p>
+<p>这个比较和交换这个过程难道不会出现问题吗？</p>
 <p>而CAS最底层是通过cmpxchg指令来进行操作，说明<strong>这个CAS过程是一个原子性的过程</strong></p>
+<p>CAS操作是否会涉及到用户态和内核态的转换？</p>
+<p>CAS是通过cpu的指令来操作的，而<strong>调用指令不会涉及到用户态和内核态的转换</strong>。</p>
 
         <h2 id="CAS实现"   >
           <a href="#CAS实现" class="heading-link"><i class="fas fa-link"></i></a><a href="#CAS实现" class="headerlink" title="CAS实现"></a>CAS实现</h2>
@@ -229,6 +234,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
 
 
+<p><strong>注意</strong>：LockSupport可以先unpark()再park()，这样不会阻塞线程，而如果是先调用Object.notify()再调用Object.wait()还是会阻塞线程</p>
 
         <h2 id="总结"   >
           <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h2>

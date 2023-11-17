@@ -2322,14 +2322,16 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
       <p>算法-数组篇已经告一段落，我们从数组这一篇学到了<strong>二分查找</strong>、<strong>双指针思想</strong>、<strong>滑动窗口思想</strong>、<strong>模拟转圈</strong></p>
 <p>这一篇章已经到此结束了 ，我们要进入第二篇-链表篇开始学习</p>
 <p>、</p>
-</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/08/04/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87%5B3-CAS%E3%80%81Unsafe%E3%80%81ThreadLocal%5D/">深入剖析并发编程-JUC篇[3-CAS、Unsafe、LockSupport、ThreadLocal]</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-04</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">5.6k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">42分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p><strong>CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量</strong></p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/08/04/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-JUC%E7%AF%87%5B3-CAS%E3%80%81Unsafe%E3%80%81ThreadLocal%5D/">深入剖析并发编程-JUC篇[3-CAS、Unsafe、LockSupport、ThreadLocal]</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-04</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">5.7k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">43分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p><strong>CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量</strong></p>
 <hr>
 <ul>
 <li>第一篇是JUC并发编程基础</li>
 <li>第二篇是JMM、Volatile关键字、synchronize锁详解</li>
 <li>第三篇是CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量</li>
 <li>第四篇是Atomic原子包源码详解</li>
-<li>第五篇是AQS源码以及机制详解</li>
+<li>第五篇是AQS源码以及机制详解、ReentrantLock可重入锁、ReentrantReadWriteLock读写锁、JUC并发工具包</li>
+<li>第六篇是并发容器</li>
+<li>第七篇是进程、线程、线程池</li>
 </ul>
 <hr>
 
@@ -2353,8 +2355,11 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <img   class="lazyload lazyload-gif"
           src="/images/loading.svg" data-src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/image-20230811185534370.png"  alt="CAS原理">
       </p>
-<p>而我们要好奇一点 这个比较和交换这个过程难道不会出现问题吗？</p>
+<p>而我们要好奇一点 </p>
+<p>这个比较和交换这个过程难道不会出现问题吗？</p>
 <p>而CAS最底层是通过cmpxchg指令来进行操作，说明<strong>这个CAS过程是一个原子性的过程</strong></p>
+<p>CAS操作是否会涉及到用户态和内核态的转换？</p>
+<p>CAS是通过cpu的指令来操作的，而<strong>调用指令不会涉及到用户态和内核态的转换</strong>。</p>
 
         <h2 id="CAS实现"   >
           <a href="#CAS实现" class="heading-link"><i class="fas fa-link"></i></a><a href="#CAS实现" class="headerlink" title="CAS实现"></a>CAS实现</h2>
@@ -2501,6 +2506,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
 
 
+<p><strong>注意</strong>：LockSupport可以先unpark()再park()，这样不会阻塞线程，而如果是先调用Object.notify()再调用Object.wait()还是会阻塞线程</p>
 
         <h2 id="总结"   >
           <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
@@ -2778,7 +2784,9 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <li>第二篇是JMM、Volatile关键字、synchronize锁详解</li>
 <li>第三篇是CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量</li>
 <li>第四篇是Atomic原子包源码详解</li>
-<li>第五篇是AQS源码以及机制详解</li>
+<li>第五篇是AQS源码以及机制详解、ReentrantLock可重入锁、ReentrantReadWriteLock读写锁、JUC并发工具包</li>
+<li>第六篇是并发容器</li>
+<li>第七篇是进程、线程、线程池</li>
 </ul>
 <hr>
 
@@ -3259,7 +3267,9 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 <li>第二篇是JMM、Volatile关键字、synchronize锁详解</li>
 <li>第三篇是CAS机制原理、Unsafe魔法类、LockSupport工具类、ThreadLocal线程变量</li>
 <li>第四篇是Atomic原子包源码详解</li>
-<li>第五篇是AQS源码以及机制详解</li>
+<li>第五篇是AQS源码以及机制详解、ReentrantLock可重入锁、ReentrantReadWriteLock读写锁、JUC并发工具包</li>
+<li>第六篇是并发容器</li>
+<li>第七篇是进程、线程、线程池</li>
 </ul>
 <hr>
 
