@@ -1,0 +1,1086 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-16%C3%9716.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/bonbon-32%C3%9732.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="前言 本篇知识将完全记载HarmonyOS视频教程知识内容，只用于后续复习、夯实基础或者八股(笑  HarmonyOS官网                       简介       为了应对应用开发目前所遇到的机遇、挑战和趋势，HarmonyOS孕育而生。 而当今移动应用开发所遇到的主要挑战  针对不同设备上的不同操作系统，重复开发，维护多套版本 多种技术栈，对人员技能要求高 多种开发框架，不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HarmonyOS学习手册">
+<meta property="og:url" content="https://username.github.io/2024/10/29/HarmonyOS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C[%E5%88%9D%E7%BA%A7]/index.html">
+<meta property="og:site_name" content="Kkker1&#39;s Blog">
+<meta property="og:description" content="前言 本篇知识将完全记载HarmonyOS视频教程知识内容，只用于后续复习、夯实基础或者八股(笑  HarmonyOS官网                       简介       为了应对应用开发目前所遇到的机遇、挑战和趋势，HarmonyOS孕育而生。 而当今移动应用开发所遇到的主要挑战  针对不同设备上的不同操作系统，重复开发，维护多套版本 多种技术栈，对人员技能要求高 多种开发框架，不">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-10-29T14:56:14.000Z">
+<meta property="article:modified_time" content="2024-11-05T14:08:59.607Z">
+<meta property="article:author" content="Kkker1">
+<meta property="article:tag" content="HarmonOS">
+<meta name="twitter:card" content="summary"><title>HarmonyOS学习手册 | Kkker1's Blog</title><link ref="canonical" href="https://username.github.io/2024/10/29/HarmonyOS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C[%E5%88%9D%E7%BA%A7]/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">HarmonyOS学习手册</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2024-10-29</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">4.8k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">32分</span></span></div></header><div class="post-body"><p><strong>前言</strong></p>
+<p>本篇知识将完全记载HarmonyOS视频教程知识内容，只用于后续复习、夯实基础或者八股(笑</p>
+<blockquote>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/" >HarmonyOS官网</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+<hr>
+
+        <h1 id="简介"   >
+          <a href="#简介" class="heading-link"><i class="fas fa-link"></i></a><a href="#简介" class="headerlink" title="简介"></a>简介</h1>
+      <p>为了应对应用开发目前所遇到的机遇、挑战和趋势，HarmonyOS孕育而生。</p>
+<p>而当今移动应用开发所遇到的主要挑战</p>
+<ul>
+<li>针对不同设备上的不同操作系统，重复开发，维护多套版本</li>
+<li>多种技术栈，对人员技能要求高</li>
+<li>多种开发框架，不同的编程范式</li>
+<li>命令式编程，关注细节，变更频繁，维护成本高</li>
+</ul>
+<p><em>HarmonyOS是新一代的智能终端操作系统，为不同设备的智能化、互联与协同提供了统一的语言，为用户带来简捷，流畅，连续，安全可靠的全场景交互体验</em></p>
+
+        <h2 id="HarmonyOS的核心技术理念"   >
+          <a href="#HarmonyOS的核心技术理念" class="heading-link"><i class="fas fa-link"></i></a><a href="#HarmonyOS的核心技术理念" class="headerlink" title="HarmonyOS的核心技术理念"></a>HarmonyOS的核心技术理念</h2>
+      
+        <h3 id="一次开发，多端部署"   >
+          <a href="#一次开发，多端部署" class="heading-link"><i class="fas fa-link"></i></a><a href="#一次开发，多端部署" class="headerlink" title="一次开发，多端部署"></a>一次开发，多端部署</h3>
+      <p>多端开发环境</p>
+<ul>
+<li>多端双向预览</li>
+<li>低代码可视化开发</li>
+</ul>
+<p>多端开发能力</p>
+<ul>
+<li>多端UI适配</li>
+<li>事件交互归一</li>
+<li>设备能力抽象</li>
+</ul>
+<p>多端分发机制</p>
+<ul>
+<li>多设备按需分发</li>
+<li>多入口按需分发</li>
+</ul>
+
+        <h3 id="可分克合，自由流转"   >
+          <a href="#可分克合，自由流转" class="heading-link"><i class="fas fa-link"></i></a><a href="#可分克合，自由流转" class="headerlink" title="可分克合，自由流转"></a>可分克合，自由流转</h3>
+      <p>可分可合</p>
+<ul>
+<li>独立开发元服务，按需组合为应用</li>
+<li>应用和元服务独立商家</li>
+</ul>
+<p>自由流转</p>
+<ul>
+<li>跨端迁移</li>
+<li>多端协同</li>
+</ul>
+
+        <h3 id="统一生态，原生智能"   >
+          <a href="#统一生态，原生智能" class="heading-link"><i class="fas fa-link"></i></a><a href="#统一生态，原生智能" class="headerlink" title="统一生态，原生智能"></a>统一生态，原生智能</h3>
+      <p>统一生态</p>
+<ul>
+<li>多应用生态共存，支持多端融合</li>
+<li>统一接入标准，实现快速接入</li>
+</ul>
+<p>原生智能</p>
+<ul>
+<li>服务能力开放</li>
+<li>应用能力开放</li>
+<li>芯片能力开放</li>
+</ul>
+
+        <h1 id="DevEco-Studio搭建"   >
+          <a href="#DevEco-Studio搭建" class="heading-link"><i class="fas fa-link"></i></a><a href="#DevEco-Studio搭建" class="headerlink" title="DevEco Studio搭建"></a>DevEco Studio搭建</h1>
+      
+        <h2 id="下载安装包"   >
+          <a href="#下载安装包" class="heading-link"><i class="fas fa-link"></i></a><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h2>
+      <p>先下载安装包，DevEco Studio集成了SDK、构建插件、ohpm等工具，所以可以直接使用</p>
+<blockquote>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/deveco-studio/#download" >官方下载地址</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+
+        <h2 id="傻瓜式安装"   >
+          <a href="#傻瓜式安装" class="heading-link"><i class="fas fa-link"></i></a><a href="#傻瓜式安装" class="headerlink" title="傻瓜式安装"></a>傻瓜式安装</h2>
+      <p>下载解压，打开可执行文件(exe文件)，修改文件安装路径，傻瓜式下一步点击即可。</p>
+
+        <h2 id="配置环境，启动第一个项目"   >
+          <a href="#配置环境，启动第一个项目" class="heading-link"><i class="fas fa-link"></i></a><a href="#配置环境，启动第一个项目" class="headerlink" title="配置环境，启动第一个项目"></a>配置环境，启动第一个项目</h2>
+      <p><del>总所周知，第一个项目都是Hello World</del></p>
+<p>快速入门，启动一个Hello World项目</p>
+
+        <h3 id="新建项目"   >
+          <a href="#新建项目" class="heading-link"><i class="fas fa-link"></i></a><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3>
+      <p>新建一个Empty Ability项目，然后配置项目文件，命名为Hello World工程</p>
+
+        <h3 id="初始化环境"   >
+          <a href="#初始化环境" class="heading-link"><i class="fas fa-link"></i></a><a href="#初始化环境" class="headerlink" title="初始化环境"></a>初始化环境</h3>
+      <p>初始化项目，如果报错可以通过检查开发环境来调整，通过<em>Diagnose Development Environment</em>也即诊断开发环境。</p>
+<blockquote>
+<p>Diagnose 具体打开路径： Help -&gt; Diagnostic Tools -&gt; Diagnose Development Environment </p>
+</blockquote>
+<p>如果出现如下报错</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Installing pnpm@8.13.1...</span><br><span class="line">npm ERR! code EExist</span><br><span class="line">...</span><br></pre></td></tr></table></div></figure>
+
+<p><strong>解决方案</strong></p>
+<p>1、将c盘下的.npmrc文件的register由淘宝镜像改成华为云镜像 <code>https://repo.huaweicloud.com/repository/npm</code></p>
+<p>具体路径为：<code>C:\Users\Administrator\.npmrc</code></p>
+<p>2、清除Node.js缓存</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean </span><br></pre></td></tr></table></div></figure>
+
+
+
+<p>3、清除HarmonyOS缓存，并且重启应用</p>
+<blockquote>
+<p>File -&gt; Invalidate Caches..  -&gt; invalidate and Restart </p>
+</blockquote>
+<p>4、也许是Node.js文件权限不足，打开Node.js文件夹，将权限改成完全控制</p>
+
+        <h3 id="启动项目"   >
+          <a href="#启动项目" class="heading-link"><i class="fas fa-link"></i></a><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h3>
+      <p>从项目文件中找到Index.ets 然后选择设备启动（无绑定设备可以用Previewer启动项目），启动第一个Hello World工程，并且可以通过按钮交互</p>
+
+        <h2 id="快捷键使用"   >
+          <a href="#快捷键使用" class="heading-link"><i class="fas fa-link"></i></a><a href="#快捷键使用" class="headerlink" title="快捷键使用"></a>快捷键使用</h2>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl+Alt+B</td>
+<td>跨语言跳转(如使用Native的C&#x2F;C++函数)</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+L</td>
+<td>格式化代码</td>
+</tr>
+<tr>
+<td>Ctrl+F12</td>
+<td>打开代码结构树</td>
+</tr>
+<tr>
+<td>Alt+F7</td>
+<td>查看变量引用位置</td>
+</tr>
+<tr>
+<td>“&#x2F;**”+回车键</td>
+<td>文档注释</td>
+</tr>
+<tr>
+<td>“&#x2F;&#x2F;!”+回车键</td>
+<td>C++文件快速生成注释</td>
+</tr>
+<tr>
+<td>两次Shift键</td>
+<td>代码查找界面</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+O</td>
+<td>清除未引用的Import语句，对Import语句进行合并或排序</td>
+</tr>
+<tr>
+<td>Ctrl+H</td>
+<td>查看父子类的层次结构</td>
+</tr>
+<tr>
+<td>Ctrl+O</td>
+<td>重写方法</td>
+</tr>
+<tr>
+<td>Alt+Insert</td>
+<td>重构构造函数、GET&#x2F;SET方法、生成声明信息到Index文件</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="模拟器"   >
+          <a href="#模拟器" class="heading-link"><i class="fas fa-link"></i></a><a href="#模拟器" class="headerlink" title="模拟器"></a>模拟器</h2>
+      <p>当没有真机运行时，我们可以自定义模拟器(虚拟机)来模拟真机。</p>
+<p>在菜单栏的<code>Tools -&gt;Device Manager</code> 通过<code>Edit</code>设置模拟器的存储路径，然后点击<code>New Emulator</code>新建一个模拟器，新建模拟器时需要下载<strong>模拟器镜像</strong>，然后点击<code>Next</code>设置内存和存储空间，再点击<code>Finish</code>完成模拟器创建</p>
+<ul>
+<li><p>模拟器运行</p>
+<p>模拟器通过点击<code>Actions</code>中的运行(RUN)按钮，随即等待开机即可运行</p>
+</li>
+<li><p>清除用户数据</p>
+<p>模拟器通过点击<code>Actions</code>中的<code>Wipe User Data</code>清除用户数据，类似于回复出厂设置</p>
+</li>
+<li><p>关闭模拟器</p>
+<p>模拟器可以通过显示的×或者<code>Actions</code>中的暂停(STOP)按钮关闭运行</p>
+</li>
+<li><p>操控屏幕（<strong>缩放</strong>）</p>
+<p>可以通过<strong>按住Ctrl+鼠标左键</strong>缩放模拟器屏幕，按住Ctrl键之后，鼠标点击则会改成缩放状态</p>
+</li>
+<li><p>安装应用和上传文件</p>
+<p>文件上传可以直接使用拖拽的方式，这样即可安装应用、上传文件</p>
+</li>
+</ul>
+
+        <h1 id="ArkTS语言基础"   >
+          <a href="#ArkTS语言基础" class="heading-link"><i class="fas fa-link"></i></a><a href="#ArkTS语言基础" class="headerlink" title="ArkTS语言基础"></a>ArkTS语言基础</h1>
+      
+        <h2 id="变量和常量"   >
+          <a href="#变量和常量" class="heading-link"><i class="fas fa-link"></i></a><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h2>
+      <p><strong>声明</strong></p>
+<p>声明结构如下</p>
+<p><code>关键字</code>  +  <code>变量名/常量名</code>  +  <code>:</code>  +  <code>类型注释</code>  +  <code>=</code>  +  <code>值</code></p>
+<p>例如</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//关键字 变量名/常量名 : 注释类型 =  值</span><br><span class="line">let        var   :  String = &#x27;Hello,world&#x27;;</span><br><span class="line"></span><br><span class="line">//这样就声明了一个变量var，其数据类型为String，并且初始值为Hello，World</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>变量声明：以关键字let开头的声明引入变量，变量在程序执行过程中可以具有不一样的值</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let var : number = 1;</span><br><span class="line">var = 2;</span><br></pre></td></tr></table></div></figure>
+
+
+
+<ul>
+<li>常量声明：以关键字const开头的声明引入常量，常量值不能被改变</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const VAR : number=2;</span><br><span class="line"></span><br><span class="line">VAR = 1; //编译时会报错</span><br></pre></td></tr></table></div></figure>
+
+
+
+<p>又因为<code>ArkTS</code>在编译时必须确定所有数据类型，所以也有自动类型判断。</p>
+<p>如果数据在声明时就已经确定了值，那么不需要显式声明变量类型，ArkTS允许自动推断类型。假如现在要声明一个Number类型A</p>
+<ul>
+<li><p>显式声明数据类型</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let A : number = 10  </span><br><span class="line">//该声明语法正确</span><br></pre></td></tr></table></div></figure>
+</li>
+<li><p>非显式声明数据类型</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let A = 10;</span><br><span class="line">//该声明语法正确</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+<hr>
+<p><em><del>夹带私货环节</del></em></p>
+<p>在我最熟悉的<code>java</code>中声明变量和常量的方式则如下</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java中声明变量   数据类型  变量名  =  值</span></span><br><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//java中声明常量  final static 数据类型 变量名(大写) = 值</span></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">STR_ABC</span> <span class="operator">=</span> <span class="string">&quot;ABC&quot;</span></span><br></pre></td></tr></table></div></figure>
+
+
+
+<hr>
+
+        <h2 id="数据类型"   >
+          <a href="#数据类型" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2>
+      <p>这里目前只介绍有哪些数据类型以及声明方法，具体数据类型具有的属性或者方法需要再由其他文章介绍</p>
+
+        <h3 id="Number"   >
+          <a href="#Number" class="heading-link"><i class="fas fa-link"></i></a><a href="#Number" class="headerlink" title="Number"></a>Number</h3>
+      <p>任何整数、浮点数都能由number表示。</p>
+<ul>
+<li><p>整数部分</p>
+<ul>
+<li><p>十进制</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let a1 = 10;</span><br></pre></td></tr></table></div></figure>
+</li>
+<li><p>十六进制</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let a2 = 0Xaf;  //十六进制换算成十进制为175</span><br></pre></td></tr></table></div></figure>
+</li>
+<li><p>八进制</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let a3 = 0o7777; //八进制换算成十进制为4095</span><br></pre></td></tr></table></div></figure>
+</li>
+<li><p>二进制</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let a4 = 0b10010; //二进制换成十进制为18</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+</li>
+<li><p>浮点数</p>
+<ul>
+<li><p>小数点</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let f1 = .234;  //0.234</span><br></pre></td></tr></table></div></figure>
+</li>
+<li><p>十进制小数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let f2 = 1.234; //1.234</span><br></pre></td></tr></table></div></figure>
+</li>
+<li><p>指数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let f3 = 1e2; //100</span><br><span class="line">let f4 = 1e-2; //0.01</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+</li>
+</ul>
+
+        <h3 id="Boolean"   >
+          <a href="#Boolean" class="heading-link"><i class="fas fa-link"></i></a><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h3>
+      <p>布尔类型，只有<code>true</code>和<code>flase</code>两个值。通常赋值为<code>flase</code>，程序运行阶段赋值为<code>true</code></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//初始化赋值为flase</span><br><span class="line">let isTrue : boolean = flase;</span><br><span class="line">//...</span><br><span class="line"></span><br><span class="line">isTrue = true;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="String"   >
+          <a href="#String" class="heading-link"><i class="fas fa-link"></i></a><a href="#String" class="headerlink" title="String"></a>String</h3>
+      <p>字符串类型，同样可以在字符串中利用转义字符<code>\</code>来表示字符</p>
+<ul>
+<li><p>单引号之间的字符可以表示字符串</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let str1 = &#x27;Hello,World&#x27;;</span><br></pre></td></tr></table></div></figure>
+</li>
+<li><p>双引号之间的字符可以表示字符串</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let str2 = &quot;Hello,World&quot;</span><br></pre></td></tr></table></div></figure>
+</li>
+<li><p>可以用反引号(&#96;)之间的字符可以表示字符串</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let temp = &#x27;XiaoMing&#x27;;</span><br><span class="line"></span><br><span class="line">let str3 = `Hello,World , My name is $&#123;temp&#125;` // Hello,World , My name is XiaoMing</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+
+        <h3 id="Void"   >
+          <a href="#Void" class="heading-link"><i class="fas fa-link"></i></a><a href="#Void" class="headerlink" title="Void"></a>Void</h3>
+      <p>空返回类型，常用于指定某函数的返回为空</p>
+
+        <h3 id="Object"   >
+          <a href="#Object" class="heading-link"><i class="fas fa-link"></i></a><a href="#Object" class="headerlink" title="Object"></a>Object</h3>
+      <p>对象类型，是所有类型的基类型，所有类型的值可以直接被赋给<code>Object</code>类型变量，<strong>都会被自动装箱</strong></p>
+
+        <h3 id="Array"   >
+          <a href="#Array" class="heading-link"><i class="fas fa-link"></i></a><a href="#Array" class="headerlink" title="Array"></a>Array</h3>
+      <p>数组类型，由赋值的数据类型组成的存储对象。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let arr1 = [&#x27;zhangsan&#x27;,&#x27;lisi&#x27;,&#x27;wangwu&#x27;];</span><br><span class="line"></span><br><span class="line">let arr2 = [1,2,3,4,5];</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="Enum"   >
+          <a href="#Enum" class="heading-link"><i class="fas fa-link"></i></a><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h3>
+      <p>枚举类型，预先定义好值的值类型。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum NUMBER &#123;ONE = 0X01,TWO = 0X02, THREE= 0X03&#125;;</span><br><span class="line">enum COLOR &#123;BLUE,WHITE,RED&#125;</span><br><span class="line"></span><br><span class="line">//枚举数据使用</span><br><span class="line">let num1 =NUMBER.ONE;</span><br><span class="line">let c = COLOR.BLUE;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="Union"   >
+          <a href="#Union" class="heading-link"><i class="fas fa-link"></i></a><a href="#Union" class="headerlink" title="Union"></a>Union</h3>
+      <p>联合类型，由多个类型组成的引用类型。联合类型包括了变量可能所有的类型</p>
+<blockquote>
+<p>有点像是<code>java</code>中的父类和子类的概念，父类包括了子类的所有类型</p>
+</blockquote>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">class Dog&#123;</span><br><span class="line">  name:String = &#x27;dog&#x27;;</span><br><span class="line">  age:Number = 3;</span><br><span class="line"></span><br><span class="line">  sleep()&#123;</span><br><span class="line">    console.log(this.name+&#x27;正在睡觉&#x27;); //dog正在睡觉</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  wang()&#123;</span><br><span class="line">    console.log(this.name+&#x27;正在狗叫&#x27;); //dog正在狗叫</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class Cat &#123;</span><br><span class="line">  name: String = &#x27;cat&#x27;;</span><br><span class="line">  age:Number = 5;</span><br><span class="line"></span><br><span class="line">  sleep()&#123;</span><br><span class="line">    console.log(this.name+&#x27;正在睡觉&#x27;); //cat正在睡觉</span><br><span class="line">  &#125;;</span><br><span class="line">  miao()&#123;</span><br><span class="line">    console.log(this.name+&#x27;正在喵喵叫&#x27;) //cat正在喵喵叫</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Cow&#123;</span><br><span class="line">  name:String = &#x27;cow&#x27;;</span><br><span class="line">  age : number =2;</span><br><span class="line"></span><br><span class="line">  sleep()&#123;</span><br><span class="line">    console.log(this.name+&#x27;正在睡觉&#x27;); //cow正在睡觉</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  meow()&#123;</span><br><span class="line">    console.log(this.name+&#x27;勇敢牛牛不怕困难&#x27;); //cow勇敢牛牛不怕困难</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Animal = Cat | Cow | Dog  ; //Animal包括Cat/Cow/Dog类型</span><br><span class="line">let animal :Animal =new Cat(); //新建一个Cat对象，用Animal类型来装</span><br><span class="line">animal.sleep();//cat正在睡觉</span><br><span class="line">animal.miao(); //cat正在喵喵叫</span><br><span class="line"></span><br><span class="line">animal = new Cow();//新建一个Cow对象，赋值给animal</span><br><span class="line"></span><br><span class="line">animal.sleep(); //cow正在睡觉</span><br><span class="line"></span><br><span class="line">function foo(animal: Animal)&#123;</span><br><span class="line">  if(animal instanceof Cat)&#123;</span><br><span class="line">    //如果是Cat类型的对象，则会进来启动miao方法</span><br><span class="line">    animal.miao(); </span><br><span class="line">  &#125;</span><br><span class="line">  animal.sleep();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">//传入Animal对象的值</span><br><span class="line">foo(animal)</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="Aliases"   >
+          <a href="#Aliases" class="heading-link"><i class="fas fa-link"></i></a><a href="#Aliases" class="headerlink" title="Aliases"></a>Aliases</h3>
+      <p>匿名类型，为数组、函数、对象字面量、联合类型提供名称，或为已有类型提供替代名称</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type Animal = Cat | Dog | Cow;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h2 id="运算符"   >
+          <a href="#运算符" class="heading-link"><i class="fas fa-link"></i></a><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2>
+      <p>运算符和其他语言的部分都是大差不差的，可以简单过一下即可。</p>
+
+        <h3 id="赋值运算符"   >
+          <a href="#赋值运算符" class="heading-link"><i class="fas fa-link"></i></a><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3>
+      <p>赋值运算符：<code>=</code></p>
+<p>复合赋值运算符:<code>+=</code>、<code>-=</code>、<code>+=</code>、<code>-=</code>、<code>*=</code>、<code>/=</code>、<code>%=</code>、<code>&lt;&lt;=</code>、<code>&gt;&gt;=</code>、<code>&gt;&gt;&gt;=</code>、<code>&amp;=</code>、<code>|=</code>、<code>^=</code>。</p>
+
+        <h3 id="比较运算符"   >
+          <a href="#比较运算符" class="heading-link"><i class="fas fa-link"></i></a><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;&#x3D;&#x3D;</td>
+<td>如果两个操作数严格相等（对于不同类型的操作数认为是不相等的），则返回true。</td>
+</tr>
+<tr>
+<td>!&#x3D;&#x3D;</td>
+<td>如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的），则返回true。</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;</td>
+<td>如果两个操作数相等，则返回true。</td>
+</tr>
+<tr>
+<td>!&#x3D;</td>
+<td>如果两个操作数不相等，则返回true。</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>如果左操作数大于右操作数，则返回true</td>
+</tr>
+<tr>
+<td>&gt;&#x3D;</td>
+<td>如果左操作数大于或等于右操作数，则返回true。</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>如果左操作数小于右操作数，则返回true。</td>
+</tr>
+<tr>
+<td>&lt;&#x3D;</td>
+<td>如果左操作数小于或等于右操作数，则返回true。</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="算术运算符"   >
+          <a href="#算术运算符" class="heading-link"><i class="fas fa-link"></i></a><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>加法</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减法</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘法</td>
+</tr>
+<tr>
+<td>&#x2F;</td>
+<td>除法</td>
+</tr>
+<tr>
+<td>%</td>
+<td>除法后余数（求余数）</td>
+</tr>
+<tr>
+<td>–</td>
+<td>减减(-1)</td>
+</tr>
+<tr>
+<td>++</td>
+<td>加加(+1)</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="位运算符"   >
+          <a href="#位运算符" class="heading-link"><i class="fas fa-link"></i></a><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a &amp; b</td>
+<td><strong>按位与</strong>，a和b的二进制对应位都为1时，将这个位设为1，反之设为0</td>
+</tr>
+<tr>
+<td>a | b</td>
+<td><strong>按位或</strong>，a和b的二进制对应位有一个为1时，将这个位设为1，反之设为0</td>
+</tr>
+<tr>
+<td>a ^ b</td>
+<td><strong>按位异或</strong>，a和b的二进制对应位如果不同，将这个位设为1，反之设为0</td>
+</tr>
+<tr>
+<td>~ b</td>
+<td><strong>按位非</strong>，反转操作数的位（按64位计算，如10010 则反转之后为FFFF FFFF FFFF FFED)</td>
+</tr>
+<tr>
+<td>a &lt;&lt; b</td>
+<td><strong>左移</strong>，将a的二进制按位左移b位（如10010 &lt;&lt; 2 则左移之后为 0100 1000）</td>
+</tr>
+<tr>
+<td>a &gt;&gt; b</td>
+<td><strong>算数右移</strong>，将a的二进制按位右移b位，保持原正负属性（即正数高位补0，负数高位补1）</td>
+</tr>
+<tr>
+<td>a &gt;&gt;&gt; b</td>
+<td><strong>逻辑右移</strong>，将a的二进制按位右移b位，高位补0</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="逻辑运算符"   >
+          <a href="#逻辑运算符" class="heading-link"><i class="fas fa-link"></i></a><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a &amp;&amp; b</td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td>a || b</td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td>！a</td>
+<td>逻辑非</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="语句"   >
+          <a href="#语句" class="heading-link"><i class="fas fa-link"></i></a><a href="#语句" class="headerlink" title="语句"></a>语句</h2>
+      <p>语句这部分也和基础语言类型一致，可以简单过一遍(跳过)</p>
+
+        <h3 id="if"   >
+          <a href="#if" class="heading-link"><i class="fas fa-link"></i></a><a href="#if" class="headerlink" title="if"></a>if</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (判断条件A) &#123;</span><br><span class="line">	//条件A为真 则进入该语句中</span><br><span class="line">	</span><br><span class="line">&#125;else if (判断条件B) &#123;</span><br><span class="line">	//条件A为假并且B为真 则进入该语句中</span><br><span class="line">	</span><br><span class="line">&#125;else if&#123;</span><br><span class="line">	//条件A为假并且B为假 则进入该语句中</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="switch"   >
+          <a href="#switch" class="heading-link"><i class="fas fa-link"></i></a><a href="#switch" class="headerlink" title="switch"></a>switch</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">switch(表达式)&#123;</span><br><span class="line">	case A :</span><br><span class="line">	//语句一	</span><br><span class="line">	//可以选择使用break跳出当前循环</span><br><span class="line">	break; </span><br><span class="line">	//如果没有break跳出循环，则会执行下面所有语句</span><br><span class="line">	case B:</span><br><span class="line">	case C:</span><br><span class="line">	//如果表达式符合B或者C，则会执行下面语句</span><br><span class="line">	</span><br><span class="line">	//...</span><br><span class="line">	</span><br><span class="line">	//选择break跳出switch语句</span><br><span class="line">	break;</span><br><span class="line">	</span><br><span class="line">	default:</span><br><span class="line">	//默认执行语句，当条件都不符合的时候执行默认语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="三元表达式"   >
+          <a href="#三元表达式" class="heading-link"><i class="fas fa-link"></i></a><a href="#三元表达式" class="headerlink" title="三元表达式"></a>三元表达式</h3>
+      <p><strong>公式为</strong><code>判断条件 ? 结果1 : 结果2</code></p>
+<p>简单举个例子</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let flag = number &gt;= 10 ? true : false</span><br><span class="line">//如果number &gt;= 10 则赋值语句执行 ? 后面的结果，反之执行 :后面的结果</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="For"   >
+          <a href="#For" class="heading-link"><i class="fas fa-link"></i></a><a href="#For" class="headerlink" title="For"></a>For</h3>
+      <p><strong>公式为</strong><code>For(初始化数据 ; 条件 ;单层循环后执行的语句)&#123;&#125;</code></p>
+<p>也举一个最简单例子，做十次循环</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (let i = 0; i &lt;= 10; i++) &#123;</span><br><span class="line">  //语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="For-of"   >
+          <a href="#For-of" class="heading-link"><i class="fas fa-link"></i></a><a href="#For-of" class="headerlink" title="For-of"></a>For-of</h3>
+      <p>增强<code>For</code>语句，<strong>公式为</strong> <code>For( arr of arrs)&#123;&#125;</code></p>
+<p>假设一个数组Arrs&#x3D; [1,2,3,4,5]，那么将每一个元素Arr取出来也即Arr[0],…,Arr[4]。也即是遍历</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let Arrs = [ 1, 2, 3, 4, 5]</span><br><span class="line"></span><br><span class="line">for( Arr of Arrs)&#123;</span><br><span class="line">	//...语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="While"   >
+          <a href="#While" class="heading-link"><i class="fas fa-link"></i></a><a href="#While" class="headerlink" title="While"></a>While</h3>
+      <p><strong>公式为</strong><code>While(条件)&#123;&#125;</code></p>
+<p>只要条件为真则会一直循环下去，直到条件为假</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let w_1 = 10;</span><br><span class="line">while ( w_1 -- &gt;=0)&#123; //倒数10-0</span><br><span class="line">  console.log((w_1+1).toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="Do-While"   >
+          <a href="#Do-While" class="heading-link"><i class="fas fa-link"></i></a><a href="#Do-While" class="headerlink" title="Do-While"></a>Do-While</h3>
+      <p><strong>公式为</strong><code>Do &#123; 语句 &#125; while (条件)</code></p>
+<p>Do-While也即必定会先执行一次语句的While语句</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let i_2 = 0;</span><br><span class="line">do &#123;</span><br><span class="line">  i_2 += 1;</span><br><span class="line">  console.log(i_2.toString());</span><br><span class="line">&#125; while (i_2 &lt; 10)</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="Break"   >
+          <a href="#Break" class="heading-link"><i class="fas fa-link"></i></a><a href="#Break" class="headerlink" title="Break"></a>Break</h3>
+      <p>Break语句用于跳出循环，一般用于循环或者Switch语句中</p>
+<p>我们拿之前For循环的语句举例，当我们倒数到5的时候就跳出循环</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (let i = 0; i &lt;= 10; i++) &#123;</span><br><span class="line">  //语句</span><br><span class="line">  if( i == 5 ) break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="continue"   >
+          <a href="#continue" class="heading-link"><i class="fas fa-link"></i></a><a href="#continue" class="headerlink" title="continue"></a>continue</h3>
+      <p>continue语句用于结束本次循环，继续下次循环</p>
+<p>我们也拿之前For循环的语句举例，当我们倒数为3的时候就跳到下一次循环中(2)</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (let i = 0; i &lt;= 10; i++) &#123;</span><br><span class="line">   if( i == 2 ) continue;</span><br><span class="line">   //语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="Throw"   >
+          <a href="#Throw" class="heading-link"><i class="fas fa-link"></i></a><a href="#Throw" class="headerlink" title="Throw"></a>Throw</h3>
+      <p>Throw语句用于跑出异常</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">throw new Error(&#x27;this error&#x27;)</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="Try"   >
+          <a href="#Try" class="heading-link"><i class="fas fa-link"></i></a><a href="#Try" class="headerlink" title="Try"></a>Try</h3>
+      <p>Try语句用于捕捉和处理异常或者错误</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">  // 可能发生异常的语句块</span><br><span class="line">&#125; catch (e) &#123;</span><br><span class="line">  // 异常处理</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+<p>Finally，用于Try-Catch语句中一定要执行的语句</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">   // ...</span><br><span class="line">   // 可能发生异常的语句</span><br><span class="line">   // ...</span><br><span class="line"> &#125; catch (e) &#123;</span><br><span class="line">   // ...</span><br><span class="line">   // 异常处理</span><br><span class="line">   // ...</span><br><span class="line"> &#125; finally &#123;</span><br><span class="line">   if (error != null) &#123;</span><br><span class="line">     console.log(`Error caught: input=&#x27;$&#123;s&#125;&#x27;, message=&#x27;$&#123;error.message&#125;&#x27;`);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="函数"   >
+          <a href="#函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#函数" class="headerlink" title="函数"></a>函数</h2>
+      
+        <h3 id="函数声明"   >
+          <a href="#函数声明" class="heading-link"><i class="fas fa-link"></i></a><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function 函数名 (变量名 : 变量类型) : 返回类型 &#123;&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>举例</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//定义一个函数foo，传入number类型的参数n，函数返回string类型结果</span><br><span class="line">function foo ( n : number ) : string &#123;&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>传参规则：</p>
+<ul>
+<li>每个参数必须标记类型</li>
+<li>如果参数是可选参数，则调用函数时可以省略传递该参数</li>
+<li>可以为可变参数(rest参数)，那么可变参数(rest参数)一定是最后一个参数</li>
+</ul>
+
+        <h3 id="可选参数"   >
+          <a href="#可选参数" class="heading-link"><i class="fas fa-link"></i></a><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h3>
+      <p>可选参数意思是指定过程中参数是可选的，可以不传递则默认为<code>undefined</code></p>
+<p><strong>可选参数的格式为</strong>：<code>name ?: type</code></p>
+<ul>
+<li><code>name</code> 变量名</li>
+<li><code>?:</code> 表示参数为可选参数</li>
+<li><code>type</code> 参数数据类型</li>
+</ul>
+<p>举例</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//定义一个函数foo，传入number类型的参数n，一个可选参数str，函数返回string类型结果</span><br><span class="line">function foo ( n : number , str ?: string ) : string &#123;&#125;</span><br><span class="line"></span><br><span class="line">//使用方式</span><br><span class="line">foo(1);</span><br><span class="line">foo(1,&#x27;Hello&#x27;)</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h3 id="Rest参数"   >
+          <a href="#Rest参数" class="heading-link"><i class="fas fa-link"></i></a><a href="#Rest参数" class="headerlink" title="Rest参数"></a>Rest参数</h3>
+      <p>可变参数(rest参数)，表示这个参数有零个或者多个数量</p>
+<p>rest参数的格式为：<code>... name : types</code></p>
+<ul>
+<li><code>...</code> 表示该参数为可变参数</li>
+<li><code>name</code> 参数名</li>
+<li><code>:</code> 后接参数类型</li>
+<li><code>types</code> 接变量数据类型的数组</li>
+</ul>
+<p>举例</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//定义一个函数foo,传入一个可选参数str,可变参数numbers,函数返回number类型结果</span><br><span class="line">function foo (str ?: string  , ...numbers : number[]) : number &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//使用方式</span><br><span class="line">foo(undefined,1);</span><br><span class="line">foo(undefined,1,2,3);</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="返回类型"   >
+          <a href="#返回类型" class="heading-link"><i class="fas fa-link"></i></a><a href="#返回类型" class="headerlink" title="返回类型"></a>返回类型</h3>
+      <ul>
+<li>显式返回类型</li>
+<li>不标注返回类型</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//显式标注返回类型</span><br><span class="line">funtion foo (n : number) : string &#123; return &#x27;result&#x27;;&#125;</span><br><span class="line"></span><br><span class="line">//不标注返回类型，可以通过函数声明中判断</span><br><span class="line">function foo2 (n: number)  &#123;return &#x27;result&#x27;;&#125; //通过return判断返回string类型</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><p>不需要返回类型，使用void或者省略标注</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//显式标注返回类型为void</span><br><span class="line">function foo3(n:number) : void &#123;&#125;</span><br><span class="line"></span><br><span class="line">//省略标注void返回类型</span><br><span class="line">function foo4(n:number)&#123;&#125;</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+
+        <h3 id="作用域"   >
+          <a href="#作用域" class="heading-link"><i class="fas fa-link"></i></a><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3>
+      <p>函数的作用域也和基础语言一致，都有局部属性</p>
+<p>函数内被定义的变量和实例仅可以在函数内部访问，而不能从外部访问。并且当函数的局部变量和外部有重名，则会函数内的局部定义将会覆盖外部定义直到结束函数。</p>
+
+        <h3 id="函数调用"   >
+          <a href="#函数调用" class="heading-link"><i class="fas fa-link"></i></a><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3>
+      <p>函数调用如果有传入参数，则实参会被赋给形参。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//定义函数</span><br><span class="line">function foo ( n1: number ,n2 : number ) &#123;&#125;</span><br><span class="line"></span><br><span class="line">//调用函数</span><br><span class="line">foo(1,2); //将1传给n1, 2传给n2</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="函数类型"   >
+          <a href="#函数类型" class="heading-link"><i class="fas fa-link"></i></a><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3>
+      <p>函数类型通常用于定义回调：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">type trigFunc = (x: number) =&gt; number //这是一个函数类型 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function do_action(f: trigFunc) &#123;</span><br><span class="line">f(3.141592653589); // 调用函数</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do_action(Math.sin); // 将函数作为参数传入</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="Lambda函数"   >
+          <a href="#Lambda函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#Lambda函数" class="headerlink" title="Lambda函数"></a>Lambda函数</h3>
+      <p><code>lambda</code>函数，可以通过匿名函数的方式声明函数</p>
+<p>举例</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let sum = (x : number , y : number) : number =&gt; &#123;</span><br><span class="line">	let result = 0;</span><br><span class="line">	//...</span><br><span class="line">	</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><p>省略返回数据类型</p>
+<p>如果返回类型可以从函数体内推断出，那么可以省略返回类型</p>
+</li>
+<li><p>省略大括号</p>
+<p>如果函数体只有一条，那么可以省略大括号</p>
+</li>
+<li><p>省略<code>return</code></p>
+<p>如果函数体只有一条，那么可以省略<code>return</code></p>
+</li>
+</ul>
+<p>完整形式</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let sum = (x : number ,y : number) : number =&gt;&#123;</span><br><span class="line">	return x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><p>具体解析</p>
+<ul>
+<li><code>(x : number , y: number)</code> 表示函数有两个<code>number</code> 类型参数<code>x</code>和&#96;y&#96;&#96;</li>
+<li>&#96;&#96;:&#96;  后接返回数据类型</li>
+<li><code>number</code> 表示返回<code>number</code> 类型数据</li>
+<li><code>=&gt;</code> 表示此为<code>lambda</code> 形式函数，后接函数体</li>
+<li><code>&#123;</code> 大括号(左)，表示这是函数体的开始</li>
+<li><code>return x + y;</code> 函数体内容，返回<code>x + y</code>的结果数据</li>
+<li><code>&#125;</code> 大括号(右)，表示这是函数体的结束</li>
+</ul>
+</li>
+<li><p>省略返回数据类型</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let sum = (x : number, y : number) =&gt; &#123;return x + y;&#125;</span><br></pre></td></tr></table></div></figure>
+</li>
+<li><p>省略大括号、省略<code>return</code></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let sum = (x : number , y : number) =&gt; x+y</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+
+        <h3 id="闭包"   >
+          <a href="#闭包" class="heading-link"><i class="fas fa-link"></i></a><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3>
+      <p>闭包是由函数及声明该函数的环境组合而成的。该环境包含了这个闭包创建时作用域内的任何局部变量。</p>
+<p>在下例中，f函数返回了一个闭包，它捕获了count变量，每次调用z，count的值会被保留并递增。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function f(): () =&gt; number &#123;</span><br><span class="line">  let count = 0;</span><br><span class="line">  let g = (): number =&gt; &#123; count++; return count; &#125;;</span><br><span class="line">  return g;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let z = f();</span><br><span class="line">z(); // 返回：1</span><br><span class="line">z(); // 返回：2</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="函数重载"   >
+          <a href="#函数重载" class="heading-link"><i class="fas fa-link"></i></a><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h3>
+      <p>一个函数名可以通过不同的函数头实现函数的重载，具体操作如下</p>
+<p>一个函数写入多个同名但是参数不同的函数头，<strong>函数实现必须紧随其后</strong></p>
+<p>具体实例</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function fun2 ( n : number ) :string ; //第一个函数定义</span><br><span class="line">function fun2 ( n ?: string) :string ; //第二个函数定义</span><br><span class="line">function fun2 ( n: number | string | undefined) : string &#123; /* 函数实现 */</span><br><span class="line">  return &#x27;&#x27;;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//使用第一个函数定义</span><br><span class="line">fun2(1);</span><br><span class="line">//使用第二个函数定义</span><br><span class="line">fun2(undefined);</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>在函数重载时，函数头后不允许带入大括号，表示这不是一个完整的函数</li>
+<li>在函数实现时，函数必须紧跟所有函数头之后，然后需要带上大括号，表示这是一个函数的实现</li>
+</ul>
+
+        <h2 id="类"   >
+          <a href="#类" class="heading-link"><i class="fas fa-link"></i></a><a href="#类" class="headerlink" title="类"></a>类</h2>
+      </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://username.github.io">Kkker1</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://username.github.io/2024/10/29/HarmonyOS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C[%E5%88%9D%E7%BA%A7]/">https://username.github.io/2024/10/29/HarmonyOS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C[%E5%88%9D%E7%BA%A7]/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://username.github.io/tags/HarmonOS/">HarmonOS</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2024/10/15/%E7%BD%91%E7%BB%9C%E6%8E%92%E6%9F%A5-%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BAWLAN%E9%97%AE%E9%A2%98/"><span class="paginator-prev__text">网络排查-无法正常显示WLAN问题</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">
+          简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HarmonyOS%E7%9A%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%90%86%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">
+          HarmonyOS的核心技术理念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E5%BC%80%E5%8F%91%EF%BC%8C%E5%A4%9A%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="toc-number">1.1.1.</span> <span class="toc-text">
+          一次开发，多端部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E5%88%86%E5%85%8B%E5%90%88%EF%BC%8C%E8%87%AA%E7%94%B1%E6%B5%81%E8%BD%AC"><span class="toc-number">1.1.2.</span> <span class="toc-text">
+          可分克合，自由流转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E7%94%9F%E6%80%81%EF%BC%8C%E5%8E%9F%E7%94%9F%E6%99%BA%E8%83%BD"><span class="toc-number">1.1.3.</span> <span class="toc-text">
+          统一生态，原生智能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DevEco-Studio%E6%90%AD%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">
+          DevEco Studio搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">2.1.</span> <span class="toc-text">
+          下载安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%82%BB%E7%93%9C%E5%BC%8F%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">
+          傻瓜式安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%EF%BC%8C%E5%90%AF%E5%8A%A8%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.3.</span> <span class="toc-text">
+          配置环境，启动第一个项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.3.1.</span> <span class="toc-text">
+          新建项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%8E%AF%E5%A2%83"><span class="toc-number">2.3.2.</span> <span class="toc-text">
+          初始化环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.3.3.</span> <span class="toc-text">
+          启动项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%BD%BF%E7%94%A8"><span class="toc-number">2.4.</span> <span class="toc-text">
+          快捷键使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E5%99%A8"><span class="toc-number">2.5.</span> <span class="toc-text">
+          模拟器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ArkTS%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-number">3.</span> <span class="toc-text">
+          ArkTS语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F"><span class="toc-number">3.1.</span> <span class="toc-text">
+          变量和常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">
+          数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Number"><span class="toc-number">3.2.1.</span> <span class="toc-text">
+          Number</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean"><span class="toc-number">3.2.2.</span> <span class="toc-text">
+          Boolean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-number">3.2.3.</span> <span class="toc-text">
+          String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Void"><span class="toc-number">3.2.4.</span> <span class="toc-text">
+          Void</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object"><span class="toc-number">3.2.5.</span> <span class="toc-text">
+          Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Array"><span class="toc-number">3.2.6.</span> <span class="toc-text">
+          Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Enum"><span class="toc-number">3.2.7.</span> <span class="toc-text">
+          Enum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Union"><span class="toc-number">3.2.8.</span> <span class="toc-text">
+          Union</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Aliases"><span class="toc-number">3.2.9.</span> <span class="toc-text">
+          Aliases</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.3.</span> <span class="toc-text">
+          运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.3.1.</span> <span class="toc-text">
+          赋值运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.3.2.</span> <span class="toc-text">
+          比较运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.3.3.</span> <span class="toc-text">
+          算术运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.3.4.</span> <span class="toc-text">
+          位运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.3.5.</span> <span class="toc-text">
+          逻辑运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.4.</span> <span class="toc-text">
+          语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if"><span class="toc-number">3.4.1.</span> <span class="toc-text">
+          if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#switch"><span class="toc-number">3.4.2.</span> <span class="toc-text">
+          switch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E5%85%83%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">3.4.3.</span> <span class="toc-text">
+          三元表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#For"><span class="toc-number">3.4.4.</span> <span class="toc-text">
+          For</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#For-of"><span class="toc-number">3.4.5.</span> <span class="toc-text">
+          For-of</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#While"><span class="toc-number">3.4.6.</span> <span class="toc-text">
+          While</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Do-While"><span class="toc-number">3.4.7.</span> <span class="toc-text">
+          Do-While</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Break"><span class="toc-number">3.4.8.</span> <span class="toc-text">
+          Break</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#continue"><span class="toc-number">3.4.9.</span> <span class="toc-text">
+          continue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Throw"><span class="toc-number">3.4.10.</span> <span class="toc-text">
+          Throw</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Try"><span class="toc-number">3.4.11.</span> <span class="toc-text">
+          Try</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">3.5.</span> <span class="toc-text">
+          函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E"><span class="toc-number">3.5.1.</span> <span class="toc-text">
+          函数声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E5%8F%82%E6%95%B0"><span class="toc-number">3.5.2.</span> <span class="toc-text">
+          可选参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rest%E5%8F%82%E6%95%B0"><span class="toc-number">3.5.3.</span> <span class="toc-text">
+          Rest参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.5.4.</span> <span class="toc-text">
+          返回类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">3.5.5.</span> <span class="toc-text">
+          作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="toc-number">3.5.6.</span> <span class="toc-text">
+          函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.5.7.</span> <span class="toc-text">
+          函数类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lambda%E5%87%BD%E6%95%B0"><span class="toc-number">3.5.8.</span> <span class="toc-text">
+          Lambda函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">3.5.9.</span> <span class="toc-text">
+          闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="toc-number">3.5.10.</span> <span class="toc-text">
+          函数重载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB"><span class="toc-number">3.6.</span> <span class="toc-text">
+          类</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">48</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">12</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">19</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Kkker1</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.xml"></script></body></html>
