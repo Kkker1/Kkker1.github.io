@@ -28,7 +28,262 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/04/27/JVM%E8%B0%83%E4%BC%98%E5%AE%9E%E4%BE%8B/">JVM调优实例</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-04-27</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">959</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span></div></header><div class="post-body"><div class="post-excerpt">
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">WelCome to My Blog</div><div class="header-banner-info__subtitle">回忆像一块彩色橡皮糖,被拉长了,颜色淡了,但还是甜</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/07/09/%E6%A8%A1%E6%8B%9F%E7%94%B5%E8%AF%9D%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%98/">模拟电话面试复盘</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-09</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">3.5k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">18分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p><strong>前言</strong></p>
+<p>这个模拟电话面试是我和学习搭子为了我求职提前做的准备</p>
+<p>大概是一周左右确认一个时间然后拿出半个小时进行一个模拟的过程，不过这个模拟的结果和过程需要我单独复盘，于是有这篇复盘篇出来</p>
+
+        <h1 id="07-1"   >
+          <a href="#07-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#07-1" class="headerlink" title="07&#x2F;1"></a>07&#x2F;1</h1>
+      
+        <h2 id="Spring事务什么时候会失效？"   >
+          <a href="#Spring事务什么时候会失效？" class="heading-link"><i class="fas fa-link"></i></a><a href="#Spring事务什么时候会失效？" class="headerlink" title="Spring事务什么时候会失效？"></a>Spring事务什么时候会失效？</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Spring的事务什么时候会失效?我能想到下面几个点。第一，当Spring容器的事务传播行为不支持事务的时候会失效，第二年是当用到的方法是调用对象内部的时候没有走AOP代理，所以这个时候索引会失效</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="说说MySql的主从复制"   >
+          <a href="#说说MySql的主从复制" class="heading-link"><i class="fas fa-link"></i></a><a href="#说说MySql的主从复制" class="headerlink" title="说说MySql的主从复制"></a>说说MySql的主从复制</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mysql的主从复制有几点好处 低一点是容灾备份，当主机发生故障的时候丛集可以上位维持系统的可用，第二点是可以读写分离，让读操作在从机中进行，降低Master的请求压力</span><br><span class="line"></span><br><span class="line">进行主从复制首先要主机开启Binlog日志，然后从机去读取Binlog日志中的数据写到自己的中继日志。然后再数据重做</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h2 id="你们项目中有没有使用过分库分表呢"   >
+          <a href="#你们项目中有没有使用过分库分表呢" class="heading-link"><i class="fas fa-link"></i></a><a href="#你们项目中有没有使用过分库分表呢" class="headerlink" title="你们项目中有没有使用过分库分表呢?"></a>你们项目中有没有使用过分库分表呢?</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我们项目没有用到分库分表的操作，因为这个项目表数据是比较小的，我能说说这个分库分表的思路</span><br><span class="line">分库分表有四种 第一种垂直分库 把数据库按照业务逻辑进行分库 第二种是垂直分表，把表存储到不同的额数据库中 这个时候一般是用于冷热数据的分离，把常用的数据提取到一个表中 第三十中是水平分库 水平分库是指把一个数据库的数据分到不同的数据库中可以使当前主机也可以是不同主机  最后是水评分表 水平分表是指把表分到同一个数据库中的而不同表中</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="事务的隔离性是怎么保证的-（说说MVCC机制的理解）"   >
+          <a href="#事务的隔离性是怎么保证的-（说说MVCC机制的理解）" class="heading-link"><i class="fas fa-link"></i></a><a href="#事务的隔离性是怎么保证的-（说说MVCC机制的理解）" class="headerlink" title="事务的隔离性是怎么保证的?（说说MVCC机制的理解）"></a>事务的隔离性是怎么保证的?（说说MVCC机制的理解）</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MVCC机制的实现主要取决于三个部分 第一个部分是饮食字段 有trx_id 事务ID，还有阴市住建 当Mysql没有主键的时候会自动添加一个主键 还有事回滚指针 指向的是undo log版本链</span><br><span class="line">第二个就是undo log版本链</span><br><span class="line">第三个是看当前的事务隔离级别然后根据事务隔离级别找到不同的处理方案，像是RC 读已提交就是会每一次select的时候都会形成一个快照，然后去读取这个快照的信息，而RR 则是第一次select的时候会成圣做一个快照 然后面的查询都是这个版本的快照</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="说说你对AOP的理解"   >
+          <a href="#说说你对AOP的理解" class="heading-link"><i class="fas fa-link"></i></a><a href="#说说你对AOP的理解" class="headerlink" title="说说你对AOP的理解"></a>说说你对AOP的理解</h2>
+      
+        <h2 id="能说说SpringMVC的工作流程吗？"   >
+          <a href="#能说说SpringMVC的工作流程吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#能说说SpringMVC的工作流程吗？" class="headerlink" title="能说说SpringMVC的工作流程吗？"></a>能说说SpringMVC的工作流程吗？</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SpringMVC的工作机制</span><br><span class="line">当HTTP请求来到，会有一个DispatcherServlet(前端控制器)来进行空值处理请求，通过handlermapping找到具体的handler处理器和拦截器 同意返回给dispatcherlservlet，dispatchselet在经过这个映射结果找到handleradpater handler适配器，handler适配器找到handler就是我们自己定义的controller ，最后controller返回数据和视图 适配器封装成modelandview 返回给前端处理器，前端处理器会那刀这个modeladnvie未找到viewReslover然后对数据进行解析，视图接气息将是最后解析出来的view返回给dispaterservlet</span><br><span class="line"> dispatcherselevct最后渲染view</span><br><span class="line"> 而现在面向接口编程，我们很少用到返回view的过程，一般我们在conteroller后用responseBOdy注解将结果经过httpmessageConverser消息转换器转换成json格式数据返回</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="Spring和SpringBoot的区别和关系"   >
+          <a href="#Spring和SpringBoot的区别和关系" class="heading-link"><i class="fas fa-link"></i></a><a href="#Spring和SpringBoot的区别和关系" class="headerlink" title="Spring和SpringBoot的区别和关系"></a>Spring和SpringBoot的区别和关系</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SpringFTAME是一个框架，而SpringbOOT是基于Spring的一个脚手架 SpringBoot包含了其他狂阶的API，以便快速成圣spring项目</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="缓存穿透、雪崩、击穿、预热"   >
+          <a href="#缓存穿透、雪崩、击穿、预热" class="heading-link"><i class="fas fa-link"></i></a><a href="#缓存穿透、雪崩、击穿、预热" class="headerlink" title="缓存穿透、雪崩、击穿、预热"></a>缓存穿透、雪崩、击穿、预热</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">缓存穿透是指一个数据在redis中没有在mysql中也没有，然后不法分子通过这个请求对应的数据不断达到mysql中，我们的解决方案可以使布隆过滤器或者是返回一个空值写回给redis中</span><br><span class="line">缓存击穿是指某个一个热点kEY的突然失效，然后大量请求达到Mysql中，我们可以社遏制一个逻辑过期，也可以采用分布式锁的放水阀来解决这个问题</span><br><span class="line">换粗雪崩是指Redis的大量KEy的跟同事失效，或者是单机Redis的宕机导致的大量请求达到MYSQL中，我们的解决方案是可以设置不随机的够哦骑士剑将热点Keysh失效的时间分开</span><br><span class="line">缓存预热是指提供服务之前，我们自己将数据从mysql写回到redis提前对数据进行一个写入操作</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="讲讲Redis的淘汰算法策略"   >
+          <a href="#讲讲Redis的淘汰算法策略" class="heading-link"><i class="fas fa-link"></i></a><a href="#讲讲Redis的淘汰算法策略" class="headerlink" title="讲讲Redis的淘汰算法策略"></a>讲讲Redis的淘汰算法策略</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">reids的数据淘汰有两个策略一个是定期删除还有一个是惰性删除，然后定期删除是不断轮询一些数据 来对数据过期时间多而检查，如果这个数据到了过期时间就主动删除，惰性删除是值Redis不会直接删除过期数据，而是让他对方在Redis中，当需要用到这个数据然后会对过期时间进行一个判断，如果过期了就删除这个数据。但是这个方式会造成内存的浪费  而定期闪回造成CPu的浪费 降低性能，还有一个方式是随机删除，随机删除部分数据</span><br><span class="line"></span><br><span class="line">rEDis有八个删除数据厕所 基于4种删除方式 就是定期删除 LRU删除 LFU删除 随机删除 和删除数据类型有两种 是就是跟过期和不过期数据，一共就是4*2有八种</span><br><span class="line">第一种是不删除数据 </span><br><span class="line">定期删除过期数据 lru删除过期数据  lru删除数据</span><br><span class="line">lfu删除过期数据 lfu删除数据</span><br><span class="line">随机删除过期数据 随机删除数据</span><br><span class="line">LRU是最近最少未被使用</span><br><span class="line">lfu删除是最近最频率低删除</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="Redis作为缓存，MySql的数据如何与Redis进行同步-双写一致性"   >
+          <a href="#Redis作为缓存，MySql的数据如何与Redis进行同步-双写一致性" class="heading-link"><i class="fas fa-link"></i></a><a href="#Redis作为缓存，MySql的数据如何与Redis进行同步-双写一致性" class="headerlink" title="Redis作为缓存，MySql的数据如何与Redis进行同步?(双写一致性)"></a>Redis作为缓存，MySql的数据如何与Redis进行同步?(双写一致性)</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Redis和Mysql的数据进行数据同步可以使魂村双删策略</span><br><span class="line">先删除数据然后再更新数据库最后在删除缓存， 但是这个情况会存在一定脏数据的可能</span><br><span class="line">然后我们有最终一致性的方案 一个是利于是分布式锁 的同步更新，这种方法可以保证数据的高一致性但是会降低性能，还有一种是异步通知  比如用消息队列进行数据更新 或者是阿里巴巴开源的Canal来对数据库binlog日志的监控然后写回给redis 这样异步通知的方式可以性能较高但是会有存在一定时间数据的不一致的情况 要按业务选择</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="结点的数据结构保存了什么信息-跳表"   >
+          <a href="#结点的数据结构保存了什么信息-跳表" class="heading-link"><i class="fas fa-link"></i></a><a href="#结点的数据结构保存了什么信息-跳表" class="headerlink" title="结点的数据结构保存了什么信息-跳表"></a>结点的数据结构保存了什么信息-跳表</h2>
+      
+        <h2 id="RabbitMQ中死信队列？延时队列有了解过吗？"   >
+          <a href="#RabbitMQ中死信队列？延时队列有了解过吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#RabbitMQ中死信队列？延时队列有了解过吗？" class="headerlink" title="RabbitMQ中死信队列？延时队列有了解过吗？"></a>RabbitMQ中死信队列？延时队列有了解过吗？</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">死信队列是就是死信交换机 是用来处理死信的，他和正常交换机没有缺什么太大差异</span><br><span class="line">死信就是ttl时间超过了 或者是当确认模式中拒绝签收后不返回元队列的消息叫死信</span><br><span class="line"></span><br><span class="line">延迟队列由了解过，延迟队列在RabbitMQ中没有办法直接生命一个延迟队列，但是我们可以用死信对垒家TTL来达到同样的效果</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="介绍一下Mysql中事务的特性"   >
+          <a href="#介绍一下Mysql中事务的特性" class="heading-link"><i class="fas fa-link"></i></a><a href="#介绍一下Mysql中事务的特性" class="headerlink" title="介绍一下Mysql中事务的特性"></a>介绍一下Mysql中事务的特性</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">事务就是一组相同的操作单元，这组操作只能同时成功或者同时不成功。</span><br><span class="line">事务的四大特性是有原子性、一致性、隔离丁和持久性</span><br><span class="line">比如A向B转账然后A少500块钱B要多出500块钱 这个部分是原子的 只能A转账成功B钱增加或者是两个同时势必爱，一致性是指这个数据总量要最后一直，A少500B就一定要多500，隔离性是指在这个A想B转账的国女恒中不会被外界的因素影响，而一致性是当事务一旦提交这个数据就要被永久的写到数据库中</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="并发事务会带来哪些问题？"   >
+          <a href="#并发事务会带来哪些问题？" class="heading-link"><i class="fas fa-link"></i></a><a href="#并发事务会带来哪些问题？" class="headerlink" title="并发事务会带来哪些问题？"></a>并发事务会带来哪些问题？</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">并发事务会带来脏读 不可重复读幻读的三种问题，还有一个是更新丢失的方面</span><br><span class="line">脏读是指一个数据读到了另一个未提交事务更新后的数据</span><br><span class="line">不可重复读是指在一个事务前后读取的数据不一致</span><br><span class="line">幻读是指当事务在读取数据的前后总条数不医用氧，比如插入数据 的时候查到这个数据没有然后插入的时候这个数据也已经存在 就 好像出现了幻觉一样</span><br><span class="line">更新丢失分成两种一种是提交覆盖和回滚覆盖</span><br><span class="line">提交覆盖是指一个事务A和事务B在处理同一个数据的时候,A提交的数据被B提交的数据覆盖了。</span><br><span class="line">回滚覆盖是指事务A和事务B，A更新之后UB回滚了导致这个更新丢失</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="什么情况下会造成索引失效？"   >
+          <a href="#什么情况下会造成索引失效？" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么情况下会造成索引失效？" class="headerlink" title="什么情况下会造成索引失效？"></a>什么情况下会造成索引失效？</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一般是最左前缀法则失效的时候，然后或者是查询的时候用了模糊查询。模糊查询的左边用了占位符 或者是用or语句的时候前有两边有一边索引。还有用运算符号的时候 用大鱼号小于号比较</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="数据库优化"   >
+          <a href="#数据库优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据库优化" class="headerlink" title="数据库优化"></a>数据库优化</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">数据库优化我主要从两个方面来说</span><br><span class="line">第一种可以从设计架构方面 就是数据库可以设置成集群、分库分表、主重复值</span><br><span class="line">第二方面是对Sql的优化 就从具体的SQL优化那方面</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="final修饰符有学习过吗？它有什么使用场景"   >
+          <a href="#final修饰符有学习过吗？它有什么使用场景" class="heading-link"><i class="fas fa-link"></i></a><a href="#final修饰符有学习过吗？它有什么使用场景" class="headerlink" title="final修饰符有学习过吗？它有什么使用场景"></a>final修饰符有学习过吗？它有什么使用场景</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">有学习过 final可以用于修饰方法、对象、变量</span><br><span class="line">当final修饰变量的时候这个变量就叫做常量，只能赋值一次</span><br><span class="line">当final修饰方法的时候这个方法无法被子类重写</span><br><span class="line">当final修饰类的时候这个类是最终类，不能被继承没有子类</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="进程和线程的区别"   >
+          <a href="#进程和线程的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">进程是操作系统最小的处理的单元</span><br><span class="line">而线程是进程里面的东西 </span><br><span class="line">进程可以创造线程</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="有了解过集合吗？看过底层源码吗？"   >
+          <a href="#有了解过集合吗？看过底层源码吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#有了解过集合吗？看过底层源码吗？" class="headerlink" title="有了解过集合吗？看过底层源码吗？"></a>有了解过集合吗？看过底层源码吗？</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">有了解过集合看过地城源码 </span><br><span class="line">集合是有两个定级接口一个collection单列机和 还有一个是map集合双列集合</span><br><span class="line">collection下游两个子接口一个是list接口 list接口下面有arryalist、linkedlist、vector</span><br><span class="line">还有一个接口是set接口 set接口下的实现类有hashset treeset linkedhashset</span><br><span class="line">而map就扣下游hashmap、linkedhashmap、hashtable、treemap、concrueenthashmap</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="集合是怎么处理哈希碰撞的？"   >
+          <a href="#集合是怎么处理哈希碰撞的？" class="heading-link"><i class="fas fa-link"></i></a><a href="#集合是怎么处理哈希碰撞的？" class="headerlink" title="集合是怎么处理哈希碰撞的？"></a>集合是怎么处理哈希碰撞的？</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">处理哈希碰撞有链式巡执法、显性探测法、再hash发</span><br><span class="line">而季节处理这个哈希碰撞的时候使用链式巡执法 ，因为集合底层是数组+链表+红黑树构成的，当发生哈希碰撞的时候在jdk1.7之前是头插法将新数据插入到链表头部而jdk1.8之后用的是尾插法 然后红黑树是为了解决这个链表过程导致这个时间复杂度上升的问题</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="线程池如何配置？有什么策略策略？"   >
+          <a href="#线程池如何配置？有什么策略策略？" class="heading-link"><i class="fas fa-link"></i></a><a href="#线程池如何配置？有什么策略策略？" class="headerlink" title="线程池如何配置？有什么策略策略？"></a>线程池如何配置？有什么策略策略？</h2>
+      
+        <h2 id="SpringMVC的主要组件有哪些"   >
+          <a href="#SpringMVC的主要组件有哪些" class="heading-link"><i class="fas fa-link"></i></a><a href="#SpringMVC的主要组件有哪些" class="headerlink" title="SpringMVC的主要组件有哪些"></a>SpringMVC的主要组件有哪些</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">主要有五个组件 一个是dispatcherselect前端控制器，hadnlermapping handler映射器 handleradapter 前端适配器 hander 就是我们写的controller 还有一个是ViewReselover 视图解析器</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="08-1"   >
+          <a href="#08-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#08-1" class="headerlink" title="08&#x2F;1"></a>08&#x2F;1</h1>
+      
+        <h2 id="说说你对AOP的理解-1"   >
+          <a href="#说说你对AOP的理解-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#说说你对AOP的理解-1" class="headerlink" title="说说你对AOP的理解"></a>说说你对AOP的理解</h2>
+      
+        <h2 id="什么是SpringMVC？"   >
+          <a href="#什么是SpringMVC？" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是SpringMVC？" class="headerlink" title="什么是SpringMVC？"></a>什么是SpringMVC？</h2>
+      
+        <h2 id="能说说SpringMVC的工作流程吗？-1"   >
+          <a href="#能说说SpringMVC的工作流程吗？-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#能说说SpringMVC的工作流程吗？-1" class="headerlink" title="能说说SpringMVC的工作流程吗？"></a>能说说SpringMVC的工作流程吗？</h2>
+      
+        <h2 id="SpringBoot的自动配置原理"   >
+          <a href="#SpringBoot的自动配置原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#SpringBoot的自动配置原理" class="headerlink" title="SpringBoot的自动配置原理"></a>SpringBoot的自动配置原理</h2>
+      
+        <h2 id="SpringMVC有哪些常用注解？"   >
+          <a href="#SpringMVC有哪些常用注解？" class="heading-link"><i class="fas fa-link"></i></a><a href="#SpringMVC有哪些常用注解？" class="headerlink" title="SpringMVC有哪些常用注解？"></a>SpringMVC有哪些常用注解？</h2>
+      
+        <h2 id="LRU和LFU的实现原理"   >
+          <a href="#LRU和LFU的实现原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#LRU和LFU的实现原理" class="headerlink" title="LRU和LFU的实现原理"></a>LRU和LFU的实现原理</h2>
+      
+        <h2 id="Redis底层对数据结构进行了哪方面的优化"   >
+          <a href="#Redis底层对数据结构进行了哪方面的优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#Redis底层对数据结构进行了哪方面的优化" class="headerlink" title="Redis底层对数据结构进行了哪方面的优化?"></a>Redis底层对数据结构进行了哪方面的优化?</h2>
+      
+        <h2 id="聊聊Redis怎么实现的IO多路复用"   >
+          <a href="#聊聊Redis怎么实现的IO多路复用" class="heading-link"><i class="fas fa-link"></i></a><a href="#聊聊Redis怎么实现的IO多路复用" class="headerlink" title="聊聊Redis怎么实现的IO多路复用"></a>聊聊Redis怎么实现的IO多路复用</h2>
+      
+        <h2 id="为什么Key没有设置过期时间但是却被Redis删除了"   >
+          <a href="#为什么Key没有设置过期时间但是却被Redis删除了" class="heading-link"><i class="fas fa-link"></i></a><a href="#为什么Key没有设置过期时间但是却被Redis删除了" class="headerlink" title="为什么Key没有设置过期时间但是却被Redis删除了"></a>为什么Key没有设置过期时间但是却被Redis删除了</h2>
+      
+        <h2 id="Redis数据持久化策略有哪些？"   >
+          <a href="#Redis数据持久化策略有哪些？" class="heading-link"><i class="fas fa-link"></i></a><a href="#Redis数据持久化策略有哪些？" class="headerlink" title="Redis数据持久化策略有哪些？"></a>Redis数据持久化策略有哪些？</h2>
+      
+        <h2 id="跳表的创建过程-跳表"   >
+          <a href="#跳表的创建过程-跳表" class="heading-link"><i class="fas fa-link"></i></a><a href="#跳表的创建过程-跳表" class="headerlink" title="跳表的创建过程?-跳表"></a>跳表的创建过程?-跳表</h2>
+      
+        <h2 id="RabbitMQ中死信队列？延时队列有了解过吗？-1"   >
+          <a href="#RabbitMQ中死信队列？延时队列有了解过吗？-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#RabbitMQ中死信队列？延时队列有了解过吗？-1" class="headerlink" title="RabbitMQ中死信队列？延时队列有了解过吗？"></a>RabbitMQ中死信队列？延时队列有了解过吗？</h2>
+      
+        <h2 id="什么是回表查询"   >
+          <a href="#什么是回表查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是回表查询" class="headerlink" title="什么是回表查询"></a>什么是回表查询</h2>
+      
+        <h2 id="什么情况下会造成索引失效？-1"   >
+          <a href="#什么情况下会造成索引失效？-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么情况下会造成索引失效？-1" class="headerlink" title="什么情况下会造成索引失效？"></a>什么情况下会造成索引失效？</h2>
+      
+        <h2 id="jvm、jdk、jre的区别"   >
+          <a href="#jvm、jdk、jre的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#jvm、jdk、jre的区别" class="headerlink" title="jvm、jdk、jre的区别"></a>jvm、jdk、jre的区别</h2>
+      
+        <h2 id="多态如何实现的"   >
+          <a href="#多态如何实现的" class="heading-link"><i class="fas fa-link"></i></a><a href="#多态如何实现的" class="headerlink" title="多态如何实现的"></a>多态如何实现的</h2>
+      
+        <h2 id="如何理解序列化"   >
+          <a href="#如何理解序列化" class="heading-link"><i class="fas fa-link"></i></a><a href="#如何理解序列化" class="headerlink" title="如何理解序列化"></a>如何理解序列化</h2>
+      
+        <h2 id="有了解过集合吗？看过底层源码吗？-1"   >
+          <a href="#有了解过集合吗？看过底层源码吗？-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#有了解过集合吗？看过底层源码吗？-1" class="headerlink" title="有了解过集合吗？看过底层源码吗？"></a>有了解过集合吗？看过底层源码吗？</h2>
+      
+        <h2 id="Integer和int能直接进行比较吗？"   >
+          <a href="#Integer和int能直接进行比较吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#Integer和int能直接进行比较吗？" class="headerlink" title="Integer和int能直接进行比较吗？"></a>Integer和int能直接进行比较吗？</h2>
+      
+        <h2 id="线程池如何配置？有什么策略策略？-1"   >
+          <a href="#线程池如何配置？有什么策略策略？-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#线程池如何配置？有什么策略策略？-1" class="headerlink" title="线程池如何配置？有什么策略策略？"></a>线程池如何配置？有什么策略策略？</h2>
+      
+        <h2 id="新结点的层数如何确定-跳表"   >
+          <a href="#新结点的层数如何确定-跳表" class="heading-link"><i class="fas fa-link"></i></a><a href="#新结点的层数如何确定-跳表" class="headerlink" title="新结点的层数如何确定?-跳表"></a>新结点的层数如何确定?-跳表</h2>
+      
+        <h2 id="你们项目中有没有使用过分库分表呢-1"   >
+          <a href="#你们项目中有没有使用过分库分表呢-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#你们项目中有没有使用过分库分表呢-1" class="headerlink" title="你们项目中有没有使用过分库分表呢?"></a>你们项目中有没有使用过分库分表呢?</h2>
+      
+        <h2 id="说说数据库中锁的种类"   >
+          <a href="#说说数据库中锁的种类" class="heading-link"><i class="fas fa-link"></i></a><a href="#说说数据库中锁的种类" class="headerlink" title="说说数据库中锁的种类"></a>说说数据库中锁的种类</h2>
+      
+        <h2 id="介绍一下Mysql中事务的特性-1"   >
+          <a href="#介绍一下Mysql中事务的特性-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#介绍一下Mysql中事务的特性-1" class="headerlink" title="介绍一下Mysql中事务的特性"></a>介绍一下Mysql中事务的特性</h2>
+      
+        <h1 id="08-2"   >
+          <a href="#08-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#08-2" class="headerlink" title="08&#x2F;2"></a>08&#x2F;2</h1>
+      
+        <h2 id="线程sleep-方法和-wait-方法对比"   >
+          <a href="#线程sleep-方法和-wait-方法对比" class="heading-link"><i class="fas fa-link"></i></a><a href="#线程sleep-方法和-wait-方法对比" class="headerlink" title="线程sleep() 方法和 wait() 方法对比"></a>线程sleep() 方法和 wait() 方法对比</h2>
+      
+        <h2 id="什么是线程上下文切换"   >
+          <a href="#什么是线程上下文切换" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是线程上下文切换" class="headerlink" title="什么是线程上下文切换?"></a>什么是线程上下文切换?</h2>
+      
+        <h2 id="说说乐观锁和悲观锁"   >
+          <a href="#说说乐观锁和悲观锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#说说乐观锁和悲观锁" class="headerlink" title="说说乐观锁和悲观锁"></a>说说乐观锁和悲观锁</h2>
+      
+        <h2 id="Set的无序性和不可重复性的含义是什么"   >
+          <a href="#Set的无序性和不可重复性的含义是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#Set的无序性和不可重复性的含义是什么" class="headerlink" title="Set的无序性和不可重复性的含义是什么"></a>Set的无序性和不可重复性的含义是什么</h2>
+      
+        <h2 id="如果一个业务没有处理完没有结束你们是怎么处理的"   >
+          <a href="#如果一个业务没有处理完没有结束你们是怎么处理的" class="heading-link"><i class="fas fa-link"></i></a><a href="#如果一个业务没有处理完没有结束你们是怎么处理的" class="headerlink" title="如果一个业务没有处理完没有结束你们是怎么处理的?"></a>如果一个业务没有处理完没有结束你们是怎么处理的?</h2>
+      
+        <h2 id="CAS无锁有了解过吗"   >
+          <a href="#CAS无锁有了解过吗" class="heading-link"><i class="fas fa-link"></i></a><a href="#CAS无锁有了解过吗" class="headerlink" title="CAS无锁有了解过吗"></a>CAS无锁有了解过吗</h2>
+      
+        <h2 id="数据去重原理，HashSet底层"   >
+          <a href="#数据去重原理，HashSet底层" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据去重原理，HashSet底层" class="headerlink" title="数据去重原理，HashSet底层"></a>数据去重原理，HashSet底层</h2>
+      
+        <h2 id="介绍一下HashMap的参数和机制"   >
+          <a href="#介绍一下HashMap的参数和机制" class="heading-link"><i class="fas fa-link"></i></a><a href="#介绍一下HashMap的参数和机制" class="headerlink" title="介绍一下HashMap的参数和机制"></a>介绍一下HashMap的参数和机制</h2>
+      
+        <h2 id="线程池如何配置？有什么策略策略？-2"   >
+          <a href="#线程池如何配置？有什么策略策略？-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#线程池如何配置？有什么策略策略？-2" class="headerlink" title="线程池如何配置？有什么策略策略？"></a>线程池如何配置？有什么策略策略？</h2>
+      
+        <h2 id="说说SpringMVC的执行流程"   >
+          <a href="#说说SpringMVC的执行流程" class="heading-link"><i class="fas fa-link"></i></a><a href="#说说SpringMVC的执行流程" class="headerlink" title="说说SpringMVC的执行流程"></a>说说SpringMVC的执行流程</h2>
+      
+        <h2 id="Integer和int能直接进行比较吗？-1"   >
+          <a href="#Integer和int能直接进行比较吗？-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#Integer和int能直接进行比较吗？-1" class="headerlink" title="Integer和int能直接进行比较吗？"></a>Integer和int能直接进行比较吗？</h2>
+      
+        <h2 id="HashMap-和-TreeMap-讲讲？"   >
+          <a href="#HashMap-和-TreeMap-讲讲？" class="heading-link"><i class="fas fa-link"></i></a><a href="#HashMap-和-TreeMap-讲讲？" class="headerlink" title="HashMap 和 TreeMap 讲讲？"></a>HashMap 和 TreeMap 讲讲？</h2>
+      
+        <h2 id="为什么MySql用B-树不用跳表？"   >
+          <a href="#为什么MySql用B-树不用跳表？" class="heading-link"><i class="fas fa-link"></i></a><a href="#为什么MySql用B-树不用跳表？" class="headerlink" title="为什么MySql用B+树不用跳表？"></a>为什么MySql用B+树不用跳表？</h2>
+      
+        <h2 id="唯一索引和普通索引在mysql底层有什么区别？"   >
+          <a href="#唯一索引和普通索引在mysql底层有什么区别？" class="heading-link"><i class="fas fa-link"></i></a><a href="#唯一索引和普通索引在mysql底层有什么区别？" class="headerlink" title="唯一索引和普通索引在mysql底层有什么区别？"></a>唯一索引和普通索引在mysql底层有什么区别？</h2>
+      
+        <h2 id="我们如何定位慢查询"   >
+          <a href="#我们如何定位慢查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#我们如何定位慢查询" class="headerlink" title="我们如何定位慢查询"></a>我们如何定位慢查询</h2>
+      
+        <h2 id="事务隔离级别有哪些？MySql默认的事务隔离级别是哪个"   >
+          <a href="#事务隔离级别有哪些？MySql默认的事务隔离级别是哪个" class="heading-link"><i class="fas fa-link"></i></a><a href="#事务隔离级别有哪些？MySql默认的事务隔离级别是哪个" class="headerlink" title="事务隔离级别有哪些？MySql默认的事务隔离级别是哪个"></a>事务隔离级别有哪些？MySql默认的事务隔离级别是哪个</h2>
+      
+        <h2 id="RabbitMQ怎么保障消息的幂等性"   >
+          <a href="#RabbitMQ怎么保障消息的幂等性" class="heading-link"><i class="fas fa-link"></i></a><a href="#RabbitMQ怎么保障消息的幂等性" class="headerlink" title="RabbitMQ怎么保障消息的幂等性"></a>RabbitMQ怎么保障消息的幂等性</h2>
+      
+        <h2 id="底层实现是什么数据结构-跳表"   >
+          <a href="#底层实现是什么数据结构-跳表" class="heading-link"><i class="fas fa-link"></i></a><a href="#底层实现是什么数据结构-跳表" class="headerlink" title="底层实现是什么数据结构-跳表"></a>底层实现是什么数据结构-跳表</h2>
+      
+        <h2 id="聊聊Redis怎么实现的IO多路复用-1"   >
+          <a href="#聊聊Redis怎么实现的IO多路复用-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#聊聊Redis怎么实现的IO多路复用-1" class="headerlink" title="聊聊Redis怎么实现的IO多路复用"></a>聊聊Redis怎么实现的IO多路复用</h2>
+      
+        <h2 id="Redis作为缓存，MySql的数据如何与Redis进行同步"   >
+          <a href="#Redis作为缓存，MySql的数据如何与Redis进行同步" class="heading-link"><i class="fas fa-link"></i></a><a href="#Redis作为缓存，MySql的数据如何与Redis进行同步" class="headerlink" title="Redis作为缓存，MySql的数据如何与Redis进行同步?"></a>Redis作为缓存，MySql的数据如何与Redis进行同步?</h2>
+      
+        <h2 id="讲讲对Redis哈希分槽的理解"   >
+          <a href="#讲讲对Redis哈希分槽的理解" class="heading-link"><i class="fas fa-link"></i></a><a href="#讲讲对Redis哈希分槽的理解" class="headerlink" title="讲讲对Redis哈希分槽的理解"></a>讲讲对Redis哈希分槽的理解</h2>
+      </div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/04/27/JVM%E8%B0%83%E4%BC%98%E5%AE%9E%E4%BE%8B/">JVM调优实例</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-04-27</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">959</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span></div></header><div class="post-body"><div class="post-excerpt">
         <h1 id="准备工作"   >
           <a href="#准备工作" class="heading-link"><i class="fas fa-link"></i></a><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1>
       
@@ -928,7 +1183,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
         <h3 id="lambda表达式"   >
           <a href="#lambda表达式" class="heading-link"><i class="fas fa-link"></i></a><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3>
       <p>本质上是匿名内部类，实际上是一个Runnbale接口的实现类</p>
-</div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">48</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">12</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">19</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Kkker1</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+</div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://images-kkblog.oss-cn-hangzhou.aliyuncs.com/E7977EEC2FEF2A2B9146704271490ED2.png" alt="avatar"></div><p class="sidebar-ov-author__text">步子小也好，走得慢也好，是在往前走就好</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.389081641" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://github.com/Kkker1" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="/" target="_blank" rel="noopener" data-popover="social.KKKer1An@163.com" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">49</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">12</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">19</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Kkker1</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
   var isXML = true;
   var search_path = 'search.xml';
 
